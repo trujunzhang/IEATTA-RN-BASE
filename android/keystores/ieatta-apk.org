@@ -1,0 +1,6 @@
+* IEATTA KEYSTORE FOR RELEASE
+  
+   1. password: ieatta
+      note: Key store password
+   2. alias: ieatta
+      password: ieatta-app

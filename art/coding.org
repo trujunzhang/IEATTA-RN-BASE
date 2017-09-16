@@ -1,0 +1,113 @@
+
+        restaurantId: parseUniqueId(map, PARSE_RESTAURANTS),
+        eventId: parseUniqueId(map, PARSE_EVENTS),
+        userId: parseUniqueId(map, PARSE_USERS)
+
+const styles = StyleSheet.create({
+  font: {
+  },
+});
+
+
+adb pull /data/data/com.ieatta/files/ .
+
+{
+    position: "absolute", top: 0, left: 0, right: 0, bottom: 0, opacity: 0.35
+}
+
+  paragraph: {
+    margin: 24,
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#34495e',
+  },
+
+
+justifyContent: 'center',
+
+   /**
+     * ref: https://www.reddit.com/r/reactnative/comments/56ur4f/problem_with_background_image_parent_texticon/
+     * @note: problem with background image parent + text/icon children + opacity
+     * @returns {XML}
+     */
+
+
+<Image
+                    style={{
+                        flex: 1,
+                        borderRadius: 4
+                    }}
+                    source={{url: 'https://s3-media4.fl.yelpcdn.com/bphoto/oBdw4OSzt2CpuOnpOGw4Ow/60s.jpg'}}/>
+
+
+This also took me ages... with better info it would have been 5 minutes!
+
+I use react-native-fs to get directories (which works for ios and android):
+
+var RNFS = require('react-native-fs');
+RNFS.DocumentDirectoryPath then returns something like '/var/mobile/Containers/Data/Application/15AC1CC6-8CFF-48F0-AFFD-949368383ACB/Documents' on iOS
+
+My Image element looks like:
+
+<Image
+          style={{width:100, height:100}}
+          source={{uri: 'file://' + RNFS.DocumentDirectoryPath + '/myAwesomeSubDir/my.png', scale:1}}
+        />
+My problem was that I did not set width and height first, which is not needed for urls or paths to assets. When using a base64 uri the width and heigth are also mandatory (that actually led me to the solution!).
+
+
+
+- (instancetype) initWithPathString:(NSString *)d
+{
+    if (self = [super init]) {
+       BOOL isString =  [d isKindOfClass:[NSString class]];
+
+        if(isString){
+            
+            NSRegularExpression* decimalRegularExpression = [[NSRegularExpression alloc] initWithPattern:@"(\\.\\d+)(?=\\-?\\.)" options:0 error:nil];
+            _originD = d;
+            _d = [decimalRegularExpression stringByReplacingMatchesInString:d options:0 range:NSMakeRange(0, [d length]) withTemplate:@"$1\,"];
+            _pathRegularExpression = [[NSRegularExpression alloc] initWithPattern:@"[a-df-z]|[\\-+]?(?:[\\d.]e[\\-+]?|[^\\s\\-+,a-z])+" options:NSRegularExpressionCaseInsensitive error:nil];
+        }
+        
+    }
+    return self;
+}
+
+
+24x24_add_photo
+
+
+Parse.Cloud.afterSave(Parse.User, function(request, response) {
+    var userID = request.object.id;
+    console.log("User after save");
+    var token = request.object.get("token");
+    if(token == null || token == "") {
+        console.log("creating token");
+
+        var query = new Parse.Query(Parse.User);
+        query.equalTo("objectId", userID);
+        query.limit(1);
+
+        query.find({ useMasterKey: true }).then(function(results) {
+             if(results.length>0) {
+                 var user = results[0];
+                 user.set("token", tokenGenerator.createToken({uid: userID}))
+                 user.save();
+             }
+         },
+             function(error) {
+                 reportError("Parse.Cloud.afterSave", "firebase token ("+error.code+")");
+                 response.error("Error: Can't query for Installation objects.");
+             });
+    }
+});
+
+* Convert Realm objects to Json
+const results = PeopleInEventService.findAll()
+const json = JSON.stringify(results)
+
+
+
+

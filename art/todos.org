@@ -1,0 +1,42 @@
+07-13-2017:
+  1. (*)Add facebook login and email login.
+
+
+07-21-2017:
+  1. (*)Add GPS location
+  2. Add new Restaurant
+
+07-24-2017:
+  1. (*)Add events Cell
+
+07-26-2017:
+  1. coding the add new restaurant.
+
+
+
+Edit:
+  1.(*) Edit Restaurant
+  2.(*) Edit Event
+  3.(*) Edit Recipe
+  4. Edit Review
+
+
+
+New:
+  1. (*) new Restaurant
+  2. (*) new Event
+  3. new Recipe
+  4. (*) new Photo
+  5. new Review
+
+
+09-10-2017:
+1. (*)(push) New/Edit Restaurant.
+2. (*)(push) New/Edit Event.
+3. (*)(push) New/Edit Review.
+
+4. (*)(push) Edit Recipe.
+
+
+
+

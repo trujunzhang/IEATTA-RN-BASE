@@ -1,0 +1,90 @@
+* Project Name
+  [delivery]
+  [“Alliance T"]
+  Bundle Identifier: [[com.Socialinfotech.DeliveryApp]]
+
+* deployment
+
+** ios
+    $
+    rm ios/main.jsbundle && \
+    rm ios/main.jsbundle.meta && \
+    rm -rf ios/assets && \
+    react-native bundle --entry-file index.ios.js --platform ios --dev false --bundle-output ios/main.jsbundle --assets-dest ios
+
+** android
+    [http://facebook.github.io/react-native/releases/0.19/docs/signed-apk-android.html]
+
+    [cd android/keystores]
+    [keytool -genkey -v -keystore delivery-release-key.keystore -alias Alliance -keyalg RSA -keysize 2048 -validity 10000]
+
+*** Debug
+    $
+    rm android/app/src/main/assets/index.android.bundle && \
+    rm android/app/src/main/assets/index.android.bundle.meta && \
+    react-native bundle --platform android --dev false --entry-file index.android.js \
+           --bundle-output android/app/src/main/assets/index.android.bundle \
+           --assets-dest android/app/src/main/res/
+    [cd android && ./gradlew assembleRelease]
+
+*** Release
+    $
+    rm -rf android/build && \
+        rm -rf android/app/build && \
+        rm android/app/src/main/assets/index.android.bundle && \
+        rm android/app/src/main/assets/index.android.bundle.meta && \
+        react-native bundle --platform android --dev false --entry-file index.android.js \
+                       --bundle-output android/app/src/main/assets/index.android.bundle \
+                       --assets-dest android/app/src/main/res/  &&\
+                cd android && ./gradlew assembleRelease
+
+    $ adb install android/app/build/outputs/apk/app-release.apk
+
+* Libraries
+
+** getsentry
+  Real-time crash reporting for your web apps, mobile apps, and games.
+  [https://github.com/getsentry]
+
+*** Trujunzhang
+  [https://docs.sentry.io/clients/javascript/install/]
+
+    #+BEGIN_SRC javascript
+    SHOWING CONFIGURATION FOR:
+    SCRUBY.SITE / DELIVERY
+    <script src="jquery.js"></script>
+    <script src="https://cdn.ravenjs.com/3.15.0/raven.min.js" crossorigin="anonymous"></script>
+    <script>Raven.config('https://0026c5a58b7748d4befb902e59a2a2f9@sentry.io/165521').install();</script>
+    <script src="app.js"></script>
+    #+END_SRC
+
+** Firebase
+
+*** Trujunzhang
+      [https://console.firebase.google.com/project/deliveryapp-834ff/settings/general/ios:com.trujunzhang.delivery]
+
+       #+BEGIN_SRC javascript
+       <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+       <script>
+         // Initialize Firebase
+         var config = {
+           apiKey: "AIzaSyC6z0c9qjxv5JHfTHL3JgVXDIg5YSP-ltk",
+           authDomain: "deliveryapp-834ff.firebaseapp.com",
+           databaseURL: "https://deliveryapp-834ff.firebaseio.com",
+           projectId: "deliveryapp-834ff",
+           storageBucket: "deliveryapp-834ff.appspot.com",
+           messagingSenderId: "339315443703"
+         };
+         firebase.initializeApp(config);
+       </script>
+       #+END_SRC
+
+** Facebook
+
+*** Trujunzhang
+     [https://developers.facebook.com/apps/1889968727918689/dashboard/]
+
+     #+BEGIN_SRC javascript
+       App_ID:[1889968727918689]
+       App_Secret:[3eeff909c0f45643faad3f29039130a2]
+     #+END_SRC

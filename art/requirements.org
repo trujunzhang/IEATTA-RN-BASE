@@ -1,0 +1,6 @@
+* Version 1.0.0
+   
+    1. iOS 7.0 and android 4.2
+    2. bundleIdentify: 'com.virtualbreak.IEATTA'
+    3. update all copyright all information with VirtualBreak,LLC
+   

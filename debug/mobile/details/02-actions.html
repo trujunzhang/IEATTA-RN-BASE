@@ -1,0 +1,84 @@
+<section class="contribution-actions section-full war-pitch-bar" data-war-uri="">
+    <div class="war-contribution-container u-dead-center">
+        <div class="war-contribution-big u-text-centered">
+            <div class="rating-container">
+
+                <div class="i-stars i-stars--large-0 rating-very-large" title="(no rating)">
+                    <img class="offscreen" height="303"
+                         src="https://s3-media2.fl.yelpcdn.com/assets/srv0/yelp_design_web/9b34e39ccbeb/assets/img/stars/stars.png"
+                         width="84" alt="(no rating)"/>
+                </div>
+
+            </div>
+            <p class="war-text"> Tap a star to start your review... </p>
+        </div>
+    </div>
+
+    <ul class="action-bar clearfix three-up">
+        <li class="js-fast" id="action-share">
+            <a class="js-share-link block-link"
+               href="sms:&amp;body=Jiangnan Cuisine (San Francisco, CA) https://www.yelp.com/biz/jiangnan-cuisine-san-francisco?utm_content=btn%26utm_medium=imessage_btn%26utm_source=m_ishare">
+                    <span aria-hidden="true" style="width: 24px; height: 24px;"
+                          class="icon icon--24-share icon--size-24 icon--active-error contribution-icon">
+                        <svg class="icon_svg">
+                            <use xlink:href="#24x24_share"></use>
+                        </svg>
+                    </span>
+
+                <div class="label">
+                    Share
+                </div>
+
+            </a>
+        </li>
+        <li class="js-fast" id="action-photo">
+            <a class="block-link" href="javascript:;">
+                    <span aria-hidden="true" style="width: 24px; height: 24px;"
+                          class="icon icon--24-add-photo icon--size-24 icon--active-error contribution-icon">
+                        <svg class="icon_svg">
+                            <use xlink:href="#24x24_add_photo"></use>
+                        </svg>
+                    </span>
+
+                <div class="label">
+                    Add Photo
+                </div>
+
+            </a>
+        </li>
+        <li class="js-fast" id="action-bookmark" data-component-bound="true">
+            <a class="block-link" href="javascript:;">
+                    <span aria-hidden="true" style="width: 24px; height: 24px;"
+                          class="icon icon--24-bookmark icon--size-24 icon--active-error contribution-icon">
+                        <svg class="icon_svg">
+                            <use xlink:href="#24x24_bookmark"></use>
+                        </svg>
+                    </span>
+
+                <span class="throbber hidden"></span>
+
+
+                <form action="/bookmark/EcSIjxiaZ36vqCKAJ9ihIw/add_biz" class="hidden" id="bookmark-add-biz"
+                      method="post">
+                    <input type="hidden" name="csrftok" class="csrftok"
+                           value="ee441834f3c5177e87637c75a4f975f933206bbd6562323d3dfb8e94a8bc3daf"/>
+
+                </form>
+
+
+                <form action="/bookmark/EcSIjxiaZ36vqCKAJ9ihIw/remove_biz" class="hidden"
+                      id="bookmark-remove-biz" method="post">
+                    <input type="hidden" name="csrftok" class="csrftok"
+                           value="3a450c07948cf7dc26c587d32d7c93f4b3f2e8bb756caf085bc107693320a982"/>
+
+                </form>
+                <div class="label" data-state-label-add="Bookmark" data-state-label-add-working="Saving..."
+                     data-state-label-remove="Bookmarked" data-state-label-remove-working="Removing...">
+                    Bookmark
+                </div>
+
+            </a>
+        </li>
+    </ul>
+
+</section>

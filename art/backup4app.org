@@ -1,0 +1,41 @@
+Below you can find the details of your Parse app.
+
+
+App Id
+YJ60VCiTAD01YOA3LJtHQlhaLjxiHSsv4mkxKvVM
+App Name
+IEATTA
+App Description
+Web app.
+Public API
+This API is PUBLIC
+Parse API Address
+https://parseapi.back4app.com/
+Parse Version
+2.3.7
+Change Version
+MongoDB Database URI
+mongodb://admin:iNEgZLqoCA4MSxDZ44qFzXuV@mongodb7.back4app.com:27017/ffcf6ff251ab43af8ff4620c1be0360f?ssl=true
+Client Key
+QMGWgF0PPgsFQsgwlKoDurVX65ZG5O0ifzdAtZ0D
+Javascript Key
+3S9VZj8y9g0Tj1WS64dl19eDJrEVpvckG7uhcXIi
+.NET Key
+qOGfYsBT0yZqdEqoA3qC3uvh1HAxE5y1PvdMDta0
+REST API Key
+gQTEnIKaDWgZ4UiUZGQqN7qkkvtMCOobQEIb1kYy
+Webhook Key
+sQJgKa42UXq2hpsic7DjyMAo5dHPSxM6RPRf0tGU
+File Key
+b99c47c4-05bf-4565-9d73-760a9c89bfd2
+Master Key
+87rxX8J0JwaaPSBxY9DdKJEqWXByqE7sShRsX4vg
+Client Class Creation
+Client Class Creation is ALLOWED
+Push Notification from Client
+Push Notification from Client is BLOCKED
+
+
+node ./ios_setup.js 1050096535124346 IEATTAApp
+
+

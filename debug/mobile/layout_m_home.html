@@ -1,0 +1,61 @@
+<section class="new-businesses section-full">
+
+    {Telescope.components.SectionHeaderView}
+    <!--<h2 class="section-title">Hot New Businesses Nearby</h2>-->
+
+    <ul class="action-list openings-list" data-component-bound="true">
+
+        {array.map}{Telescope.components.RestaurantItem}
+
+    </ul>
+
+
+    <div class="section-button">
+        <button data-track="home openings" data-url="/openings/get_new_businesses" type="submit" value="submit"
+                class="ybtn ybtn--full js-more">View More New Businesses
+        </button>
+    </div>
+</section>
+
+
+<!--Restaurant Item-->
+
+<li class="action-item">
+    <div class="action flex-container page-link" data-url="/biz/home-san-francisco-28">
+
+        {this.renderLeft()}
+
+        <div class="flex-avatar">
+            <div class="photo-box pb-60s">
+                <a>
+                    <img alt="Home" class="photo-box-img" height="60" width="60"
+                         src="https://s3-media4.fl.yelpcdn.com/bphoto/oBdw4OSzt2CpuOnpOGw4Ow/60s.jpg"/>
+                </a>
+            </div>
+        </div>
+
+        {this.renderRight()}
+
+        <div class="flex-box">
+            <h4 class="alternate u-space-b0">
+                <a class="h-link">Home</a>
+            </h4>
+
+            <div class="biz-rating biz-rating-large clearfix">
+                <div class="i-stars i-stars--regular-5 rating-large" title="5.0 star rating">
+                    <img class="offscreen" height="303"
+                         src="https://s3-media2.fl.yelpcdn.com/assets/srv0/yelp_design_web/9b34e39ccbeb/assets/img/stars/stars.png"
+                         width="84" alt="5.0 star rating"/>
+                </div>
+                <span class="review-count rating-qualifier"/>
+            </div>
+            <small>
+                <address>
+                    2018 Clement St, San Francisco
+                </address>
+            </small>
+
+        </div>
+    </div>
+
+</li>

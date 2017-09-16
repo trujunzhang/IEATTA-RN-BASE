@@ -1,0 +1,33 @@
+* React Native
+
+** Custom Fonts
+   [ProximaNova Regular]
+   [https://kylealwyn.com/blog/custom-fonts-with-react-native]
+
+   $ npm install -g rnpm
+   $ rnpm link assets
+
+* react-native-scrollable-tab-view(used)
+  Tabbed navigation that you can swipe between, each tab can have its own ScrollView and maintain its own scroll position between swipes. Pleasantly animated. Customizable tab bar
+  [https://github.com/skv-headless/react-native-scrollable-tab-view]
+
+* react-native-searchbar
+  [https://github.com/localz/react-native-searchbar]
+
+
+* React Native Easy Grid
+   [https://github.com/GeekyAnts/react-native-easy-grid]
+
+* react-native-fs
+  Native filesystem access for react-native
+  [https://github.com/itinance/react-native-fs]
+
+* react-native-snap-carousel
+  [https://www.npmjs.com/package/react-native-snap-carousel]
+
+* react-native-camera
+  [https://github.com/lwansbrough/react-native-camera]
+
+* Debug Tools
+** reactotron
+  [https://github.com/infinitered/reactotron/issues/289]

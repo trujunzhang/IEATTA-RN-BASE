@@ -1,0 +1,29 @@
+curl -X POST \
+  -H "X-Parse-Application-Id: zU5955fjYoDbG1EC0wY9RUb8zZYDtbivvUGuWZMv" \
+  -H "X-Parse-REST-API-Key: yC9TR3jPR6s157s3hP4eCvknnfNkfOpwjdtGITXU" \
+  -H "Content-Type: application/json" \
+  -d '{}' \
+  https://parseapi.back4app.com/functions/hello
+
+curl -X POST \
+  -H "X-Parse-Application-Id: zU5955fjYoDbG1EC0wY9RUb8zZYDtbivvUGuWZMv" \
+  -H "X-Parse-REST-API-Key: yC9TR3jPR6s157s3hP4eCvknnfNkfOpwjdtGITXU" \
+  -H "Content-Type: application/json" \
+  -d '{}' \
+  http://192.168.1.102:1337/parse/functions/hello
+
+curl -X POST \
+  -H "X-Parse-Application-Id: zU5955fjYoDbG1EC0wY9RUb8zZYDtbivvUGuWZMv" \
+  -H "X-Parse-MASTER-Id: plSHPsAIDM6qRtcnXR0zmUi9YQCxd58FcYjfUNUY" \
+  -H "X-Parse-REST-API-Key: yC9TR3jPR6s157s3hP4eCvknnfNkfOpwjdtGITXU" \
+  -H "Content-Type: application/json" \
+  -d '{}' \
+  https://parseapi.back4app.com/functions/send
+
+
+  curl -X POST \
+    -H "X-Parse-Application-Id: zU5955fjYoDbG1EC0wY9RUb8zZYDtbivvUGuWZMv" \
+    -H "X-Parse-REST-API-Key: yC9TR3jPR6s157s3hP4eCvknnfNkfOpwjdtGITXU" \
+    -H "Content-Type: application/json" \
+    -d '{}' \
+    http://localhost:1337/parse/functions/hello

@@ -1,0 +1,8 @@
+* Android
+
+** Images Folder
+   [/data/user/0/com.ieatta/files/PARSE_ORIGINAL_IMAGES]
+   [/data/user/0/com.ieatta/files/PARSE_THUMBNAIL_IMAGES]
+
+** Realm Database
+   [/data/data/com.ieatta/files/default.realm]
