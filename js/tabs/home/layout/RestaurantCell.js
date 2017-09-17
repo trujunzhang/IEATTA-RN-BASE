@@ -59,6 +59,7 @@ const styles = StyleSheet.create({
     restaurantContainer: {
         flex: 1,
         paddingHorizontal: 10,
+        backgroundColor: "white",
         height: RestaurantRowHeight,
         flexDirection: 'row',
         alignItems: 'center'
