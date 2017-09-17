@@ -40,23 +40,13 @@ import {
 const {Paragraph, Heading1} = require('F8Text');
 
 class F8EmptySection extends React.Component {
-    props: {
-        style?: any;
-        title?: string;
-        image?: number;
-        text: string;
-        children?: any;
-    };
 
     render() {
-        const image = this.props.image &&
-            <Image style={styles.image} source={this.props.image}/>;
         const title = this.props.title &&
             <Heading1 style={styles.title}>{this.props.title}</Heading1>;
 
         return (
             <View style={[styles.container, this.props.style]}>
-                {image}
                 {title}
                 <Paragraph style={styles.text}>
                     {this.props.text}
