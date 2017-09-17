@@ -37,28 +37,10 @@ import {
     Dimensions
 } from 'react-native'
 
+
+import AppConstants from '../lib/appConstants'
+
 const F8Colors = require('F8Colors')
-
-const {
-    MENU_SECTIONS_MORE,
-    MENU_SECTIONS_RESTAURANTS,
-    MENU_SECTIONS_EVENTS,
-    MENU_SECTIONS_PEOPLE_IN_EVENTS,
-    MENU_SECTIONS_ORDERED_RECIPES,
-    MENU_SECTIONS_DETAILED_RECIPE,
-    MENU_SECTIONS_REVIEWS
-} = require('../lib/constants').default
-
-
-const SECTION_TITLES = {
-    MENU_SECTIONS_MORE: 'More',
-    MENU_SECTIONS_RESTAURANTS: 'Restaurants Nearby',
-    MENU_SECTIONS_EVENTS: 'Events',
-    MENU_SECTIONS_PEOPLE_IN_EVENTS: 'Ordered Users',
-    MENU_SECTIONS_ORDERED_RECIPES: 'Recipes',
-    MENU_SECTIONS_DETAILED_RECIPE: 'Ordered Recipe',
-    MENU_SECTIONS_REVIEWS: 'Reviews'
-}
 
 const styles = StyleSheet.create({
     sectionHeaderContainer: {
@@ -79,12 +61,11 @@ const styles = StyleSheet.create({
 
 class SectionHeader extends React.Component {
 
-
     render() {
         return (
             <View
                 style={styles.sectionHeaderContainer}>
-                <Text style={styles.sectionHeaderTitle}>{SECTION_TITLES[this.props.sectionType]}</Text>
+                <Text style={styles.sectionHeaderTitle}>{AppConstants.SECTION_TITLES[this.props.sectionType]}</Text>
             </View>
         )
     }

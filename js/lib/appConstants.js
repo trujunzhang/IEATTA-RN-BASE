@@ -9,7 +9,15 @@ const {
     PARSE_RECIPES,
     PARSE_PHOTOS,
     PARSE_REVIEWS,
-    PARSE_PEOPLE_IN_EVENTS
+    PARSE_PEOPLE_IN_EVENTS,
+    // Section Header Title
+    MENU_SECTIONS_MORE,
+    MENU_SECTIONS_RESTAURANTS,
+    MENU_SECTIONS_EVENTS,
+    MENU_SECTIONS_PEOPLE_IN_EVENTS,
+    MENU_SECTIONS_ORDERED_RECIPES,
+    MENU_SECTIONS_DETAILED_RECIPE,
+    MENU_SECTIONS_REVIEWS,
 } = require('./constants').default
 
 
@@ -38,6 +46,17 @@ AppConstants.realmTypes = {
     PARSE_PHOTOS: 'photo',
     PARSE_REVIEWS: 'review'
 }
+
+AppConstants.SECTION_TITLES = {
+    MENU_SECTIONS_MORE: 'More',
+    MENU_SECTIONS_RESTAURANTS: 'Restaurants Nearby',
+    MENU_SECTIONS_EVENTS: 'Events',
+    MENU_SECTIONS_PEOPLE_IN_EVENTS: 'Ordered Users',
+    MENU_SECTIONS_ORDERED_RECIPES: 'Recipes',
+    MENU_SECTIONS_DETAILED_RECIPE: 'Ordered Recipe',
+    MENU_SECTIONS_REVIEWS: 'Reviews'
+}
+
 
 AppConstants.placeHolderImage = {
     PARSE_RESTAURANTS: require('../tabs/img/blank_biz_large.png'),
