@@ -70,29 +70,12 @@ class ReviewsListView extends React.Component {
     }
 
     componentWillReceiveProps(nextProps: Props) {
-        const {objectSchemaName} = this.props;
+        const {objectSchemaName} = nextProps;
         this.setState({
             sections: {
                 MENU_SECTIONS_REVIEWS: filterReviews(nextProps, objectSchemaName, null, [])
             },
-            ready: true
         })
-    }
-
-    renderSectionHeader(sectionData, sectionId) {
-        const {sections} = this.state;
-        let emptyBlock = null;
-        if (this.state.ready) {
-            switch (sectionId) {
-                case MENU_SECTIONS_REVIEWS:
-                    if (sections.MENU_SECTIONS_REVIEWS.length === 0) {
-                        emptyBlock = (<F8EmptySection title={`No reviews found`} text=""/>)
-                    }
-                    break;
-            }
-        }
-
-        return (<SectionHeader sectionType={sectionId} emptyBlock={emptyBlock}/>)
     }
 
     render() {
@@ -102,19 +85,12 @@ class ReviewsListView extends React.Component {
                 haveParallaxView={false}
                 data={this.state.sections}
                 renderRow={this.renderRow.bind(this)}
-                renderSectionHeader={this.renderSectionHeader.bind(this)}
-                renderFooter={this.renderFooter.bind(this)}
             />
         )
     }
 
-    renderFooter() {
-        return (<View style={{height: 60}}/>)
-    }
 
-    renderRow(item: any,
-              sectionID: number | string,
-              rowID: number | string) {
+    renderRow(item: any, sectionID: number | string) {
         return (<ReviewCell{...this.props} review={item}/>)
     }
 

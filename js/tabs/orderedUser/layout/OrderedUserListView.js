@@ -79,12 +79,12 @@ class OrderedUserListView extends React.Component {
         const {forEvent, forRestaurant, orderedUser} = this.props;
         const {sections} = this.state;
         const {MENU_SECTIONS_ORDERED_RECIPES} = sections;
-        this.setState({
-            sections: {
-                MENU_SECTIONS_ORDERED_RECIPES: filterOrderedRecipes(nextProps, forRestaurant.objectId, forEvent.objectId, orderedUser.objectId, MENU_SECTIONS_ORDERED_RECIPES)
-            },
-            ready: true
+
+        const nextSections = Object.assign({}, sections, {
+            MENU_SECTIONS_ORDERED_RECIPES: filterOrderedRecipes(nextProps, forRestaurant.objectId, forEvent.objectId, orderedUser.objectId, MENU_SECTIONS_ORDERED_RECIPES)
         })
+
+        this.setState({sections: nextSections})
     }
 
     componentDidMount() {
@@ -92,54 +92,22 @@ class OrderedUserListView extends React.Component {
         this.props.dispatch(queryRecipesForUser(forRestaurant.objectId, forEvent.objectId, orderedUser.objectId))
     }
 
-
-    renderSectionHeader(sectionData, sectionId) {
-        const {sections} = this.state;
-        let emptyBlock = null;
-        if (this.state.ready) {
-            switch (sectionId) {
-                case MENU_SECTIONS_ORDERED_RECIPES:
-                    if (sections.MENU_SECTIONS_ORDERED_RECIPES.length === 0) {
-                        emptyBlock = (
-                            <F8EmptySection
-                                title={`No recipes ordered by the user`}
-                                text="Chick the add icon to add an recipe."
-                            />
-                        )
-                    }
-                    break;
-            }
-        }
-
-        return (<SectionHeader sectionType={sectionId} emptyBlock={emptyBlock}/>)
-    }
-
     render() {
         return (
             <PureListView
                 data={this.state.sections}
                 renderTopHeader={this.renderTopHeaderView.bind(this)}
-                renderFooter={this.renderFooter.bind(this)}
                 renderRow={this.renderRow.bind(this)}
-                renderSectionHeader={this.renderSectionHeader.bind(this)}
                 {...this.props}
             />
         )
     }
 
-    renderFooter() {
-        return (<View style={{height: 60}}/>)
+    renderRow(recipe: any, sectionID: number | string) {
+        return (<OrderedRecipeCell {...this.props} recipe={recipe}/>)
     }
 
-    renderRow(recipe: any,
-              sectionID: number | string,
-              rowID: number | string) {
-        return (
-            <OrderedRecipeCell {...this.props} recipe={recipe}/>
-        )
-    }
-
-    renderTopHeaderView(): ?ReactElement {
+    renderTopHeaderView() {
         return (
             <StaticContainer>
                 <View style={{flex: 1, marginTop: F8Colors.topViewHeight}}>

@@ -75,14 +75,14 @@ class DetailedRecipeListView extends React.Component {
 
 
     componentWillReceiveProps(nextProps: Props) {
-        const {recipe} = this.props;
+        const {recipe} = nextProps;
         const {sections} = this.state;
-        this.setState({
-            sections: {
-                MENU_SECTIONS_REVIEWS: filterReviews(nextProps, PARSE_RECIPES, recipe.objectId, sections.MENU_SECTIONS_REVIEWS)
-            },
-            ready: true
+
+        const nextSections = Object.assign({}, sections, {
+            MENU_SECTIONS_REVIEWS: filterReviews(nextProps, PARSE_RECIPES, recipe.objectId, sections.MENU_SECTIONS_REVIEWS)
         })
+
+        this.setState({sections: nextSections})
     }
 
     componentDidMount() {
@@ -92,52 +92,22 @@ class DetailedRecipeListView extends React.Component {
         }))
     }
 
-
-    renderSectionHeader(sectionData, sectionId) {
-        const {sections} = this.state;
-        let emptyBlock = null;
-        if (this.state.ready) {
-            switch (sectionId) {
-                case MENU_SECTIONS_REVIEWS:
-                    if (sections.MENU_SECTIONS_REVIEWS.length === 0) {
-                        emptyBlock = (
-                            <F8EmptySection
-                                title={`No reviews for the recipe`}
-                                text="Chick the cross icon to add new review."
-                            />
-                        )
-                    }
-                    break;
-            }
-        }
-
-        return (<SectionHeader sectionType={sectionId} emptyBlock={emptyBlock}/>)
-    }
-
     render() {
         return (
             <PureListView
                 data={this.state.sections}
                 renderTopHeader={this.renderTopHeaderView.bind(this)}
-                renderFooter={this.renderFooter.bind(this)}
                 renderRow={this.renderRow.bind(this)}
-                renderSectionHeader={this.renderSectionHeader.bind(this)}
                 {...this.props}
             />
         )
     }
 
-    renderFooter() {
-        return (<View style={{height: 60}}/>)
-    }
-
-    renderRow(item: any,
-              sectionID: number | string,
-              rowID: number | string) {
+    renderRow(item: any, sectionID: number | string) {
         return (<ReviewCell{...this.props} review={item}/>)
     }
 
-    renderTopHeaderView(): ?ReactElement {
+    renderTopHeaderView() {
         return (
             <StaticContainer>
                 <View style={{flex: 1, marginTop: F8Colors.topViewHeight}}>

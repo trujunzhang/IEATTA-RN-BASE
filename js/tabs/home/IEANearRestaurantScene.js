@@ -79,13 +79,12 @@ class IEANearRestaurantScene extends Component {
     }
 
     componentWillReceiveProps(nextProps: Props) {
-        this.setState({
-            sections: {
-                MENU_SECTIONS_MORE: Restaurants.TOP_MENUS,
-                MENU_SECTIONS_RESTAURANTS: nextProps.appModel.restaurants
-            },
-            ready: true
+        const {sections} = this.state;
+        const nextSections = Object.assign({}, sections, {
+            MENU_SECTIONS_RESTAURANTS: nextProps.appModel.restaurants
         })
+
+        this.setState({sections: nextSections})
     }
 
     componentDidMount() {
@@ -106,7 +105,7 @@ class IEANearRestaurantScene extends Component {
         return (<RestaurantCell key={item.objectId} restaurant={item} {...this.props}/>)
     }
 
-    renderSectionHeader(sectionData, sectionId) {
+    renderSectionHeader(sectionId) {
         return (
             <SectionHeader key={sectionId} sectionType={sectionId}/>
         )
@@ -135,7 +134,7 @@ class IEANearRestaurantScene extends Component {
             const sectionData = sections[key];
             listRows.push(
                 <ListItem itemDivider key={key}>
-                    {renderSectionHeader(null, key)}
+                    {renderSectionHeader(key)}
                 </ListItem>
             )
 

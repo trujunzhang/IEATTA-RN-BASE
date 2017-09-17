@@ -78,55 +78,22 @@ class PeopleInEventListView extends React.Component {
     }
 
     componentWillReceiveProps(nextProps: Props) {
-        const {event, forRestaurant} = this.props;
+        const {event, forRestaurant} = nextProps;
         const {sections} = this.state;
         const {MENU_SECTIONS_PEOPLE_IN_EVENTS, MENU_SECTIONS_REVIEWS} = sections;
-        this.setState({
-            sections: {
-                MENU_SECTIONS_PEOPLE_IN_EVENTS: filterUserInEvent(nextProps, forRestaurant.objectId, event.objectId, MENU_SECTIONS_PEOPLE_IN_EVENTS),
-                MENU_SECTIONS_REVIEWS: filterReviews(nextProps, PARSE_EVENTS, event.objectId, MENU_SECTIONS_REVIEWS)
-            },
-            ready: true
+
+        const nextSections = Object.assign({}, sections, {
+            MENU_SECTIONS_PEOPLE_IN_EVENTS: filterUserInEvent(nextProps, forRestaurant.objectId, event.objectId, MENU_SECTIONS_PEOPLE_IN_EVENTS),
+            MENU_SECTIONS_REVIEWS: filterReviews(nextProps, PARSE_EVENTS, event.objectId, MENU_SECTIONS_REVIEWS)
         })
+
+        this.setState({sections: nextSections})
     }
 
     componentDidMount() {
         const {event, forRestaurant} = this.props;
         this.props.dispatch(queryPeopleForEvent(forRestaurant.objectId, event.objectId))
         this.props.dispatch(queryReviews({objectSchemaName: PARSE_EVENTS, forObjectUniqueId: event.uniqueId}))
-    }
-
-    renderSectionHeader(sectionData, sectionId) {
-        const {sections} = this.state;
-        let emptyBlock = null;
-        if (this.state.ready) {
-            switch (sectionId) {
-                case MENU_SECTIONS_PEOPLE_IN_EVENTS:
-                    if (sections.MENU_SECTIONS_PEOPLE_IN_EVENTS.length === 0) {
-                        emptyBlock = (
-                            <F8EmptySection
-                                title={`No users ordered recipes on the event`}
-                                text="Check the cross icon to add new user."
-                            />
-                        )
-                    }
-                    break;
-                case MENU_SECTIONS_REVIEWS:
-                    if (sections.MENU_SECTIONS_REVIEWS.length === 0) {
-                        emptyBlock = (
-                            <F8EmptySection
-                                title={`No reviews on the event`}
-                                text="Chick the cross icon to add new review."
-                            />
-                        )
-                    }
-                    break;
-            }
-        }
-
-        return (
-            <SectionHeader sectionType={sectionId} emptyBlock={emptyBlock}/>
-        )
     }
 
     render() {
@@ -136,26 +103,19 @@ class PeopleInEventListView extends React.Component {
                 data={this.state.sections}
                 renderTopHeader={this.renderTopHeaderView.bind(this)}
                 renderRow={this.renderRow.bind(this)}
-                renderSectionHeader={this.renderSectionHeader.bind(this)}
-                renderFooter={this.renderFooter.bind(this)}
             />
         )
     }
 
-    renderFooter() {
-        return (<View style={{height: 60}}/>)
-    }
 
-    renderRow(item: any,
-              sectionID: number | string,
-              rowID: number | string) {
+    renderRow(item: any, sectionID: number | string) {
         if (sectionID === MENU_SECTIONS_PEOPLE_IN_EVENTS) {
             return (<PeopleInEventCell {...this.props} user={item}/>)
         }
         return (<ReviewCell{...this.props} review={item}/>)
     }
 
-    renderTopHeaderView(): ?ReactElement {
+    renderTopHeaderView() {
         return (
             <StaticContainer>
                 <View style={{flex: 1, marginTop: F8Colors.topViewHeight}}>
