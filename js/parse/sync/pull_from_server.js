@@ -125,7 +125,7 @@ export async function pullFromServer(countPerTime, lastRecordUpdatedData) {
         UserService.refreshLocalUser(_userRecords[i])
     }
 
-    debugger
+    // debugger
 
     // Step3: save all recorded objects.
     for (let i = 0; i < records.length; i++) {

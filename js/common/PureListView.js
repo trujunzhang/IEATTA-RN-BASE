@@ -69,28 +69,18 @@ const {
     PARALLAX_HEADER_LEFT_ITEM_BACK,
 } = require('../lib/constants').default
 
+import {Container, Header, Content, List, ListItem} from 'native-base'
 
-type State = {
-    contentHeight: number;
-    dataSource: ListView.DataSource;
-};
 
 // FIXME: Android has a bug when scrolling ListView the view insertions
 // will make it go reverse. Temporary fix - pre-render more rows
 const LIST_VIEW_PAGE_SIZE = Platform.OS === 'android' ? 20 : 1;
 
 class PureListView extends React.Component {
-    props: Props;
-    state: State;
-
-    static defaultProps = {
-        // TODO: This has to be scrollview height + fake header
-        minContentHeight: Dimensions.get('window').height + 20,
-        renderSeparator: (sectionID, rowID) => <View style={commonStyles.listRowSeparator} key={rowID}/>,
-    };
 
     constructor(props: Props) {
         super(props);
+
         let dataSource = new ListView.DataSource({
             getRowData: (dataBlob, sid, rid) => dataBlob[sid][rid],
             getSectionHeaderData: (dataBlob, sid) => dataBlob[sid],
@@ -113,14 +103,6 @@ class PureListView extends React.Component {
         (this: any).onContentSizeChange = this.onContentSizeChange.bind(this);
     }
 
-    componentWillReceiveProps(nextProps: Props) {
-        if (this.props.data !== nextProps.data) {
-            this.setState({
-                dataSource: cloneWithData(this.state.dataSource, nextProps.data),
-            });
-        }
-    }
-
     render() {
         const {haveParallaxView} = this.props;
 
@@ -140,23 +122,34 @@ class PureListView extends React.Component {
                     />
                 )
             } : {};
+
+        const {data, renderSectionHeader, renderRow} = this.props;
+        const sectionKeys = Object.keys(data);
+
+        let listRows = [];
+        sectionKeys.forEach(function (key) {
+            const sectionData = data[key];
+            listRows.push(
+                <ListItem itemDivider key={key}>
+                    {renderSectionHeader(sectionData, key)}
+                </ListItem>
+            )
+
+            sectionData.forEach(function (row, index) {
+                listRows.push(
+                    <ListItem key={row.objectId} style={{backgroundColor: '#fff'}}>
+                        {renderRow(row, key, index)}
+                    </ListItem>
+                )
+            })
+        })
+
         return (
-            <ListView
-                key={"pureList"}
-                initialListSize={10}
-                pageSize={LIST_VIEW_PAGE_SIZE}
-                {...this.props}
-                style={{flex: 1, backgroundColor: F8Colors.controllerViewColor}}
-                ref="listview"
-                dataSource={this.state.dataSource}
-                renderHeader={this.renderHeader.bind(this)}
-                renderFooter={this.renderFooter.bind(this)}
-                contentInset={{bottom: 40, top: 0}}
-                onContentSizeChange={this.onContentSizeChange}
-                stickySectionHeadersEnabled={false}
-                enableEmptySections={true}
-                {...parallaxProperty}
-            />
+            <Content>
+                <List>
+                    {listRows}
+                </List>
+            </Content>
         )
     }
 

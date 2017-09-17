@@ -111,13 +111,13 @@ class IEANearRestaurantScene extends Component {
 
     render() {
         return (
-                <PureListView
-                    {...this.props}
-                    data={this.state.sections}
-                    haveParallaxView={false}
-                    renderRow={this.renderRow.bind(this)}
-                    renderSectionHeader={this.renderSectionHeader.bind(this)}
-                    renderFooter={this.renderFooter.bind(this)}/>
+            <PureListView
+                {...this.props}
+                data={this.state.sections}
+                haveParallaxView={false}
+                renderRow={this.renderRow.bind(this)}
+                renderSectionHeader={this.renderSectionHeader.bind(this)}
+                renderFooter={this.renderFooter.bind(this)}/>
         )
     }
 

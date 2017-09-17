@@ -1,7 +1,12 @@
-import variable from "./../variables/platform";
+import { Platform } from 'react-native';
+import _ from 'lodash';
+
+import variable from './../variables/platform';
 
 export default (variables = variable) => {
-  const pickerTheme = {};
+  const pickerTheme = {
+  };
+
 
   return pickerTheme;
 };

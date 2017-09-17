@@ -48,7 +48,7 @@ class Home extends Component {
 
     renderTopHeader() {
         return (
-            <Header style={{backgroundColor:F8Colors.primaryColor }}>
+            <Header style={{backgroundColor: F8Colors.primaryColor}}>
                 <Left style={{flex: 1}}>
                     <Button
                         transparent
@@ -58,8 +58,8 @@ class Home extends Component {
                 </Left>
 
                 <Body style={{flex: 4}}>
-                <Title style={{color:'#fff'}}>{"IEATTA"}</Title>
-                {Platform.OS === 'ios' && <Subtitle style={{color:'#fff'}}>{"Eating Experience Tracker"}</Subtitle>}
+                <Title style={{color: '#fff'}}>{"IEATTA"}</Title>
+                {Platform.OS === 'ios' && <Subtitle style={{color: '#fff'}}>{"Eating Experience Tracker"}</Subtitle>}
                 </Body>
 
                 <Right/>
@@ -71,9 +71,8 @@ class Home extends Component {
         return (
             <Container style={styles.container}>
                 {this.renderTopHeader()}
-                <Content>
-                    <IEANearRestaurantScene {...this.props}/>
-                </Content>
+
+                <IEANearRestaurantScene {...this.props}/>
             </Container>
         );
     }

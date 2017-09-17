@@ -73,7 +73,6 @@ import com.android.build.OutputFile
  */
 
 apply from: "../../node_modules/react-native/react.gradle"
-apply from: "../../node_modules/react-native-code-push/android/codepush.gradle"
 
 /**
  * Set this to true to create two separate APKs instead of one:
@@ -164,7 +163,6 @@ dependencies {
     compile project(':react-native-navigation')
     compile project(':react-native-linear-gradient')
     compile project(':react-native-i18n')
-    compile project(':react-native-code-push')
     compile project(':react-native-camera')
     compile project(':react-native-background-timer')
     compile fileTree(dir: "libs", include: ["*.jar"])
