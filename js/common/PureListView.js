@@ -112,23 +112,21 @@ class PureListView extends React.Component {
 
         const _dataArray = this._generateDataArray();
         return (
-            <Content>
-                <List
-                    style={{flex: 1, backgroundColor: F8Colors.controllerViewColor}}
-                    rowHasChanged={(row1, row2) => row1.objectId !== row2.objectId}
-                    dataArray={_dataArray}
-                    renderRow={this.renderListRow.bind(this)}
-                    renderHeader={this.props.renderTopHeaderView}
+            <List
+                style={{backgroundColor: F8Colors.controllerViewColor}}
+                rowHasChanged={(row1, row2) => row1.objectId !== row2.objectId}
+                dataArray={_dataArray}
+                renderRow={this.renderListRow.bind(this)}
+                renderHeader={this.props.renderTopHeaderView}
 
-                    initialListSize={10}
-                    pageSize={LIST_VIEW_PAGE_SIZE}
-                    stickySectionHeadersEnabled={false}
-                    enableEmptySections={true}
+                initialListSize={10}
+                pageSize={LIST_VIEW_PAGE_SIZE}
+                stickySectionHeadersEnabled={false}
+                enableEmptySections={true}
 
-                    {...parallaxProperty}
-                >
-                </List>
-            </Content>
+                {...parallaxProperty}
+            >
+            </List>
         )
     }
 
