@@ -75,11 +75,12 @@ class DetailedRestaurantListView extends React.Component {
             },
             ready: false
         }
+
     }
 
     componentWillReceiveProps(nextProps: Props) {
         console.log("component will receive in the detailed restaurant")
-        const {objectId, uniqueId} = this.props.forRestaurant;
+        const {objectId, uniqueId} = nextProps.forRestaurant;
         const {sections} = this.state;
         const {MENU_SECTIONS_EVENTS, MENU_SECTIONS_REVIEWS} = sections;
         this.setState({

@@ -88,6 +88,16 @@ class PureListView extends React.Component {
     constructor(props: Props) {
         super(props);
 
+        this.state = {
+            dataArray: this._generateDataArray(props)
+        }
+    }
+
+
+    componentWillReceiveProps(nextProps: Props) {
+        this.setState({
+            dataArray: this._generateDataArray(nextProps)
+        })
     }
 
     render() {
@@ -110,12 +120,11 @@ class PureListView extends React.Component {
                 )
             } : {};
 
-        const _dataArray = this._generateDataArray();
         return (
             <List
                 style={{backgroundColor: F8Colors.controllerViewColor}}
                 rowHasChanged={(row1, row2) => row1.objectId !== row2.objectId}
-                dataArray={_dataArray}
+                dataArray={this.state.dataArray}
                 renderRow={this.renderListRow.bind(this)}
                 renderHeader={this.props.renderTopHeader}
                 initialListSize={10}
@@ -147,8 +156,7 @@ class PureListView extends React.Component {
         return null
     }
 
-    _generateDataArray() {
-        const {data} = this.props;
+    _generateDataArray({data}) {
         const sectionKeys = Object.keys(data);
 
         let listRows = [];
@@ -266,47 +274,8 @@ class PureListView extends React.Component {
         )
     }
 
-    onContentSizeChange(contentWidth: number, contentHeight: number) {
-        if (contentHeight !== this.state.contentHeight) {
-            this.setState({contentHeight});
-        }
-    }
 
-    scrollTo(...args: Array<any>) {
-        this.refs.listview.scrollTo(...args);
-    }
-
-    getScrollResponder(): any {
-        return this.refs.listview.getScrollResponder();
-    }
-
-    renderHeader() {
-        return this.props.renderTopHeader && this.props.renderTopHeader();
-    }
-
-    renderFooter() {
-        if (!!this.props.renderFooter) {
-            return this.props.renderFooter();
-        }
-
-        if (this.state.dataSource.getRowCount() === 0) {
-            return this.props.renderEmptyList && this.props.renderEmptyList();
-        }
-
-        return null;
-    }
 }
-
-function cloneWithData(dataSource: ListView.DataSource, data: ?Data) {
-    if (!data) {
-        return dataSource.cloneWithRows([]);
-    }
-    if (Array.isArray(data)) {
-        return dataSource.cloneWithRows(data);
-    }
-    return dataSource.cloneWithRowsAndSections(data);
-}
-
 
 const styles = StyleSheet.create({
     parallaxHeaderBackground: {
