@@ -164,7 +164,7 @@ class IEANearRestaurantScene extends Component {
             case MENU_SECTIONS_RESTAURANTS:
                 onCellItemPress(props,
                     MENU_DETAILED_RESTAURANT_PAGE,
-                    {item}
+                    {restaurant: item}
                 )
                 break;
         }
