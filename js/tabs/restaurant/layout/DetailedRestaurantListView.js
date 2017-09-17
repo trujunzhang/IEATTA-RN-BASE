@@ -75,7 +75,6 @@ class DetailedRestaurantListView extends React.Component {
             },
             ready: false
         }
-
     }
 
     componentWillReceiveProps(nextProps: Props) {
@@ -83,13 +82,13 @@ class DetailedRestaurantListView extends React.Component {
         const {objectId, uniqueId} = nextProps.forRestaurant;
         const {sections} = this.state;
         const {MENU_SECTIONS_EVENTS, MENU_SECTIONS_REVIEWS} = sections;
-        this.setState({
-            sections: {
-                MENU_SECTIONS_EVENTS: filterEvents(nextProps, uniqueId, MENU_SECTIONS_EVENTS),
-                MENU_SECTIONS_REVIEWS: filterReviews(nextProps, PARSE_RESTAURANTS, objectId, MENU_SECTIONS_REVIEWS)
-            },
-            ready: true
+
+        const nextSections = Object.assign({}, sections, {
+            MENU_SECTIONS_EVENTS: filterEvents(nextProps, uniqueId, MENU_SECTIONS_EVENTS),
+            MENU_SECTIONS_REVIEWS: filterReviews(nextProps, PARSE_RESTAURANTS, objectId, MENU_SECTIONS_REVIEWS)
         })
+
+        this.setState({sections: nextSections})
     }
 
     componentDidMount() {
@@ -117,17 +116,15 @@ class DetailedRestaurantListView extends React.Component {
         )
     }
 
-    renderRow(item: any,
-              sectionID: number | string,
-              rowID: number | string) {
-        console.log("detailed restaurant", sectionID)
+    renderRow(item: any, sectionID: number | string) {
+        console.log("render detailed restaurant row:", sectionID)
         if (sectionID === MENU_SECTIONS_EVENTS) {
             return (<EventCell{...this.props} event={item}/>)
         }
         return (<ReviewCell{...this.props} review={item}/>)
     }
 
-    renderTopHeaderView(): ?ReactElement {
+    renderTopHeaderView() {
         return (
             <StaticContainer>
                 <View style={{flex: 1, marginTop: F8Colors.topViewHeight}}>
