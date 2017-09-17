@@ -40,7 +40,6 @@ import {
     Dimensions
 } from 'react-native'
 
-const CellRowHeight = 84
 
 import Recipes from '../../../lib/recipes'
 
@@ -63,10 +62,8 @@ const {
 const styles = StyleSheet.create({
     orderedRecipeCellContainer: {
         flex: 1,
-        paddingLeft: 10,
-        marginRight: 10,
-        backgroundColor: "white",
-        height: CellRowHeight,
+        paddingHorizontal: 10,
+        height: F8Colors.RecipeCellRowHeight,
     },
     orderedRecipeCellSection: { //{/*.action-list .action*/}
         flex: 1,
@@ -165,7 +162,7 @@ class OrderedRecipeCell extends React.Component {
                     {this.renderLeft()}
                     {this.renderRight()}
                 </View>
-                <View style={{position: 'absolute', right: 10, top: (CellRowHeight - 24) / 2}}>
+                <View style={{position: 'absolute', right: 10, top: (F8Colors.RecipeCellRowHeight - 24) / 2}}>
                     <Icon name="angle-right" size={24} color="#C8C7CC"/>
                 </View>
             </View>
