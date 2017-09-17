@@ -117,8 +117,7 @@ class PureListView extends React.Component {
                 rowHasChanged={(row1, row2) => row1.objectId !== row2.objectId}
                 dataArray={_dataArray}
                 renderRow={this.renderListRow.bind(this)}
-                renderHeader={this.props.renderTopHeaderView}
-
+                renderHeader={this.props.renderTopHeader}
                 initialListSize={10}
                 pageSize={LIST_VIEW_PAGE_SIZE}
                 stickySectionHeadersEnabled={false}
