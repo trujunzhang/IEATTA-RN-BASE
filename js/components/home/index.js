@@ -58,8 +58,8 @@ class Home extends Component {
                 </Left>
 
                 <Body style={{flex: 4}}>
-                <Title>{"IEATTA"}</Title>
-                {Platform.OS === 'ios' && <Subtitle>{"Eating Experience Tracker"}</Subtitle>}
+                <Title style={{color:'#fff'}}>{"IEATTA"}</Title>
+                {Platform.OS === 'ios' && <Subtitle style={{color:'#fff'}}>{"Eating Experience Tracker"}</Subtitle>}
                 </Body>
 
                 <Right/>
