@@ -78,6 +78,7 @@ class DetailedRestaurantListView extends React.Component {
     }
 
     componentWillReceiveProps(nextProps: Props) {
+        console.log("component will receive in the detailed restaurant")
         const {objectId, uniqueId} = this.props.forRestaurant;
         const {sections} = this.state;
         const {MENU_SECTIONS_EVENTS, MENU_SECTIONS_REVIEWS} = sections;
@@ -118,7 +119,7 @@ class DetailedRestaurantListView extends React.Component {
     renderRow(item: any,
               sectionID: number | string,
               rowID: number | string) {
-        // console.log("detailed restaurant", sectionID)
+        console.log("detailed restaurant", sectionID)
         if (sectionID === MENU_SECTIONS_EVENTS) {
             return (<EventCell{...this.props} event={item}/>)
         }

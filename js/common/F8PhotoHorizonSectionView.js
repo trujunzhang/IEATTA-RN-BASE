@@ -62,6 +62,7 @@ import styles from './F8PhotoStyles'
 class F8PhotoHorizonSectionView extends React.Component {
 
     constructor(props: Props) {
+        console.log("constructor in the photos horizon.")
         super(props);
         this.state = {
             photos: [],
@@ -70,7 +71,6 @@ class F8PhotoHorizonSectionView extends React.Component {
     }
 
     componentWillReceiveProps(nextProps: Props) {
-        debugger
 
         const {sectionType, forItem} = this.props;
 
@@ -82,6 +82,7 @@ class F8PhotoHorizonSectionView extends React.Component {
     }
 
     componentWillMount() {
+        console.log("component will mount in the photos horizon.")
         const {sectionType, forItem} = this.props;
 
         if (!!forItem) {
