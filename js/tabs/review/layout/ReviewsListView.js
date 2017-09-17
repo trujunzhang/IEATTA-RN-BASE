@@ -38,14 +38,10 @@ import {
     Dimensions
 } from 'react-native'
 
-const F8EmptySection = require('F8EmptySection')
 const PureListView = require('PureListView')
-const SectionHeader = require('SectionHeader')
-
 const ReviewCell = require('./ReviewCell')
 
-const StaticContainer = require('F8StaticContainer')
-
+import {Container, Header, Content, List, ListItem, Body} from 'native-base'
 const {filterReviews} = require('../../filter/filterAppModel')
 
 /**

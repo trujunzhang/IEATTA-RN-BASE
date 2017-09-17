@@ -43,8 +43,6 @@ import Reviews from '../../lib/reviews'
 const F8Colors = require('F8Colors')
 const F8Header = require('F8Header')
 const F8SearchBar = require('F8SearchBar')
-const F8Button = require('F8Button')
-const F8DrawerLayout = require('F8DrawerLayout')
 
 const {queryReviews} = require('../../actions')
 
@@ -117,12 +115,9 @@ class IEAReadReviews extends Component {
 
                 <F8SearchBar
                     handleSearch={this.handleSearch.bind(this)}
-                    selectionColor="#ccc"
-                    backCloseSize={18}
                     hideBack={true}
                     placeholder={"Search Reviews"}
                     placeholderTextColor="#aaa"
-                    autoCapitalize={'none'}
                     ref={(ref) => this.searchBar = ref}/>
 
                 <SegmentedControlTab

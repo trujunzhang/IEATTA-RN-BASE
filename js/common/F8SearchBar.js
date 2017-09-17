@@ -92,13 +92,17 @@ class F8SearchBar extends Component {
             placeholderTextColor,
             keyboardAppearance,
             autoCorrect,
+            hideBack,
         } = this.props;
 
         const leftArrow = (
             <Left style={{flex: 2}}>
-                <Button transparent onPress={this.props.onBack}>
-                    <Icon active name="arrow-back"/>
-                </Button>
+                {
+                    !hideBack &&
+                    <Button transparent onPress={this.props.onBack}>
+                        <Icon active name="arrow-back"/>
+                    </Button>
+                }
             </Left>
         )
         const rightArrow = (
