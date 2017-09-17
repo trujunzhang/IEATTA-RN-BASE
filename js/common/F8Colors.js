@@ -86,4 +86,5 @@ module.exports = {
     // iOS: 180
     topViewHeight: 0,
     // topViewHeight: Platform.OS === "ios" ? (height <= 600 ? 160 : 200) : (height <= 600 ? 160 : 200)
+    UserRowHeight : 84,
 };

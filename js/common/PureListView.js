@@ -41,6 +41,7 @@ import {
     Dimensions
 } from 'react-native'
 
+const _ = require('underscore')
 import AppConstants from '../lib/appConstants'
 
 const F8Colors = require('F8Colors')
@@ -84,7 +85,7 @@ class PureListView extends React.Component {
         let dataSource = new ListView.DataSource({
             getRowData: (dataBlob, sid, rid) => dataBlob[sid][rid],
             getSectionHeaderData: (dataBlob, sid) => dataBlob[sid],
-            rowHasChanged: (row1, row2) => row1 !== row2,
+            rowHasChanged: (row1, row2) => row1.objectId !== row2.objectId,
             sectionHeaderHasChanged: (s1, s2) => {
                 // if (s1.length === 0 || s2.length === 0) {
                 return true;
@@ -137,20 +138,60 @@ class PureListView extends React.Component {
 
             sectionData.forEach(function (row, index) {
                 listRows.push(
-                    <ListItem key={row.objectId} style={{backgroundColor: '#fff'}}>
+                    <ListItem key={row.objectId}>
                         {renderRow(row, key, index)}
                     </ListItem>
                 )
             })
         })
 
+        const _dataArray = this._generateDataArray();
         return (
             <Content>
-                <List>
-                    {listRows}
+                <List
+                    style={{flex: 1, backgroundColor: F8Colors.controllerViewColor}}
+                    rowHasChanged={(row1, row2) => row1.objectId !== row2.objectId}
+                    dataArray={_dataArray}
+                    renderRow={this.renderListRow.bind(this)}
+                    {...parallaxProperty}
+                >
                 </List>
             </Content>
         )
+    }
+
+    renderListRow(item) {
+        if (item.isSectionHeader) {
+            return this.props.renderSectionHeader(null, item.objectId);
+        }
+
+        return this.props.renderRow(item, item.sectionTag)
+    }
+
+    _generateDataArray() {
+        const {data} = this.props;
+        const sectionKeys = Object.keys(data);
+
+        let listRows = [];
+        sectionKeys.forEach(function (key) {
+            const sectionData = data[key];
+            listRows.push(
+                {
+                    objectId: key,
+                    isSectionHeader: true
+                }
+            )
+            sectionData.forEach(function (row, index) {
+                listRows.push(
+                    Object.assign({}, row, {
+                        sectionTag: key,
+                        isSectionHeader: false
+                    })
+                )
+            })
+        })
+
+        return listRows;
     }
 
     renderBackground() {

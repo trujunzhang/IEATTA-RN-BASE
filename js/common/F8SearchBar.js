@@ -40,6 +40,7 @@ import {
 } from 'react-native';
 
 
+const F8Colors = require('F8Colors')
 import {Container, Header, Left, Right, Item, Input, Icon, Button, Text} from 'native-base'
 
 class F8SearchBar extends Component {
@@ -88,27 +89,9 @@ class F8SearchBar extends Component {
     render() {
         const {
             placeholder,
-            heightAdjust,
-            backgroundColor,
-            iconColor,
-            textColor,
-            selectionColor,
             placeholderTextColor,
-            onBack,
-            hideBack,
-            hideX,
-            iOSPadding,
-            iOSHideShadow,
-            onSubmitEditing,
-            onFocus,
-            focusOnLayout,
-            autoCorrect,
             keyboardAppearance,
-            fontFamily,
-            backButtonAccessibilityLabel,
-            closeButtonAccessibilityLabel,
-            backCloseSize,
-            fontSize
+            autoCorrect,
         } = this.props;
 
         const leftArrow = (
@@ -148,13 +131,14 @@ class F8SearchBar extends Component {
         )
 
         return (
-            <Header searchBar rounded>
+            <Header searchBar rounded style={{backgroundColor: F8Colors.primaryColor}}>
                 {leftArrow}
                 {middleItem}
                 {rightArrow}
             </Header>
         )
     }
+
 }
 
 

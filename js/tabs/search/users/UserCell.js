@@ -38,7 +38,6 @@ import {
     Dimensions
 } from 'react-native'
 
-const UserRowHeight = 84
 
 import Users from '../../../lib/users'
 
@@ -61,8 +60,9 @@ const styles = StyleSheet.create({
     userCellContainer: {
         flex: 1,
         paddingHorizontal: 10,
-        backgroundColor: "white",
-        height: UserRowHeight,
+        height: F8Colors.UserRowHeight,
+        flexDirection: 'row',
+        alignItems: 'center'
     },
     userCellSection: { // .action-list .action
         flex: 1,
@@ -85,6 +85,7 @@ const styles = StyleSheet.create({
         flex: 1,
         marginTop: 8,
         flexDirection: 'column',
+        // backgroundColor:'red',
     },
     userCellDisplayNameText: {
         height: 20,
@@ -132,34 +133,12 @@ class UserCell extends Component {
         )
     }
 
-    renderCell() {
-        return (
-            <View key={this.props.user.objectId} style={styles.userCellContainer}>
-
-                <View style={styles.userCellSection}>
-                    {this.renderLeft()}
-                    {this.renderRight()}
-                </View>
-            </View>
-        )
-    }
-
-    onPress() {
-        onCellItemPress(this.props, MENU_ITEM_ADD_OR_EDIT_USER, {
-            model: this.props.user,
-            modelType: MODEL_FORM_TYPE_EDIT
-        })
-    }
-
-    componentDidMount() {
-        // this.onPress()
-    }
-
     render() {
         return (
-            <TouchableHighlight underlayColor={F8Colors.cellUnderlayColor} onPress={this.onPress.bind(this)}>
-                {this.renderCell()}
-            </TouchableHighlight>
+            <View key={this.props.user.objectId} style={styles.userCellContainer}>
+                {this.renderLeft()}
+                {this.renderRight()}
+            </View>
         )
     }
 

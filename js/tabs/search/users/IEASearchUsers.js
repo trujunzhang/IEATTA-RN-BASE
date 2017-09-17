@@ -11,16 +11,28 @@ import {
     Platform
 } from 'react-native'
 
-import {Container, Header, Left, Item, Input, Icon, Button, Text} from 'native-base'
 
+const F8Colors = require('F8Colors')
 const F8SearchBar = require('F8SearchBar')
-const PureListView = require('PureListView')
 
 const UserCell = require('./UserCell')
 
 const {goBackPage} = require('../../../tabs/filter/navigatorApp')
 const {queryUsers} = require('../../../actions')
 const {delayEvent} = require('../../../lib/utils')
+
+import {Container, Header, Content, List, ListItem, Body} from 'native-base'
+
+
+/**
+ * The states were interested in
+ */
+const {
+    MENU_ITEM_ADD_OR_EDIT_USER,
+    MODEL_FORM_TYPE_EDIT,
+} = require('../../../lib/constants').default
+
+const {onCellItemPress} = require('../../filter/navigatorApp')
 
 class IEASearchUsers extends Component {
     static navigationOptions = ({navigation}) => ({
@@ -63,32 +75,46 @@ class IEASearchUsers extends Component {
         }, 700)
     }
 
-
     render() {
+        const {props, onPress} = this;
+        const {sections} = this.state;
+        const users = sections.USERS;
         return (
             <Container>
+
                 <F8SearchBar
                     onBack={() => {
                         goBackPage(this.props)
                     }}
                     handleSearch={this.handleSearch.bind(this)}
-                    placeholder={"Search Users"}
-                />
+                    placeholder={"Search Users"}/>
 
-                <PureListView
-                    {...this.props}
-                    haveParallaxView={false}
-                    data={this.state.sections}
-                    renderRow={this.renderRow.bind(this)}
-                    renderFooter={this.renderFooter.bind(this)}
-                />
+                <List>
+                    {
+                        users.map(function (user) {
+                            return (
+                                <ListItem onPress={() => onPress(props, user)}
+                                          key={user.objectId}
+                                          style={{
+                                              height: F8Colors.UserRowHeight,
+                                          }}>
+                                    <UserCell key={user.objectId} user={user} {...props}/>
+                                </ListItem>
+                            )
+                        })
+                    }
+                </List>
             </Container>
         )
     }
 
-    renderFooter() {
-        return (<View style={{height: 60}}/>)
+    onPress(props, user) {
+        onCellItemPress(props, MENU_ITEM_ADD_OR_EDIT_USER, {
+            model: user,
+            modelType: MODEL_FORM_TYPE_EDIT
+        })
     }
+
 
 }
 

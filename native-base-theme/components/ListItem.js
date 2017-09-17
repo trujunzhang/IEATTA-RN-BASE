@@ -21,7 +21,7 @@ export default (variables = variable) => {
       },
       flex: 1,
       borderWidth: null,
-      margin: -10,
+      // margin: -10,
       borderBottomColor: 'transparent',
     },
     '.searchBar': {
@@ -393,7 +393,7 @@ export default (variables = variable) => {
       flexDirection: 'row',
       paddingRight: variables.listItemPadding + 5,
       paddingVertical: variables.listItemPadding + 3,
-      marginLeft: variables.listItemPadding + 5,
+      marginLeft: variables.listItemPadding ,
       borderBottomWidth: (1/PixelRatio.getPixelSizeForLayoutSize(1)),
       backgroundColor: variables.listBg,
       borderColor: variables.listBorderColor,

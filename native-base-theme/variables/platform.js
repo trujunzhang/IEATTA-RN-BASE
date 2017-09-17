@@ -213,16 +213,17 @@ export default {
 
 
     // List
+    listBg: '#fff',
     listBorderColor: '#c9c9c9',
     listDividerBg: '#f4f4f4',
-    listItemHeight: 45,
+    // listItemHeight: 45,
     listBtnUnderlayColor: '#DDD',
 
     // Card
     cardBorderColor: '#ccc',
 
     // Changed Variable
-    listItemPadding: (platform === 'ios') ? 10 : 12,
+    listItemPadding: 0,
 
     listNoteColor: '#808080',
     listNoteSize: 13,
