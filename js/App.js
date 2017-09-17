@@ -1,9 +1,7 @@
 import React, {Component} from "react";
 import {StyleSheet} from "react-native";
-import CodePush from "react-native-code-push";
 
 import {Container, Content, Text, View} from "native-base";
-import Modal from "react-native-modalbox";
 import MainStackRouter from "./Routers/MainStackRouter";
 import ProgressBar from "./components/loaders/ProgressBar";
 

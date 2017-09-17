@@ -64,7 +64,7 @@
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Background tracking required</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Your message to user when the microsphone is accessed for the first time</string>
 	<key>NSPhotoLibraryUsageDescription</key>
@@ -80,6 +80,7 @@
 		<string>MaterialCommunityIcons.ttf</string>
 		<string>Octicons.ttf</string>
 		<string>Zocial.ttf</string>
+		<string>SimpleLineIcons.ttf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

@@ -73,3 +73,5 @@ android/app/src/main/res/drawable-*/
 Tools/react-native-css/test/export.json
 
 android.zip
+
+package-lock.json
