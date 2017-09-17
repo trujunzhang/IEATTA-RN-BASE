@@ -60,45 +60,31 @@ const SECTION_TITLES = {
     MENU_SECTIONS_REVIEWS: 'Reviews'
 }
 
+const styles = StyleSheet.create({
+    sectionHeaderContainer: {
+        paddingTop: 18,
+        paddingBottom: 4,
+        height: 50,
+        backgroundColor: F8Colors.controllerViewColor
+    },
+    sectionHeaderTitle: {
+        fontWeight: "normal",
+        color: "#666",
+        fontSize: 20,
+        paddingHorizontal: 10,
+        marginBottom: 0
+    }
+});
+
+
 class SectionHeader extends React.Component {
+
 
     render() {
         return (
-            <View>
-                {this.renderSectionHeader()}
-                {this.props.emptyBlock}
-            </View>
-        )
-    }
-
-    renderSectionHeader() {
-        return (
             <View
-                style={[
-                    {
-                        paddingTop: 18,
-                        paddingBottom: 4,
-                        height: 50
-                    }, {
-                        backgroundColor: F8Colors.controllerViewColor
-                    }
-                ]}>
-                <Text style={[
-                    {
-                        // height: 24,
-                        fontWeight: "normal",
-                        color: "#666",
-                        fontSize: 20
-                    }, {
-                        // paddingTop: 5,
-                        // paddingBottom: 5,
-                        paddingLeft: 10,
-                        paddingRight: 10
-                    }, {
-                        marginBottom: 0
-                    }
-                ]
-                }>{SECTION_TITLES[this.props.sectionType]}</Text>
+                style={styles.sectionHeaderContainer}>
+                <Text style={styles.sectionHeaderTitle}>{SECTION_TITLES[this.props.sectionType]}</Text>
             </View>
         )
     }
