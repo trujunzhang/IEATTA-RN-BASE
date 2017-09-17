@@ -99,36 +99,6 @@ class DetailedRestaurantListView extends React.Component {
         this.props.dispatch(queryReviews({objectSchemaName: PARSE_RESTAURANTS, forObjectUniqueId: uniqueId}))
     }
 
-    renderSectionHeader(sectionData, sectionId) {
-        const {sections, ready} = this.state;
-        let emptyBlock = null;
-        if (ready) {
-            switch (sectionId) {
-                case MENU_SECTIONS_EVENTS:
-                    if (sections.MENU_SECTIONS_EVENTS.length === 0) {
-                        emptyBlock = (
-                            <F8EmptySection
-                                title={`No events on the restaurant`}
-                                text="Chick the cross icon to add new event."
-                            />
-                        )
-                    }
-                    break;
-                case MENU_SECTIONS_REVIEWS:
-                    if (sections.MENU_SECTIONS_REVIEWS.length === 0) {
-                        emptyBlock = (
-                            <F8EmptySection
-                                title={`No reviews on the restaurant`}
-                                text="Chick the cross icon to add new review."
-                            />
-                        )
-                    }
-                    break;
-            }
-        }
-
-        return (<SectionHeader sectionType={sectionId} emptyBlock={emptyBlock}/>)
-    }
 
     render() {
         const {forRestaurant} = this.props;
@@ -142,7 +112,6 @@ class DetailedRestaurantListView extends React.Component {
                 data={this.state.sections}
                 renderTopHeader={this.renderTopHeaderView.bind(this)}
                 renderRow={this.renderRow.bind(this)}
-                renderSectionHeader={this.renderSectionHeader.bind(this)}
                 {...this.props}
             />
         )

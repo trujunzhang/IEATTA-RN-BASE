@@ -44,6 +44,8 @@ import {
 const _ = require('underscore')
 import AppConstants from '../lib/appConstants'
 
+const SectionHeader = require('SectionHeader')
+const F8EmptySection = require('F8EmptySection')
 const F8Colors = require('F8Colors')
 
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
@@ -68,6 +70,10 @@ const {
     PARALLAX_BACKGROUND_DYNAMIC_IMAGE,
     PARALLAX_HEADER_LEFT_ITEM_NONE,
     PARALLAX_HEADER_LEFT_ITEM_BACK,
+
+    NATIVE_BASE_LIST_SECTION_HEADER,
+    NATIVE_BASE_LIST_SECTION_ROWS,
+    NATIVE_BASE_LIST_SECTION_EMPTY,
 } = require('../lib/constants').default
 
 import {Container, Header, Content, List, ListItem} from 'native-base'
@@ -124,27 +130,6 @@ class PureListView extends React.Component {
                 )
             } : {};
 
-        const {data, renderSectionHeader, renderRow} = this.props;
-        const sectionKeys = Object.keys(data);
-
-        let listRows = [];
-        sectionKeys.forEach(function (key) {
-            const sectionData = data[key];
-            listRows.push(
-                <ListItem itemDivider key={key}>
-                    {renderSectionHeader(sectionData, key)}
-                </ListItem>
-            )
-
-            sectionData.forEach(function (row, index) {
-                listRows.push(
-                    <ListItem key={row.objectId}>
-                        {renderRow(row, key, index)}
-                    </ListItem>
-                )
-            })
-        })
-
         const _dataArray = this._generateDataArray();
         return (
             <Content>
@@ -155,12 +140,10 @@ class PureListView extends React.Component {
                     renderRow={this.renderListRow.bind(this)}
                     renderHeader={this.props.renderTopHeaderView}
 
-
                     initialListSize={10}
                     pageSize={LIST_VIEW_PAGE_SIZE}
                     stickySectionHeadersEnabled={false}
                     enableEmptySections={true}
-
 
                     {...parallaxProperty}
                 >
@@ -170,11 +153,21 @@ class PureListView extends React.Component {
     }
 
     renderListRow(item) {
-        if (item.isSectionHeader) {
-            return this.props.renderSectionHeader(item.sectionData, item.objectId);
+        switch (item.rowType) {
+            case NATIVE_BASE_LIST_SECTION_HEADER:
+                return (<SectionHeader sectionType={item.objectId}/>)
+            case NATIVE_BASE_LIST_SECTION_ROWS:
+                return this.props.renderRow(item, item.sectionTag)
+            case NATIVE_BASE_LIST_SECTION_EMPTY:
+                return (
+                    <F8EmptySection
+                        title={`No events on the restaurant`}
+                        text="Chick the cross icon to add new event."
+                    />
+                )
         }
 
-        return this.props.renderRow(item, item.sectionTag)
+        return null
     }
 
     _generateDataArray() {
@@ -186,17 +179,25 @@ class PureListView extends React.Component {
             const sectionData = data[key];
             listRows.push(
                 {
+                    rowType: NATIVE_BASE_LIST_SECTION_HEADER,
                     objectId: key,
-                    isSectionHeader: true,
                     sectionData: sectionData,
                 }
             )
 
+            if (sectionData.length === 0) {
+                listRows.push(
+                    {
+                        rowType: NATIVE_BASE_LIST_SECTION_EMPTY,
+                        objectId: NATIVE_BASE_LIST_SECTION_EMPTY,
+                    }
+                )
+            }
             sectionData.forEach(function (row, index) {
                 listRows.push(
                     Object.assign({}, row, {
+                        rowType: NATIVE_BASE_LIST_SECTION_ROWS,
                         sectionTag: key,
-                        isSectionHeader: false
                     })
                 )
             })
