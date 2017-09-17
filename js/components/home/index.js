@@ -10,6 +10,7 @@ import {
     Platform,
 } from 'react-native'
 
+const F8Colors = require('F8Colors')
 import {connect} from "react-redux";
 import DrawBar from "../DrawBar";
 import {DrawerNavigator, NavigationActions} from "react-navigation";
@@ -31,6 +32,7 @@ import {setIndex} from "../../actions/list";
 import {openDrawer} from "../../actions/drawer";
 import styles from "./styles";
 
+
 const IEANearRestaurantScene = require('../../tabs/home/IEANearRestaurantScene')
 
 class Home extends Component {
@@ -46,7 +48,7 @@ class Home extends Component {
 
     renderTopHeader() {
         return (
-            <Header>
+            <Header style={{backgroundColor:F8Colors.primaryColor }}>
                 <Left style={{flex: 1}}>
                     <Button
                         transparent
