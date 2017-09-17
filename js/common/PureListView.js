@@ -95,9 +95,7 @@ class PureListView extends React.Component {
 
 
     componentWillReceiveProps(nextProps: Props) {
-        this.setState({
-            dataArray: this._generateDataArray(nextProps)
-        })
+        this.setState({dataArray: this._generateDataArray(nextProps)})
     }
 
     render() {

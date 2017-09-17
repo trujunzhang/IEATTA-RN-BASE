@@ -71,9 +71,7 @@ class F8PhotoHorizonSectionView extends React.Component {
     }
 
     componentWillReceiveProps(nextProps: Props) {
-
-        const {sectionType, forItem} = this.props;
-
+        const {sectionType, forItem} = nextProps;
         const fetchedPhotos = photosBySectionType(nextProps, sectionType, forItem, this.state.photos);
         this.setState({
             photos: fetchedPhotos,
@@ -82,8 +80,8 @@ class F8PhotoHorizonSectionView extends React.Component {
     }
 
     componentWillMount() {
-        console.log("component will mount in the photos horizon.")
         const {sectionType, forItem} = this.props;
+        console.log("component will mount in the photos horizon.", sectionType)
 
         if (!!forItem) {
             this.props.dispatch(queryPhotosByType(Photos.getPhotoType(sectionType), forItem.uniqueId))
