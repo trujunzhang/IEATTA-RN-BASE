@@ -11,26 +11,24 @@ import {
     Platform
 } from 'react-native'
 
-import {Container, Header, Left, Item, Input, Icon, Button, Text} from 'native-base'
 
+const F8Colors = require('F8Colors')
 const F8SearchBar = require('F8SearchBar')
-
-const PureListView = require('PureListView')
 
 const RestaurantCell = require('../../home/layout/RestaurantCell')
 
 const {queryNearRestaurant} = require('../../../actions')
 const {delayEvent} = require('../../../lib/utils')
 
-const {goBackPage} = require('../../../tabs/filter/navigatorApp')
+const {goBackPage, onCellItemPress} = require('../../../tabs/filter/navigatorApp')
+import {Container, Header, Content, List, ListItem, Body} from 'native-base'
 
 /**
  * The states were interested in
  */
 const {
-    PARSE_ORIGINAL_IMAGES,
-    PARSE_THUMBNAIL_IMAGES,
     SEARCH_NEAR_RESTAURANTS,
+    MENU_DETAILED_RESTAURANT_PAGE,
 } = require('../../../lib/constants').default
 
 class IEASearchRestaurants extends Component {
@@ -76,6 +74,9 @@ class IEASearchRestaurants extends Component {
     }
 
     render() {
+        const {props, onPress} = this;
+        const {sections} = this.state;
+        const restaurants = sections.RESTAURANTS;
         return (
             <Container>
                 <F8SearchBar
@@ -85,20 +86,33 @@ class IEASearchRestaurants extends Component {
                     handleSearch={this.handleSearch.bind(this)}
                     placeholder={"Search Restaurants"}/>
 
-                <PureListView
-                    {...this.props}
-                    haveParallaxView={false}
-                    data={this.state.sections}
-                    renderRow={this.renderRow.bind(this)}
-                    renderFooter={this.renderFooter.bind(this)}
-                />
+                <List>
+                    {
+                        restaurants.map(function (restaurant) {
+                            return (
+                                <ListItem onPress={() => onPress(props, restaurant)}
+                                          key={restaurant.objectId}
+                                          style={{
+                                              height: F8Colors.UserRowHeight,
+                                          }}>
+
+                                    <RestaurantCell key={restaurant.objectId} restaurant={restaurant} {...props}/>
+                                </ListItem>
+                            )
+                        })
+                    }
+                </List>
+
 
             </Container>
         )
     }
 
-    renderFooter() {
-        return (<View style={{height: 60}}/>)
+    onPress(props, restaurant) {
+        onCellItemPress(props,
+            MENU_DETAILED_RESTAURANT_PAGE,
+            {restaurant}
+        )
     }
 
 }

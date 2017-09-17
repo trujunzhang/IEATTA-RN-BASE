@@ -59,8 +59,9 @@ const styles = StyleSheet.create({
     restaurantContainer: {
         flex: 1,
         paddingHorizontal: 10,
-        backgroundColor: "white",
-        height: RestaurantRowHeight
+        height: RestaurantRowHeight,
+        flexDirection: 'row',
+        alignItems: 'center'
     },
     restaurantSection: { // .action-list .action
         flex: 1,
@@ -147,25 +148,16 @@ class RestaurantCell extends Component {
         )
     }
 
-    renderCell() {
+    render() {
         const {restaurant} = this.props;
         return (
             <View key={restaurant.objectId} style={styles.restaurantContainer}>
-                <View style={styles.restaurantSection}>
-                    {this.renderLeft()}
-                    {this.renderRight()}
-                </View>
+                {this.renderLeft()}
+                {this.renderRight()}
             </View>
         )
     }
 
-    render() {
-        return (
-            <TouchableHighlight underlayColor={F8Colors.cellUnderlayColor} onPress={this.onPress.bind(this)}>
-                {this.renderCell()}
-            </TouchableHighlight>
-        )
-    }
 
     onPress() {
         const {restaurant} = this.props;

@@ -17,10 +17,10 @@ const F8SearchBar = require('F8SearchBar')
 
 const UserCell = require('./UserCell')
 
-const {goBackPage} = require('../../../tabs/filter/navigatorApp')
 const {queryUsers} = require('../../../actions')
 const {delayEvent} = require('../../../lib/utils')
 
+const {goBackPage, onCellItemPress} = require('../../../tabs/filter/navigatorApp')
 import {Container, Header, Content, List, ListItem, Body} from 'native-base'
 
 
@@ -32,7 +32,6 @@ const {
     MODEL_FORM_TYPE_EDIT,
 } = require('../../../lib/constants').default
 
-const {onCellItemPress} = require('../../filter/navigatorApp')
 
 class IEASearchUsers extends Component {
     static navigationOptions = ({navigation}) => ({
@@ -59,12 +58,6 @@ class IEASearchUsers extends Component {
 
     componentWillMount() {
         this.props.dispatch(queryUsers())
-    }
-
-    renderRow = (user: Object,
-                 sectionID: number | string,
-                 rowID: number | string) => {
-        return (<UserCell key={user.objectId} user={user} {...this.props}/>)
     }
 
     handleSearch(input) {
