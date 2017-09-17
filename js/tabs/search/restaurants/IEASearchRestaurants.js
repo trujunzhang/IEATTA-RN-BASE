@@ -86,22 +86,24 @@ class IEASearchRestaurants extends Component {
                     handleSearch={this.handleSearch.bind(this)}
                     placeholder={"Search Restaurants"}/>
 
-                <List>
-                    {
-                        restaurants.map(function (restaurant) {
-                            return (
-                                <ListItem onPress={() => onPress(props, restaurant)}
-                                          key={restaurant.objectId}
-                                          style={{
-                                              height: F8Colors.RestaurantRowHeight,
-                                          }}>
+                <Content>
+                    <List>
+                        {
+                            restaurants.map(function (restaurant) {
+                                return (
+                                    <ListItem onPress={() => onPress(props, restaurant)}
+                                              key={restaurant.objectId}
+                                              style={{
+                                                  height: F8Colors.RestaurantRowHeight,
+                                              }}>
 
-                                    <RestaurantCell key={restaurant.objectId} restaurant={restaurant} {...props}/>
-                                </ListItem>
-                            )
-                        })
-                    }
-                </List>
+                                        <RestaurantCell key={restaurant.objectId} restaurant={restaurant} {...props}/>
+                                    </ListItem>
+                                )
+                            })
+                        }
+                    </List>
+                </Content>
 
 
             </Container>

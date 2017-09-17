@@ -82,21 +82,23 @@ class IEASearchUsers extends Component {
                     handleSearch={this.handleSearch.bind(this)}
                     placeholder={"Search Users"}/>
 
-                <List>
-                    {
-                        users.map(function (user) {
-                            return (
-                                <ListItem onPress={() => onPress(props, user)}
-                                          key={user.objectId}
-                                          style={{
-                                              height: F8Colors.UserRowHeight,
-                                          }}>
-                                    <UserCell key={user.objectId} user={user} {...props}/>
-                                </ListItem>
-                            )
-                        })
-                    }
-                </List>
+                <Content>
+                    <List>
+                        {
+                            users.map(function (user) {
+                                return (
+                                    <ListItem onPress={() => onPress(props, user)}
+                                              key={user.objectId}
+                                              style={{
+                                                  height: F8Colors.UserRowHeight,
+                                              }}>
+                                        <UserCell key={user.objectId} user={user} {...props}/>
+                                    </ListItem>
+                                )
+                            })
+                        }
+                    </List>
+                </Content>
             </Container>
         )
     }

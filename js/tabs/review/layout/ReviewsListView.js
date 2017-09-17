@@ -41,14 +41,19 @@ import {
 const PureListView = require('PureListView')
 const ReviewCell = require('./ReviewCell')
 
-import {Container, Header, Content, List, ListItem, Body} from 'native-base'
+import {Container, Header, Content, List, ListItem, Body, Row} from 'native-base'
+
 const {filterReviews} = require('../../filter/filterAppModel')
+
+const {onCellItemPress} = require('../../filter/navigatorApp')
 
 /**
  * The states were interested in
  */
 const {
-    MENU_SECTIONS_REVIEWS
+    MENU_SECTIONS_REVIEWS,
+    MENU_DETAILED_REVIEW_PAGE,
+    REVIEW_ITEM_READ_LIST_PAGE,
 } = require('../../../lib/constants').default
 
 
@@ -75,16 +80,34 @@ class ReviewsListView extends React.Component {
     }
 
     render() {
+        const {props, onPress} = this;
+        const {sections} = this.state;
+        const reviews = sections.MENU_SECTIONS_REVIEWS;
         return (
-            <PureListView
-                {...this.props}
-                haveParallaxView={false}
-                data={this.state.sections}
-                renderRow={this.renderRow.bind(this)}
-            />
+            <Content style={{flex: 1}}>
+                <List>
+                    {
+                        reviews.map(function (item) {
+                            return (
+                                <ListItem onPress={() => onPress(props, item)}
+                                          key={item.objectId}
+                                          style={{flex: 1}}>
+
+                                    <ReviewCell{...props}
+                                               reviewItemType={REVIEW_ITEM_READ_LIST_PAGE}
+                                               review={item}/>
+                                </ListItem>
+                            )
+                        })
+                    }
+                </List>
+            </Content>
         )
     }
 
+    onPress(props, review) {
+        onCellItemPress(props, MENU_DETAILED_REVIEW_PAGE, {review})
+    }
 
     renderRow(item: any, sectionID: number | string) {
         return (<ReviewCell{...this.props} review={item}/>)

@@ -1,6 +1,11 @@
 import keyMirror from 'key-mirror'
 
 export default keyMirror({
+    // Review Item Type
+    REVIEW_ITEM_DETAILED_PAGE: null,
+    REVIEW_ITEM_READ_LIST_PAGE: null,
+    REVIEW_ITEM_PREVIEW_PAGE: null,
+
     // ListView row Type
     NATIVE_BASE_LIST_SECTION_HEADER: null,
     NATIVE_BASE_LIST_SECTION_ROWS: null,

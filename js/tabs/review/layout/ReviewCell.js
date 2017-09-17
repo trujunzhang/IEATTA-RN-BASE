@@ -39,7 +39,6 @@ import {
 } from 'react-native'
 
 const F8Colors = require('F8Colors')
-const F8PlaceHolderImage = require('F8PlaceHolderImage')
 const F8StarIcon = require('F8StarIcon')
 
 const ReviewTopUser = require('./ReviewTopUser')
@@ -51,7 +50,11 @@ const {onCellItemPress} = require('../../filter/navigatorApp')
  * The states were interested in
  */
 const {
-    MENU_DETAILED_REVIEW_PAGE
+    MENU_DETAILED_REVIEW_PAGE,
+    // Review Item Type.
+    REVIEW_ITEM_DETAILED_PAGE,
+    REVIEW_ITEM_READ_LIST_PAGE,
+    REVIEW_ITEM_PREVIEW_PAGE,
 } = require('../../../lib/constants').default
 
 const styles = StyleSheet.create({
@@ -77,8 +80,8 @@ const styles = StyleSheet.create({
 
 class ReviewCell extends Component {
 
-    renderCell() {
-        const {review, isPreview} = this.props;
+    renderCell(isPreview = false) {
+        const {review} = this.props;
         const textProps = isPreview ? {} : {numberOfLines: 3};
         return (
             <View key={review.objectId} style={styles.reviewContent}>
@@ -102,20 +105,32 @@ class ReviewCell extends Component {
     }
 
     render() {
-        if (this.props.isPreview) {
-            return this.renderCell();
+        const {reviewItemType} = this.props;
+        switch (reviewItemType) {
+            case REVIEW_ITEM_DETAILED_PAGE:
+                return (
+                    <View style={styles.reviewContainer}>
+                        <TouchableHighlight onPress={this.onPress.bind(this)}>
+                            {this.renderCell()}
+                        </TouchableHighlight>
+                    </View>
+                )
+            case REVIEW_ITEM_READ_LIST_PAGE:
+                return this.renderCell();
+            case REVIEW_ITEM_PREVIEW_PAGE:
+                return this.renderCell(true);
         }
-
-        return (
-            <View style={styles.reviewContainer}>
-                <TouchableHighlight onPress={this.onPress.bind(this)}>
-                    {this.renderCell()}
-                </TouchableHighlight>
-            </View>
-        )
     }
 
 }
 
+
+ReviewCell.propTypes = {
+    reviewItemType: PropTypes.string,
+};
+
+ReviewCell.defaultProps = {
+    reviewItemType: REVIEW_ITEM_DETAILED_PAGE,
+};
 
 module.exports = ReviewCell;
