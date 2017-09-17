@@ -93,7 +93,7 @@ class IEASearchRestaurants extends Component {
                                 <ListItem onPress={() => onPress(props, restaurant)}
                                           key={restaurant.objectId}
                                           style={{
-                                              height: F8Colors.UserRowHeight,
+                                              height: F8Colors.RestaurantRowHeight,
                                           }}>
 
                                     <RestaurantCell key={restaurant.objectId} restaurant={restaurant} {...props}/>

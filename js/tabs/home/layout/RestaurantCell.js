@@ -43,8 +43,6 @@ const {
 } = require('../../../lib/constants').default
 
 
-const RestaurantRowHeight = 84
-
 const F8Colors = require('F8Colors')
 const F8PlaceHolderImage = require('F8PlaceHolderImage')
 const F8StarIcon = require('F8StarIcon')
@@ -60,7 +58,7 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingHorizontal: 10,
         backgroundColor: "white",
-        height: RestaurantRowHeight,
+        height: F8Colors.RestaurantRowHeight,
         flexDirection: 'row',
         alignItems: 'center'
     },
