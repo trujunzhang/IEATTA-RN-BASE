@@ -79,15 +79,6 @@ const styles = StyleSheet.create({
 
 class RestaurantMoreCell extends Component {
 
-    render() {
-        return (
-            <TouchableOpacity
-                accessibilityTraits="button"
-                onPress={this.onPress.bind(this)}>
-                {this.renderContent()}
-            </TouchableOpacity>
-        )
-    }
 
     onPress() {
         const {item} = this.props,
@@ -120,7 +111,7 @@ class RestaurantMoreCell extends Component {
         )
     }
 
-    renderContent() {
+    render() {
         const {item} = this.props
         return (
             <View key={item.tage}

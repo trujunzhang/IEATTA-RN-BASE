@@ -51,6 +51,7 @@ const SectionHeader = require('SectionHeader')
 const {
     MENU_SECTIONS_MORE,
     MENU_SECTIONS_RESTAURANTS,
+    MENU_DETAILED_RESTAURANT_PAGE,
 } = require('../../lib/constants').default
 
 const RestaurantCell = require('./layout/RestaurantCell')
@@ -125,6 +126,7 @@ class IEANearRestaurantScene extends Component {
     }
 
     renderRowsArray(renderSectionHeader, renderRow) {
+        const {props, onPress} = this;
         const {sections} = this.state;
         const sectionKeys = Object.keys(sections);
 
@@ -139,7 +141,7 @@ class IEANearRestaurantScene extends Component {
 
             sectionData.forEach(function (row, index) {
                 listRows.push(
-                    <ListItem key={row.objectId}>
+                    <ListItem key={row.objectId} onPress={() => onPress(key, props, row)}>
                         {renderRow(row, key)}
                     </ListItem>
                 )
@@ -147,6 +149,26 @@ class IEANearRestaurantScene extends Component {
         })
 
         return listRows;
+    }
+
+
+    onPress(sectionId, props, item) {
+        switch (sectionId) {
+            case MENU_SECTIONS_MORE:
+                const {tag, icon, model} = item;
+
+                onCellItemPress(props,
+                    tag,
+                    {model})
+                break;
+            case MENU_SECTIONS_RESTAURANTS:
+                onCellItemPress(props,
+                    MENU_DETAILED_RESTAURANT_PAGE,
+                    {item}
+                )
+                break;
+        }
+
     }
 
 
@@ -170,10 +192,7 @@ class IEANearRestaurantScene extends Component {
                 )
             }
             return (
-                <F8EmptySection
-                    title={`No restaurants nearby now`}
-                    text="Chick the cross icon to add new restaurant."
-                />
+                <F8EmptySection title={`No restaurants nearby now`} text="Chick the cross icon to add new restaurant."/>
             )
         }
 
