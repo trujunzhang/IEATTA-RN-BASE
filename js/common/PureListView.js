@@ -153,6 +153,15 @@ class PureListView extends React.Component {
                     rowHasChanged={(row1, row2) => row1.objectId !== row2.objectId}
                     dataArray={_dataArray}
                     renderRow={this.renderListRow.bind(this)}
+                    renderHeader={this.props.renderTopHeaderView}
+
+
+                    initialListSize={10}
+                    pageSize={LIST_VIEW_PAGE_SIZE}
+                    stickySectionHeadersEnabled={false}
+                    enableEmptySections={true}
+
+
                     {...parallaxProperty}
                 >
                 </List>
@@ -162,7 +171,7 @@ class PureListView extends React.Component {
 
     renderListRow(item) {
         if (item.isSectionHeader) {
-            return this.props.renderSectionHeader(null, item.objectId);
+            return this.props.renderSectionHeader(item.sectionData, item.objectId);
         }
 
         return this.props.renderRow(item, item.sectionTag)
@@ -178,9 +187,11 @@ class PureListView extends React.Component {
             listRows.push(
                 {
                     objectId: key,
-                    isSectionHeader: true
+                    isSectionHeader: true,
+                    sectionData: sectionData,
                 }
             )
+
             sectionData.forEach(function (row, index) {
                 listRows.push(
                     Object.assign({}, row, {

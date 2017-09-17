@@ -100,9 +100,9 @@ class DetailedRestaurantListView extends React.Component {
     }
 
     renderSectionHeader(sectionData, sectionId) {
-        const {sections} = this.state;
+        const {sections, ready} = this.state;
         let emptyBlock = null;
-        if (this.state.ready) {
+        if (ready) {
             switch (sectionId) {
                 case MENU_SECTIONS_EVENTS:
                     if (sections.MENU_SECTIONS_EVENTS.length === 0) {

@@ -1,6 +1,11 @@
 import keyMirror from 'key-mirror'
 
 export default keyMirror({
+    // ListView row Type
+    NATIVE_BASE_LIST_SECTION_HEADER: null,
+    NATIVE_BASE_LIST_SECTION_ROWS: null,
+    NATIVE_BASE_LIST_SECTION_EMPTY: null,
+
     // Login Menus
     MENU_LOGIN_MAIN_SCREEN: null,
 
