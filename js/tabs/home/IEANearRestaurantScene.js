@@ -22,6 +22,7 @@
  * @flow
  */
 
+
 'use strict';
 
 
@@ -59,6 +60,8 @@ import Restaurants from '../../lib/restaurants'
 
 const {queryNearRestaurant} = require('../../actions')
 
+const {goBackPage, onCellItemPress} = require('../filter/navigatorApp')
+import {Container, Header, Content, List, ListItem, Body} from 'native-base'
 
 class IEANearRestaurantScene extends Component {
 
@@ -110,16 +113,42 @@ class IEANearRestaurantScene extends Component {
 
 
     render() {
+        const {renderSectionHeader, renderRow} = this;
+        const listRows = this.renderRowsArray(renderSectionHeader, renderRow);
         return (
-            <PureListView
-                {...this.props}
-                data={this.state.sections}
-                haveParallaxView={false}
-                renderRow={this.renderRow.bind(this)}
-                renderSectionHeader={this.renderSectionHeader.bind(this)}
-                renderFooter={this.renderFooter.bind(this)}/>
+            <Content>
+                <List>
+                    {listRows}
+                </List>
+            </Content>
         )
     }
+
+    renderRowsArray(renderSectionHeader, renderRow) {
+        const {sections} = this.state;
+        const sectionKeys = Object.keys(sections);
+
+        let listRows = [];
+        sectionKeys.forEach(function (key) {
+            const sectionData = sections[key];
+            listRows.push(
+                <ListItem itemDivider key={key}>
+                    {renderSectionHeader(null, key)}
+                </ListItem>
+            )
+
+            sectionData.forEach(function (row, index) {
+                listRows.push(
+                    <ListItem key={row.objectId}>
+                        {renderRow(row, key)}
+                    </ListItem>
+                )
+            })
+        })
+
+        return listRows;
+    }
+
 
     renderFooter() {
         const {sections, ready} = this.state,
