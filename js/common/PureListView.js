@@ -88,26 +88,6 @@ class PureListView extends React.Component {
     constructor(props: Props) {
         super(props);
 
-        let dataSource = new ListView.DataSource({
-            getRowData: (dataBlob, sid, rid) => dataBlob[sid][rid],
-            getSectionHeaderData: (dataBlob, sid) => dataBlob[sid],
-            rowHasChanged: (row1, row2) => row1.objectId !== row2.objectId,
-            sectionHeaderHasChanged: (s1, s2) => {
-                // if (s1.length === 0 || s2.length === 0) {
-                return true;
-                // }
-                // return s1.length !== s2.length;
-            },
-        });
-
-        const _dataSource = cloneWithData(dataSource, props.data)
-        // debugger
-        this.state = {
-            contentHeight: 0,
-            dataSource: _dataSource
-        };
-
-        (this: any).onContentSizeChange = this.onContentSizeChange.bind(this);
     }
 
     render() {
