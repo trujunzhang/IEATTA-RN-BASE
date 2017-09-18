@@ -29,6 +29,12 @@ const {logOutWithPrompt} = require('../../actions')
 const MenuItem = require('../../tabs/MenuItem')
 const F8Colors = require('F8Colors')
 
+
+const {
+    MENU_HOME_TABS_USER_INFO,
+} = require('../../lib/constants').default
+
+
 const styles = StyleSheet.create({
     drawer: {
         flex: 1,
@@ -117,7 +123,18 @@ class DrawBar extends React.Component {
 
                         </View>
                     </Image>
-                    {this.renderNavigationView()}
+                    <List>
+
+                        <ListItem button onPress={() => this.props.navigation.navigate('Home')}>
+                            <Text>{'Home'}</Text>
+                        </ListItem>
+
+                        <ListItem button onPress={() => this.props.navigation.navigate(MENU_HOME_TABS_USER_INFO)}>
+                            <Text>{'User Info'}</Text>
+                        </ListItem>
+
+                    </List>
+
                 </Content>
             </Container>
         )

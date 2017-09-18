@@ -43,15 +43,10 @@ const F8EmptySection = require('F8EmptySection')
 const LoginButton = require('../../components/lib/login/LoginButton');
 const PureListView = require('../../common/PureListView');
 
-const {onCellItemPress} = require('../filter/navigatorApp')
-
 /**
  * The states were interested in
  */
 const {
-    // Login.
-    MENU_LOGIN_MAIN_SCREEN,
-    // Types.
     LOGIN_FORM_TYPE_MAIN,
     PARALLAX_BACKGROUND_STATIC_IMAGE,
     PARALLAX_HEADER_LEFT_ITEM_NONE,
@@ -62,10 +57,12 @@ const {
 } = require('../../actions');
 
 type Props = {
+    navigator: Navigator;
     logOut: () => void;
 };
 
-class MyProfileView extends React.Component {
+// TODO: Rename to MyF8View
+class MyScheduleView extends React.Component {
     props: Props;
 
     constructor(props) {
@@ -73,12 +70,14 @@ class MyProfileView extends React.Component {
 
         this.state = {
             currentUser: props.currentUser,
+            isConnected: true,
         }
     }
 
     componentWillReceiveProps(nextProps: Props) {
         this.setState({
             currentUser: nextProps.currentUser,
+            isConnected: nextProps.isConnected,
         })
     }
 
@@ -124,12 +123,9 @@ class MyProfileView extends React.Component {
             rightItem = {
                 title: 'Log In',
                 onPress: () => {
-                    onCellItemPress(this.props,
-                        MENU_LOGIN_MAIN_SCREEN,
-                        {
-                            navigatorType: LOGIN_FORM_TYPE_MAIN
-                        }
-                    )
+                    // this.props.navigator.push({
+                    //     navigatorType: LOGIN_FORM_TYPE_MAIN
+                    // })
                 }
             }
         }
@@ -142,15 +138,17 @@ class MyProfileView extends React.Component {
                 renderCustomBackground={() => {
                     return (
                         <View style={{flex: 1}}>
-                            <Image style={{flex: 1}} source={require('../images/my-f8-background.png')}/>
+                            <Image
+                                style={{flex: 1}}
+                                source={require('../images/my-f8-background.png')}/>
                         </View>
                     )
                 }}
-                sections={[]}
                 renderParallaxHeader={() => {
                     return this.renderCurrentUser()
                 }}
-                renderSectionHeader={this.renderSectionHeader.bind(this)}
+                data={[]}
+                renderEmptyList={this.renderNotLoggedIn.bind(this)}
             />
         )
     }
@@ -159,7 +157,9 @@ class MyProfileView extends React.Component {
         return (<View style={{height: F8Colors.topViewHeight}}/>)
     }
 
-    renderSectionHeader() {
+    renderNotLoggedIn() {
+        const {isConnected} = this.state;
+
         return (
             <F8EmptySection
                 key="login"
@@ -171,11 +171,6 @@ class MyProfileView extends React.Component {
     }
 
 }
-
-
-MyProfileView.navigatorStyle = {
-    navBarHidden: true,
-};
 
 const {connect} = require('react-redux');
 
@@ -191,4 +186,4 @@ function actions(dispatch) {
     };
 }
 
-module.exports = connect(select, actions)(MyProfileView);
+module.exports = connect(select, actions)(MyScheduleView)

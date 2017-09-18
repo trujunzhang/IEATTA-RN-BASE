@@ -103,4 +103,8 @@ export default (StackNav = StackNavigator({
     MENU_PHOTO_BROWSER_PAGE: {screen: IEAPhotoBrowserView},
     MENU_TAKE_PHOTO_PAGE: {screen: IEATakePhotos},
 
+
+    // Left Draw
+    MENU_HOME_TABS_USER_INFO: {screen: MyProfileView},
+
 }));
