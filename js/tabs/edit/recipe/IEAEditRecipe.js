@@ -6,25 +6,6 @@
  */
 'use strict'
 
-const F8Colors = require('F8Colors')
-const F8Header = require('F8Header')
-const F8Button = require('F8Button')
-
-const F8PhotoHorizonSectionView = require('F8PhotoHorizonSectionView')
-
-
-/**
- * The FormButton will change it's text between the 4 states as necessary
- */
-const FormButton = require('FormButton')
-/**
- *  The RecipeForm does the heavy lifting of displaying the fields for
- * textinput and displays the error messages
- */
-const RecipeForm = require('./RecipeForm')
-
-import {TextInputMask} from 'react-native-masked-text';
-
 /**
  * The necessary React components
  */
@@ -38,6 +19,22 @@ import
     Dimensions,
     Platform
 } from 'react-native'
+
+const F8Colors = require('F8Colors')
+const F8Header = require('F8Header')
+const F8PhotoHorizonSectionView = require('F8PhotoHorizonSectionView')
+
+/**
+ * The FormButton will change it's text between the 4 states as necessary
+ */
+const FormButton = require('FormButton')
+/**
+ *  The RecipeForm does the heavy lifting of displaying the fields for
+ * textinput and displays the error messages
+ */
+const RecipeForm = require('./RecipeForm')
+
+import {TextInputMask} from 'react-native-masked-text';
 
 const {
     writeRealmObject,
@@ -68,6 +65,7 @@ const {
     MODEL_FORM_TYPE_EDIT,
 } = require('../../../lib/constants').default
 
+import {Container, Content} from 'native-base'
 import styles from '../editStyles'
 
 class IEAEditRecipe extends Component {
@@ -196,86 +194,76 @@ class IEAEditRecipe extends Component {
 
     renderContent() {
         const editModelType = this.props.editModel.form.editModelType;
-
-        const leftItem = {
-            icon: require('../../../common/img/back_white.png'),
-            onPress: () => {
-                goBackPage(this.props)
-            }
-        }
-
         const formTitle = (editModelType === MODEL_FORM_TYPE_NEW) ? "Add a Recipe" : "Edit the Recipe";
 
         return (
-            <View style={{flex: 1, backgroundColor: F8Colors.controllerViewColor}}>
-                <F8Header
-                    style={{backgroundColor: F8Colors.primaryColor}}
-                    foreground='dark'
-                    leftItem={leftItem}
-                    title={formTitle}/>
-                <View>
-                    <View style={styles.inputs}>
-                        <RecipeForm
-                            form={this.props.editModel.form}
-                            value={this.state.value}
-                            onChange={this.onChange.bind(this)}/>
+            <Container>
+                <F8Header title={formTitle} {...this.props}/>
+                <Content>
+                    <View>
+                        <View style={styles.inputs}>
+                            <RecipeForm
+                                form={this.props.editModel.form}
+                                value={this.state.value}
+                                onChange={this.onChange.bind(this)}/>
+                        </View>
+
+                        <View style={styles.inputs}>
+
+                            <Text style={
+                                {
+                                    color: 'black',
+                                    fontSize: 14,
+                                    marginBottom: 7,
+                                    fontWeight: '500'
+                                }
+                            }>{'price'}</Text>
+                            <TextInputMask
+                                style={{
+                                    fontSize: 14,
+                                    paddingVertical: (Platform.OS === 'ios') ? 7 : 0,
+                                    paddingHorizontal: 7,
+                                    height: 36,
+                                    borderRadius: 4,
+                                    borderWidth: 1,
+                                    marginBottom: 5
+                                }}
+                                ref={'recipePriceText'}
+                                type={'money'}
+                                value={this.state.value.price}
+                                options={{
+                                    unit: '$',
+                                    precision: 0,
+                                    separator: '.',
+                                    delimiter: ','
+                                }}
+                                onChangeText={this.onPriceChangeText.bind(this)}
+                                placeholder="Enter price"
+                            />
+
+                        </View>
+
+                        <FormButton
+                            isDisabled={!this.props.editModel.form.isValid || this.props.editModel.form.isFetching}
+                            onPress={this.onButtonPress.bind(this)}
+                            buttonText={"Save"}/>
+
+                        {
+                            !!this.state.alert &&
+                            <F8MessageBar {...this.state.alert}/>
+                        }
+
                     </View>
 
-                    <View style={styles.inputs}>
 
-                        <Text style={
-                            {
-                                color: 'black',
-                                fontSize: 14,
-                                marginBottom: 7,
-                                fontWeight: '500'
-                            }
-                        }>{'price'}</Text>
-                        <TextInputMask
-                            style={{
-                                fontSize: 14,
-                                paddingVertical: (Platform.OS === 'ios') ? 7 : 0,
-                                paddingHorizontal: 7,
-                                height: 36,
-                                borderRadius: 4,
-                                borderWidth: 1,
-                                marginBottom: 5
-                            }}
-                            ref={'recipePriceText'}
-                            type={'money'}
-                            value={this.state.value.price}
-                            options={{
-                                unit: '$',
-                                precision: 0,
-                                separator: '.',
-                                delimiter: ','
-                            }}
-                            onChangeText={this.onPriceChangeText.bind(this)}
-                            placeholder="Enter price"
-                        />
-
+                    <View style={{flexDirection: 'row'}}>
+                        <F8PhotoHorizonSectionView
+                            forItem={this.props.model}
+                            sectionType={SECTION_PHOTOS_BROWSER_FOR_RECIPE}
+                            {...this.props}/>
                     </View>
-
-                    <FormButton
-                        isDisabled={!this.props.editModel.form.isValid || this.props.editModel.form.isFetching}
-                        onPress={this.onButtonPress.bind(this)}
-                        buttonText={"Save"}/>
-
-                    {
-                        !!this.state.alert &&
-                        <F8MessageBar {...this.state.alert}/>
-                    }
-
-                </View>
-
-
-                <View style={{flexDirection: 'row'}}>
-                    <F8PhotoHorizonSectionView
-                        forItem={this.props.model}
-                        sectionType={SECTION_PHOTOS_BROWSER_FOR_RECIPE}
-                        {...this.props}/>
-                </View>
-            </View>
+                </Content>
+            </Container>
         )
     }
 

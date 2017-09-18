@@ -6,11 +6,20 @@
  */
 'use strict'
 
+/**
+ * The necessary React components
+ */
+import React, {Component} from 'react'
+import
+{
+    StyleSheet,
+    View,
+    Dimensions,
+} from 'react-native'
+
 const F8Colors = require('F8Colors')
 const F8Header = require('F8Header')
-const F8Button = require('F8Button')
 const F8MessageBar = require('F8MessageBar')
-
 
 /**
  * The FormButton will change it's text between the 4 states as necessary
@@ -22,17 +31,6 @@ const FormButton = require('FormButton')
  */
 const EventForm = require('./EventForm')
 
-
-/**
- * The necessary React components
- */
-import React, {Component} from 'react'
-import
-{
-    StyleSheet,
-    View,
-    Dimensions,
-} from 'react-native'
 
 /**
  * ### Translations
@@ -49,6 +47,7 @@ const {
     timeout
 } = require('../../../actions')
 
+import {Container, Content} from 'native-base'
 import styles from '../editStyles'
 
 /**
@@ -214,13 +213,9 @@ class IEAEditEvent extends Component {
         const formTitle = (editModelType === MODEL_FORM_TYPE_NEW) ? "Add a Event" : "Edit the Event";
 
         return (
-            <View style={{flex: 1, backgroundColor: F8Colors.controllerViewColor}}>
-                <F8Header
-                    style={{backgroundColor: F8Colors.primaryColor}}
-                    foreground='dark'
-                    leftItem={leftItem}
-                    title={formTitle}/>
-                <View>
+            <Container>
+                <F8Header title={formTitle} {...this.props}/>
+                <Content>
 
                     <View style={styles.inputs}>
                         <EventForm
@@ -239,9 +234,8 @@ class IEAEditEvent extends Component {
                         <F8MessageBar {...this.state.alert}/>
                     }
 
-                </View>
-
-            </View>
+                </Content>
+            </Container>
         )
     }
 

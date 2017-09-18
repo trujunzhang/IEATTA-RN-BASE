@@ -6,9 +6,19 @@
  */
 'use strict'
 
+/**
+ * The necessary React components
+ */
+import React, {Component} from 'react'
+import
+{
+    StyleSheet,
+    Text,
+    View,
+} from 'react-native'
+
 const F8Colors = require('F8Colors')
 const F8Header = require('F8Header')
-const F8Button = require('F8Button')
 
 const F8PhotoHorizonSectionView = require('F8PhotoHorizonSectionView')
 
@@ -21,17 +31,6 @@ const FormButton = require('FormButton')
  * textinput and displays the error messages
  */
 const UserForm = require('./UserForm')
-
-/**
- * The necessary React components
- */
-import React, {Component} from 'react'
-import
-{
-    StyleSheet,
-    Text,
-    View,
-} from 'react-native'
 
 /**
  * ### Translations
@@ -56,6 +55,7 @@ const {
 } = require('../../../lib/constants').default
 
 
+import {Container, Content} from 'native-base'
 import styles from '../editStyles'
 
 class IEAEditUser extends Component {
@@ -133,14 +133,6 @@ class IEAEditUser extends Component {
 
         const editModelType = this.props.editModel.form.editModelType;
 
-        debugger
-
-        const leftItem = {
-            icon: require('../../../common/img/back_white.png'),
-            onPress: () => {
-                goBackPage(this.props)
-            }
-        }
         const formTitle = (editModelType === MODEL_FORM_TYPE_NEW) ? "Add a User" : "Edit the User";
 
         return (

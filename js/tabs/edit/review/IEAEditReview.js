@@ -6,21 +6,6 @@
  */
 'use strict'
 
-const F8Colors = require('F8Colors')
-const F8Header = require('F8Header')
-const F8Button = require('F8Button')
-
-
-/**
- * The FormButton will change it's text between the 4 states as necessary
- */
-const FormButton = require('FormButton')
-/**
- *  The ReviewForm does the heavy lifting of displaying the fields for
- * textinput and displays the error messages
- */
-const ReviewForm = require('./ReviewForm')
-
 /**
  * The necessary React components
  */
@@ -35,8 +20,20 @@ import
 } from 'react-native'
 
 
+const F8Colors = require('F8Colors')
+const F8Header = require('F8Header')
+
+/**
+ * The FormButton will change it's text between the 4 states as necessary
+ */
+const FormButton = require('FormButton')
+/**
+ *  The ReviewForm does the heavy lifting of displaying the fields for
+ * textinput and displays the error messages
+ */
+const ReviewForm = require('./ReviewForm')
+
 const F8StarIcon = require('F8StarIcon')
-const F8SVGButton = require('F8SVGButton')
 const F8MessageBar = require('F8MessageBar')
 
 /**
@@ -67,6 +64,7 @@ const {
     MODEL_FORM_TYPE_EDIT,
 } = require('../../../lib/constants').default
 
+import {Container, Content} from 'native-base'
 import styles from '../editStyles'
 
 class IEAEditReview extends Component {
@@ -132,18 +130,6 @@ class IEAEditReview extends Component {
         this.props.actions.onEditModelFormFieldChange('reviewRating', tag)
     }
 
-
-    /**
-     * ### render
-     * Setup some default presentations and render
-     */
-    render() {
-        return (
-            <View style={styles.container}>
-                {this.renderContent()}
-            </View>
-        )
-    }
 
     async onButtonPress() {
         const {dispatch} = this.props;
@@ -246,53 +232,42 @@ class IEAEditReview extends Component {
     }
 
 
-    renderContent() {
+    render() {
         const editModelType = this.props.editModel.form.editModelType;
-
-        const leftItem = {
-            icon: require('../../../common/img/back_white.png'),
-            onPress: () => {
-                if (this.props.onBackHook) this.props.onBackHook()
-                goBackPage(this.props)
-            }
-        }
-
         const formTitle = (editModelType === MODEL_FORM_TYPE_NEW) ? "Add a Review" : "Edit the Review";
 
         return (
-            <View style={{flex: 1, backgroundColor: F8Colors.controllerViewColor}}>
-                <F8Header
-                    style={{backgroundColor: F8Colors.primaryColor}}
-                    foreground='dark'
-                    leftItem={leftItem}
-                    title={formTitle}/>
+            <Container>
+                <F8Header title={formTitle} {...this.props}/>
+                <Content>
 
-                <View style={{alignItems: 'center'}}>
-                    {this.renderTopRatingButtons()}
-                </View>
 
-                <View>
-                    <View style={styles.inputs}>
-                        <ReviewForm
-                            form={this.props.editModel.form}
-                            value={this.state.value}
-                            onChange={this.onChange.bind(this)}/>
+                    <View style={{alignItems: 'center'}}>
+                        {this.renderTopRatingButtons()}
                     </View>
 
-                    <FormButton
-                        isDisabled={!this.props.editModel.form.isValid || this.props.editModel.form.isFetching}
-                        onPress={this.onButtonPress.bind(this)}
-                        buttonText={"Post"}/>
+                    <View>
+                        <View style={styles.inputs}>
+                            <ReviewForm
+                                form={this.props.editModel.form}
+                                value={this.state.value}
+                                onChange={this.onChange.bind(this)}/>
+                        </View>
 
-                    {
-                        !!this.state.alert &&
-                        <F8MessageBar {...this.state.alert}/>
-                    }
+                        <FormButton
+                            isDisabled={!this.props.editModel.form.isValid || this.props.editModel.form.isFetching}
+                            onPress={this.onButtonPress.bind(this)}
+                            buttonText={"Post"}/>
 
+                        {
+                            !!this.state.alert &&
+                            <F8MessageBar {...this.state.alert}/>
+                        }
 
-                </View>
+                    </View>
 
-            </View>
+                </Content>
+            </Container>
         )
     }
 

@@ -6,9 +6,18 @@
  */
 'use strict'
 
-const F8Colors = require('F8Colors')
+/**
+ * The necessary React components
+ */
+import React, {Component} from 'react'
+import
+{
+    StyleSheet,
+    Text,
+    View,
+} from 'react-native'
+
 const F8Header = require('F8Header')
-const F8Button = require('F8Button')
 const F8MessageBar = require('F8MessageBar')
 
 const F8PhotoHorizonSectionView = require('F8PhotoHorizonSectionView')
@@ -23,18 +32,6 @@ const FormButton = require('FormButton')
  */
 const RestaurantForm = require('./RestaurantForm')
 
-import {Container, Content, Button, Icon, Title} from 'native-base'
-
-/**
- * The necessary React components
- */
-import React, {Component} from 'react'
-import
-{
-    StyleSheet,
-    Text,
-    View,
-} from 'react-native'
 
 /**
  * The states were interested in
@@ -57,6 +54,7 @@ const {
     timeout
 } = require('../../../actions')
 
+import {Container, Content} from 'native-base'
 import styles from '../editStyles'
 
 class IEAEditRestaurant extends Component {
@@ -185,7 +183,7 @@ class IEAEditRestaurant extends Component {
             <Container>
                 <F8Header title={formTitle} {...this.props}/>
                 <Content>
-                    <View style={{flexDirection: 'column',}}>
+                    <View style={{flexDirection: 'column'}}>
                         <View style={styles.inputs}>
                             <RestaurantForm
                                 form={this.props.editModel.form}
