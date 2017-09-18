@@ -234,7 +234,7 @@ class PureListView extends React.Component {
         const headerItems = [];
         if (parallaxLeftItemType !== PARALLAX_HEADER_LEFT_ITEM_NONE) {
             headerItems.push(
-                <Left key={"fixed_header_left_item"} style={{flex: 2}}>
+                <Left key={"fixed_header_left_item"}>
                     <Button transparent onPress={() => {
                         goBackPage(props)
                     }}>
@@ -245,7 +245,7 @@ class PureListView extends React.Component {
         }
         if (!!rightItem) {
             headerItems.push(
-                <Right key={"fixed_header_right_item"} style={{flex: 2}}>
+                <Right key={"fixed_header_right_item"}>
                     <Button transparent onPress={rightItem.onPress}>
                         <Text style={[styles.rightItemText]}>{rightItem.title}</Text>
                     </Button>
@@ -256,7 +256,9 @@ class PureListView extends React.Component {
         return (
             <View key="fixed-header"
                   style={[commonStyles.absoluteFullSection, commonStyles.rowDirection]}>
-                {headerItems}
+                <Header style={{backgroundColor: 'transparent'}}>
+                    {headerItems}
+                </Header>
             </View>
         )
     }
