@@ -6,7 +6,6 @@ import {
     TouchableOpacity,
     View,
     Image,
-    ScrollView,
     StyleSheet,
     StatusBar,
     Navigator,
@@ -16,13 +15,19 @@ import {
 
 import {
     Button,
-    Text,
     Container,
     List,
     ListItem,
     Content,
     Icon,
+    Header,
 } from "native-base";
+
+const {Text} = require('F8Text')
+const ProfilePicture = require('../../common/ProfilePicture')
+const {logOutWithPrompt} = require('../../actions')
+const MenuItem = require('../../tabs/MenuItem')
+const F8Colors = require('F8Colors')
 
 const styles = StyleSheet.create({
     drawer: {
@@ -55,30 +60,83 @@ const styles = StyleSheet.create({
 });
 
 
-export default class DrawBar extends React.Component {
+class DrawBar extends React.Component {
     static navigationOptions = {
         header: null
     };
 
-    render() {
-        return (
-            <Container>
+    openProfileSettings() {
+        // this.refs.drawer.closeDrawer();
+        // this.props.navigator.push({shareSettings: true});
+    }
 
-                <List
-                    dataArray={routes}
-                    renderRow={data => {
-                        return (
-                            <ListItem
-                                button
-                                onPress={() => this.props.navigation.navigate(data)}
-                            >
-                                <Text>{data}</Text>
-                            </ListItem>
-                        );
-                    }}
+    renderNavigationView() {
+        const {username} = this.props.currentUser;
+
+        return (
+            <View style={styles.drawer}>
+
+                <MenuItem
+                    title="Home"
+                    icon={"home"}
+                    selectedIcon={"home"}
+                    selected={this.props.tab === 'main'}
                 />
-            </Content>
-            < /Container>
+                <MenuItem
+                    title="User"
+                    icon={"user-o"}
+                    selectedIcon={"user-o"}
+                    selected={this.props.tab === 'info'}
+                />
+            </View>
         );
     }
+
+    render() {
+        const {username} = this.props.currentUser;
+        return (
+            <Container>
+                <Content>
+                    <Image
+                        style={{
+                            flex: 1,
+                            alignSelf: "stretch",
+                        }}
+                        resizeMode="contain"
+                        source={require('../../tabs/img/drawer-header.png')}>
+                        <View style={{
+                            marginTop: 60,
+                            marginLeft: 20,
+                        }}>
+                            <TouchableOpacity onPress={this.openProfileSettings}>
+                                <ProfilePicture user={this.props.currentUser} size={80}/>
+                            </TouchableOpacity>
+                            <Text style={styles.name}>
+                                {username}
+                            </Text>
+
+                        </View>
+                    </Image>
+                    {this.renderNavigationView()}
+                </Content>
+            </Container>
+        )
+    }
 }
+
+const {connect} = require('react-redux')
+
+function select(store) {
+    return {
+        currentUser: store.user,
+    }
+}
+
+function actions(dispatch) {
+    return {
+        logOut: () => dispatch(logOutWithPrompt()),
+    };
+}
+
+
+module.exports = connect(select, actions)(DrawBar)
