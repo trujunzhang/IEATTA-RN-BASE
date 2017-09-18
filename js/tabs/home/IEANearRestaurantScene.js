@@ -57,6 +57,8 @@ import Restaurants from '../../lib/restaurants'
 
 const {queryNearRestaurant} = require('../../actions')
 
+import commonStyles from '../../common/commonStyle'
+
 const {goBackPage, onCellItemPress} = require('../filter/navigatorApp')
 import {Container, Header, Content, List, ListItem, Body} from 'native-base'
 
@@ -80,7 +82,10 @@ class IEANearRestaurantScene extends Component {
             MENU_SECTIONS_RESTAURANTS: nextProps.appModel.restaurants
         })
 
-        this.setState({sections: nextSections})
+        // this.setState({
+        //     sections: nextSections,
+        // ready: true
+        // })
     }
 
     componentDidMount() {
@@ -184,15 +189,16 @@ class IEANearRestaurantScene extends Component {
         if (restaurantLength === 0) {
             if (!ready) {
                 return (
-                    <ActivityIndicator
-                        animating={this.state.animating}
-                        style={[{
-                            alignItems: 'center',
+                    <View style={[commonStyles.rowDirection,
+                        {
+                            flex: 1,
+                            height: 180,
+                            backgroundColor: 'white',
                             justifyContent: 'center',
-                            padding: 8
-                        }, {height: 80}]}
-                        size="large"
-                    />
+                        }
+                    ]}>
+                        <ActivityIndicator animating={this.state.animating} size="large"/>
+                    </View>
                 )
             }
             return (
