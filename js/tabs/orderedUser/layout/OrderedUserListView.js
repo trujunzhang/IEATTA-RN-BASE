@@ -111,7 +111,7 @@ class OrderedUserListView extends React.Component {
         const {props, onPress} = this;
         return (
             <ListItem itemDivider onPress={() => onPress(props, recipe)}>
-                <Body style={{backgroundColor: 'white'}}>
+                <Body style={{backgroundColor: 'red'}}>
                 <OrderedRecipeCell {...this.props} recipe={recipe}/>
                 </Body>
             </ListItem>
@@ -121,7 +121,7 @@ class OrderedUserListView extends React.Component {
     onPress(props, recipe) {
         const {orderedUser, forRestaurant, forEvent} = props;
 
-        onCellItemPress(this.props,
+        onCellItemPress(props,
             MENU_DETAILED_RECIPE_PAGE,
             {
                 recipe: recipe,
