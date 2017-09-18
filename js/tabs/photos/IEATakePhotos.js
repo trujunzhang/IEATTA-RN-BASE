@@ -41,13 +41,10 @@ import {
 import AppConstants from '../../lib/appConstants'
 
 const F8Header = require('F8Header')
-const F8Colors = require('F8Colors')
-const F8DrawerLayout = require('F8DrawerLayout')
 const F8PhotoHorizonListView = require('F8PhotoHorizonListView')
 
 const {goBackPage} = require('../../tabs/filter/navigatorApp')
 const F8TakePhotoCamera = require('F8TakePhotoCamera')
-const {getLocalImagePath} = require('../../parse/fsApi')
 
 const {
     queryPhotosByType,
@@ -137,15 +134,14 @@ class IEATakePhotos extends React.Component {
             <View style={styles.container}>
                 {
                     this.state.showNavigatorHeader &&
-                    <View style={styles.headerWrapper}>
-                        <F8Header title={'Take Photo'} onLeftItemPress={this.onBackPress.bind(this)}/>
-                    </View>
+                    <F8Header title={'Take Photo'} onLeftItemPress={() => {
+                        this.onBackPress()
+                    }}/>
                 }
 
                 <F8TakePhotoCamera
                     onTakePhotoAfterHook={this.onTakePhotoAfterHook.bind(this)}/>
                 {this.renderToggleSection()}
-
                 {
                     this.state.showNavigatorHeader &&
                     <View style={styles.takenPhotosList}>
@@ -176,10 +172,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'transparent'
     },
-    header: {
-        backgroundColor: '#5597B8',
-    },
-    headerWrapper: {},
     toggleSection: {
         position: 'absolute',
         left: 0,
