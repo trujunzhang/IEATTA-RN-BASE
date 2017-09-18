@@ -23,6 +23,8 @@ const FormButton = require('FormButton')
  */
 const RestaurantForm = require('./RestaurantForm')
 
+import {Container, Content, Button, Icon, Title} from 'native-base'
+
 /**
  * The necessary React components
  */
@@ -111,19 +113,6 @@ class IEAEditRestaurant extends Component {
     }
 
 
-    /**
-     * ### render
-     * Setup some default presentations and render
-     */
-    render() {
-        return (
-            <View style={styles.container}>
-                {this.renderContent()}
-            </View>
-        )
-    }
-
-
     async onButtonPress() {
         const {dispatch} = this.props;
 
@@ -174,53 +163,58 @@ class IEAEditRestaurant extends Component {
         }
     }
 
+    /**
+     * ### render
+     * Setup some default presentations and render
+     */
+    render() {
+        return (
+            <View style={styles.container}>
+                {this.renderContent()}
+            </View>
+        )
+    }
+
     renderContent() {
         const editModelType = this.props.editModel.form.editModelType;
 
-        const leftItem = {
-            icon: require('../../../common/img/back_white.png'),
-            onPress: () => {
-                goBackPage(this.props)
-            }
-        }
 
         const formTitle = (editModelType === MODEL_FORM_TYPE_NEW) ? "Add a Restaurant" : "Edit the Restaurant";
 
         return (
-            <View style={{flex: 1, backgroundColor: F8Colors.controllerViewColor}}>
-                <F8Header
-                    style={{backgroundColor: F8Colors.primaryColor}}
-                    foreground='dark'
-                    leftItem={leftItem}
-                    title={formTitle}/>
-                <View style={{flexDirection: 'column',}}>
-                    <View style={styles.inputs}>
-                        <RestaurantForm
-                            form={this.props.editModel.form}
-                            value={this.state.value}
-                            onChange={this.onChange.bind(this)}/>
-                    </View>
+            <Container>
+                <F8Header title={formTitle} {...this.props}/>
+                <Content>
+                    <View style={{flexDirection: 'column',}}>
+                        <View style={styles.inputs}>
+                            <RestaurantForm
+                                form={this.props.editModel.form}
+                                value={this.state.value}
+                                onChange={this.onChange.bind(this)}/>
+                        </View>
 
-                    <FormButton
-                        isDisabled={!this.props.editModel.form.isValid || this.props.editModel.form.isFetching}
-                        onPress={this.onButtonPress.bind(this)}
-                        buttonText={"Save"}/>
+                        <FormButton
+                            isDisabled={!this.props.editModel.form.isValid || this.props.editModel.form.isFetching}
+                            onPress={this.onButtonPress.bind(this)}
+                            buttonText={"Save"}/>
+
+                        {
+                            !!this.state.alert &&
+                            <F8MessageBar {...this.state.alert}/>
+                        }
+                    </View>
 
                     {
-                        !!this.state.alert &&
-                        <F8MessageBar {...this.state.alert}/>
+                        editModelType === MODEL_FORM_TYPE_EDIT &&
+                        <View style={{flexDirection: 'row'}}>
+                            <F8PhotoHorizonSectionView
+                                forItem={this.props.model}
+                                sectionType={SECTION_PHOTOS_BROWSER_FOR_RESTAURANT}
+                                {...this.props}/>
+                        </View>
                     }
-                </View>
-                {
-                    editModelType === MODEL_FORM_TYPE_EDIT &&
-                    <View style={{flexDirection: 'row'}}>
-                        <F8PhotoHorizonSectionView
-                            forItem={this.props.model}
-                            sectionType={SECTION_PHOTOS_BROWSER_FOR_RESTAURANT}
-                            {...this.props}/>
-                    </View>
-                }
-            </View>
+                </Content>
+            </Container>
         )
     }
 

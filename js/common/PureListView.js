@@ -94,6 +94,7 @@ class PureListView extends React.Component {
     }
 
     componentWillReceiveProps(nextProps: Props) {
+        // console.log("will receive in the pure list,")
         this.setState({dataArray: this._generateDataArray(nextProps)})
     }
 
