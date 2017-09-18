@@ -235,10 +235,7 @@ class PureListView extends React.Component {
         const headerItems = [];
         if (parallaxLeftItemType !== PARALLAX_HEADER_LEFT_ITEM_NONE) {
             headerItems.push(
-                <Left key={"fixed_header_left_item"} style={{
-                    flex: 2,
-                    // backgroundColor: 'red'
-                }}>
+                <Left key={"fixed_header_left_item"} style={{flex: 2}}>
                     <Button transparent
                             onPress={() => {
                                 goBackPage(props)
