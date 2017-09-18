@@ -138,7 +138,7 @@ function queryEventsForRestaurant(restaurant): ThunkAction {
 async function _queryPhotosByType(photoType: string, forObjectId: string): Promise<Array<Action>> {
     let results = [];
     if (!!forObjectId) {
-        results = PhotoService.findAll().filtered( 'forObjectUniqueId == $0 AND photoType == $1', forObjectId, photoType);
+        results = PhotoService.findAll().filtered('forObjectUniqueId == $0 AND photoType == $1', forObjectId, photoType);
     }
 
     const action = {

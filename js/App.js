@@ -5,7 +5,7 @@ import {Container, Content, Text, View} from "native-base";
 import MainStackRouter from "./Routers/MainStackRouter";
 import ProgressBar from "./components/loaders/ProgressBar";
 
-import theme from "./themes/base-theme";
+const {delayEvent} = require('./lib/utils')
 
 const LoginScreen = require('./components/lib/login/LoginScreen')
 const LoginModal = require('./components/lib/login/LoginModal')
@@ -66,8 +66,37 @@ class App extends Component {
         this.setState({intervalId: intervalId})
     }
 
+    componentWillUnmount() {
+        // Cancel the timer when you are done with it
+        BackgroundTimer.clearInterval(this.state.intervalId)
+
+        navigator.geolocation.clearWatch(this.watchID)
+    }
+
     componentDidMount() {
+        // Async Task.
         this.setupAsyncTask();
+
+        // Location Tracker.
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                let initialPosition = JSON.stringify(position)
+                this.setState({initialPosition})
+            },
+            (error) => {
+                //alert(error.message)
+            },
+            {enableHighAccuracy: true, timeout: 40 * 1000, maximumAge: 1 * 1000}
+        )
+        this.watchID = navigator.geolocation.watchPosition((position) => {
+            let lastPosition = position;
+            console.log("last position: " + JSON.stringify(position));
+            // this.setState({lastPosition})
+            const {dispatch} = this.props;
+            delayEvent(function () {
+                dispatch(queryNearRestaurant({position}))
+            }, 700)
+        })
     }
 
     render() {

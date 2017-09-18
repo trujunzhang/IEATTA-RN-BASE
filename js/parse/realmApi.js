@@ -145,7 +145,7 @@ const RestaurantService = {
             const {coords} = term.position;
             const localGeoHash = encodeGeoHash(coords.latitude, coords.longitude)
             const queryHash = localGeoHash.substring(0, 6);
-            // objects = objects.filtered('geoHash CONTAINS[c] $0', queryHash)
+            objects = objects.filtered('geoHash CONTAINS[c] $0', queryHash)
         }
         if (!!term.search) {
             objects = objects.filtered('displayName CONTAINS[c] $0 OR address CONTAINS[c] $0', term.search)
