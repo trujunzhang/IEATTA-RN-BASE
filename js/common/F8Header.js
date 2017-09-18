@@ -48,13 +48,17 @@ const F8Colors = require('F8Colors')
 class F8Header extends Component {
 
     render() {
-        const {title} = this.props;
+        const {title, onLeftItemPress} = this.props;
         return (
             <Header style={{backgroundColor: F8Colors.primaryColor}}>
                 <Left>
                     <Button transparent
                             onPress={() => {
-                                goBackPage(this.props)
+                                if (!!onLeftItemPress) {
+                                    onLeftItemPress()
+                                } else {
+                                    goBackPage(this.props)
+                                }
                             }}>
                         <Icon name='arrow-back'/>
                     </Button>

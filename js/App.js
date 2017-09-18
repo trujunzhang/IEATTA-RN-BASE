@@ -71,8 +71,8 @@ class App extends Component {
     }
 
     render() {
-        // if (!this.props.isLoggedIn|| true) {
-        if (!this.props.isLoggedIn) {
+        if (!this.props.isLoggedIn|| true) {
+        // if (!this.props.isLoggedIn) {
             return <LoginScreen/>
             // return <LoginModal/>
         }

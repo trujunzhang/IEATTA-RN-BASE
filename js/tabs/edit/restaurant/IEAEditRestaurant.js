@@ -175,8 +175,6 @@ class IEAEditRestaurant extends Component {
 
     renderContent() {
         const editModelType = this.props.editModel.form.editModelType;
-
-
         const formTitle = (editModelType === MODEL_FORM_TYPE_NEW) ? "Add a Restaurant" : "Edit the Restaurant";
 
         return (

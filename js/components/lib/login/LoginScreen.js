@@ -56,7 +56,7 @@ const {
     LOGIN_FORM_TYPE_FORGOTPASSWORD
 } = require('../../../lib/constants').default
 
-
+import {Container, Content} from 'native-base'
 import styles from './LoginStyles'
 
 /**
@@ -79,49 +79,34 @@ class LoginScreen extends React.Component {
     render() {
         const {formType} = this.state
 
-        const leftItem = {
-            icon: require('../../../common/img/back_white.png'),
-            onPress: () => {
-                this.toggleForm(LOGIN_FORM_TYPE_MAIN)
-            }
-        }
         switch (formType) {
             default:
                 return this.renderWelcomeScrene()
             case LOGIN_FORM_TYPE_LOGIN:
                 return (
-                    <View style={{flex: 1}}>
-                        <StatusBar
-                            translucent={true}
-                            backgroundColor="rgba(0, 0, 0, 0.2)"
-                            barStyle="light-content"/>
-                        <F8Header
-                            style={{backgroundColor: F8Colors.primaryColor}}
-                            foreground='dark'
-                            leftItem={leftItem}
-                            title={"Login"}/>
-                        <AppLogin toggleEvent={this.toggleForm.bind(this)}
-                                  actions={this.props.actions}/>
-                    </View>
+                    <Container>
+                        <F8Header title={'Login'} onLeftItemPress={() => {
+                            this.toggleForm(LOGIN_FORM_TYPE_MAIN)
+                        }}/>
+                        <Content>
+                            <AppLogin toggleEvent={this.toggleForm.bind(this)}
+                                      actions={this.props.actions}/>
+                        </Content>
+                    </Container>
                 )
             case LOGIN_FORM_TYPE_REGISTER:
                 return (
-                    <View style={{flex: 1}}>
-                        <StatusBar
-                            translucent={true}
-                            backgroundColor="rgba(0, 0, 0, 0.2)"
-                            barStyle="light-content"/>
-                        <F8Header
-                            style={{backgroundColor: F8Colors.primaryColor}}
-                            foreground='dark'
-                            leftItem={leftItem}
-                            title={"Register"}/>
-                        <AppRegister toggleEvent={this.toggleForm.bind(this)}
-                                     actions={this.props.actions}/>
-                    </View>
+                    <Container>
+                        <F8Header title={'Register'} onLeftItemPress={() => {
+                            this.toggleForm(LOGIN_FORM_TYPE_MAIN)
+                        }}/>
+                        <Content>
+                            <AppRegister toggleEvent={this.toggleForm.bind(this)}
+                                         actions={this.props.actions}/>
+                        </Content>
+                    </Container>
                 )
         }
-
     }
 
     renderLoginIcon() {
