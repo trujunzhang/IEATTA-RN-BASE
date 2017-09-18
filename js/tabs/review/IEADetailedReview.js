@@ -43,6 +43,8 @@ const F8Header = require('F8Header')
 
 const ReviewCell = require('./layout/ReviewCell')
 
+import {Container, Content} from 'native-base'
+
 const {goBackPage} = require('../../tabs/filter/navigatorApp')
 
 class IEADetailedReview extends Component {
@@ -52,27 +54,14 @@ class IEADetailedReview extends Component {
     });
 
     render() {
-        const leftItem = {
-            icon: require('../../common/img/back_white.png'),
-            onPress: () => {
-                goBackPage(this.props)
-            }
-        }
-
         const {review} = this.props.navigation.state.params;
-
         return (
-
-            <View style={{flex: 1, backgroundColor: F8Colors.controllerViewColor}}>
-                <F8Header
-                    style={{backgroundColor: F8Colors.primaryColor}}
-                    foreground='dark'
-                    leftItem={leftItem}
-                    title={"Review"}/>
-
-                <ReviewCell{...this.props} review={review} isPreview={true}/>
-
-            </View>
+            <Container>
+                <F8Header title={'Review'} {...this.props}/>
+                <Content>
+                    <ReviewCell{...this.props} review={review} isPreview={true}/>
+                </Content>
+            </Container>
         )
     }
 }

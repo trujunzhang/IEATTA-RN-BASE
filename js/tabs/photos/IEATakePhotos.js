@@ -129,26 +129,16 @@ class IEATakePhotos extends React.Component {
         goBackPage(this.props)
 
         const {modelType, model} = this.props.navigation.state.params;
-        debugger
         this.props.dispatch(queryPhotosByType(modelType, model.objectId))
     }
 
     render() {
-        let leftItem = {
-            icon: require('../../common/img/back_white.png'),
-            onPress: this.onBackPress.bind(this)
-        }
-
-        const content = (
+        return (
             <View style={styles.container}>
                 {
                     this.state.showNavigatorHeader &&
                     <View style={styles.headerWrapper}>
-                        <F8Header
-                            style={styles.header}
-                            title={'Take Photo'}
-                            leftItem={leftItem}>
-                        </F8Header>
+                        <F8Header title={'Take Photo'} onLeftItemPress={this.onBackPress.bind(this)}/>
                     </View>
                 }
 
@@ -167,8 +157,6 @@ class IEATakePhotos extends React.Component {
                 }
             </View>
         )
-
-        return content;
     }
 
     renderToggleSection() {
