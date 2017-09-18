@@ -82,10 +82,10 @@ class IEANearRestaurantScene extends Component {
             MENU_SECTIONS_RESTAURANTS: nextProps.appModel.restaurants
         })
 
-        // this.setState({
-        //     sections: nextSections,
-        // ready: true
-        // })
+        this.setState({
+            sections: nextSections,
+            ready: true
+        })
     }
 
     componentDidMount() {
