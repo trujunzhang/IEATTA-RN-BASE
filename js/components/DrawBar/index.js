@@ -105,7 +105,7 @@ class DrawBar extends React.Component {
                         resizeMode="contain"
                         source={require('../../tabs/img/drawer-header.png')}>
                         <View style={{
-                            marginTop: 60,
+                            marginTop: 80,
                             marginLeft: 20,
                         }}>
                             <TouchableOpacity onPress={this.openProfileSettings}>
