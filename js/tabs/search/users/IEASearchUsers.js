@@ -8,6 +8,7 @@ import {
     Image,
     StyleSheet,
     Dimensions,
+    Keyboard,
     Platform
 } from 'react-native'
 
@@ -54,6 +55,10 @@ class IEASearchUsers extends Component {
                 USERS: nextProps.appModel.searchUsers
             }
         })
+    }
+
+    componentWillBlur() {
+        Keyboard.dismiss();
     }
 
     componentWillMount() {
