@@ -60,6 +60,7 @@ const {
 } = require('../../../lib/constants').default
 
 import {Content, List, ListItem, Body} from 'native-base'
+import commonStyles from '../../../common/commonStyle'
 
 class OrderedUserListView extends React.Component {
 
@@ -111,7 +112,11 @@ class OrderedUserListView extends React.Component {
         const {props, onPress} = this;
         return (
             <ListItem itemDivider onPress={() => onPress(props, recipe)}>
-                <Body style={{backgroundColor: 'red'}}>
+                <Body style={{
+                    backgroundColor: 'white',
+                    borderBottomWidth: 1,
+                    borderBottomColor: "#eeeeee",
+                }}>
                 <OrderedRecipeCell {...this.props} recipe={recipe}/>
                 </Body>
             </ListItem>

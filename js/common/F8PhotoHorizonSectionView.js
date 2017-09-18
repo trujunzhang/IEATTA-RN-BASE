@@ -71,12 +71,16 @@ class F8PhotoHorizonSectionView extends React.Component {
     }
 
     componentWillReceiveProps(nextProps: Props) {
+        const oldPhotos = this.state.photos;
+
         const {sectionType, forItem} = nextProps;
-        const fetchedPhotos = photosBySectionType(nextProps, sectionType, forItem, this.state.photos);
-        this.setState({
-            photos: fetchedPhotos,
-            ready: true
-        })
+
+        const newPhotos = photosBySectionType(nextProps, sectionType, forItem);
+        if (!!newPhotos && newPhotos.length !== 0) {
+            if (oldPhotos.length !== newPhotos.length) { // Only different photos size, update the ListView.
+                this.setState({photos: newPhotos})
+            }
+        }
     }
 
     componentWillMount() {

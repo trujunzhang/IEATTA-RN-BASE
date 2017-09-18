@@ -105,7 +105,7 @@ export function filterReviews(nextProps: Any, forObjectSchemaName: String, objec
     return null;
 }
 
-export function photosBySectionType(nextProps: Any, sectionType: String, forItem: Object, lastResults: Array) {
+export function photosBySectionType(nextProps: Any, sectionType: String, forItem: Object) {
     const {appModel} = nextProps;
     if (!!appModel && !!forItem) {
         const {photosForObject} = appModel;
@@ -118,7 +118,7 @@ export function photosBySectionType(nextProps: Any, sectionType: String, forItem
         }
     }
 
-    return lastResults;
+    return null;
 }
 
 

@@ -65,8 +65,7 @@ const styles = StyleSheet.create({
     },
     orderedRecipeCellSection: { //{/*.action-list .action*/}
         flex: 1,
-        marginLeft: -10,
-        marginRight: -10,
+        marginHorizontal: 0,
         padding: 10,
         flexDirection: 'row',
     },
