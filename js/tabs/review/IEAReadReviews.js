@@ -107,12 +107,7 @@ class IEAReadReviews extends Component {
 
         return (
             <View style={{flex: 1, backgroundColor: F8Colors.controllerViewColor}}>
-                <F8Header
-                    style={{backgroundColor: F8Colors.primaryColor}}
-                    foreground='dark'
-                    leftItem={leftItem}
-                    title={"Read Reviews"}/>
-
+                <F8Header title={"Read Reviews"} {...this.props}/>
                 <F8SearchBar
                     handleSearch={this.handleSearch.bind(this)}
                     hideBack={true}
