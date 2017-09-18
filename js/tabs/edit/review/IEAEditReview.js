@@ -240,8 +240,6 @@ class IEAEditReview extends Component {
             <Container>
                 <F8Header title={formTitle} {...this.props}/>
                 <Content>
-
-
                     <View style={{alignItems: 'center'}}>
                         {this.renderTopRatingButtons()}
                     </View>

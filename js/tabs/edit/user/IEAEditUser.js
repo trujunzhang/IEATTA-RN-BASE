@@ -112,58 +112,43 @@ class IEAEditUser extends Component {
     }
 
 
-    /**
-     * ### render
-     * Setup some default presentations and render
-     */
-    render() {
-        return (
-            <View style={styles.container}>
-                {this.renderContent()}
-            </View>
-        )
-    }
-
     onButtonPress() {
 
     }
 
-    renderContent() {
+    render() {
         const {params} = this.props.navigation.state;
-
         const editModelType = this.props.editModel.form.editModelType;
-
         const formTitle = (editModelType === MODEL_FORM_TYPE_NEW) ? "Add a User" : "Edit the User";
 
         return (
-            <View style={{flex: 1, backgroundColor: F8Colors.controllerViewColor}}>
-                <F8Header
-                    style={{backgroundColor: F8Colors.primaryColor}}
-                    foreground='dark'
-                    leftItem={leftItem}
-                    title={formTitle}/>
-                <View>
-                    <View style={styles.inputs}>
-                        <UserForm
-                            form={this.props.editModel.form}
-                            value={this.state.value}
-                            onChange={this.onChange.bind(this)}/>
+            <Container>
+                <F8Header title={formTitle} {...this.props}/>
+                <Content>
+
+                    <View>
+                        <View style={styles.inputs}>
+                            <UserForm
+                                form={this.props.editModel.form}
+                                value={this.state.value}
+                                onChange={this.onChange.bind(this)}/>
+                        </View>
+
+                        <FormButton
+                            isDisabled={!this.props.editModel.form.isValid || this.props.editModel.form.isFetching}
+                            onPress={this.onButtonPress.bind(this)}
+                            buttonText={"Save"}/>
                     </View>
 
-                    <FormButton
-                        isDisabled={!this.props.editModel.form.isValid || this.props.editModel.form.isFetching}
-                        onPress={this.onButtonPress.bind(this)}
-                        buttonText={"Save"}/>
-                </View>
 
-
-                <View style={{flexDirection: 'row'}}>
-                    <F8PhotoHorizonSectionView
-                        forItem={params.model}
-                        sectionType={SECTION_PHOTOS_BROWSER_FOR_USER}
-                        {...this.props}/>
-                </View>
-            </View>
+                    <View style={{flexDirection: 'row'}}>
+                        <F8PhotoHorizonSectionView
+                            forItem={params.model}
+                            sectionType={SECTION_PHOTOS_BROWSER_FOR_USER}
+                            {...this.props}/>
+                    </View>
+                </Content>
+            </Container>
         )
     }
 
