@@ -121,6 +121,7 @@ class IEANearRestaurantScene extends Component {
     }
 
     renderRowsArray(renderSectionHeader, renderRow) {
+        const self = this;
         const {props, onPress} = this;
         const {sections} = this.state;
         const sectionKeys = Object.keys(sections);
@@ -133,6 +134,14 @@ class IEANearRestaurantScene extends Component {
                     {renderSectionHeader(key)}
                 </ListItem>
             )
+
+            if (sectionData.length === 0) {
+                listRows.push(
+                    <ListItem itemDivider key={"empty-section"}>
+                        {self.renderFooter()}
+                    </ListItem>
+                )
+            }
 
             sectionData.forEach(function (row, index) {
                 listRows.push(
