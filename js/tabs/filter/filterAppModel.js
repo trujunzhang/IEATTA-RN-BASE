@@ -92,8 +92,6 @@ export function filterReviews(nextProps: Any, forObjectSchemaName: String, objec
 }
 
 export function photosBySectionType(nextProps: Any, sectionType: String, forItem: Object, lastResults: Array) {
-    debugger
-
     const {appModel} = nextProps;
     if (!!appModel && !!forItem) {
         const {photosForObject} = appModel;

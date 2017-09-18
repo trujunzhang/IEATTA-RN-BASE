@@ -58,6 +58,9 @@ class IEASearchUsers extends Component {
     }
 
     componentWillBlur() {
+
+        debugger
+
         Keyboard.dismiss();
     }
 
