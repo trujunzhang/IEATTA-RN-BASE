@@ -44,10 +44,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 const CellRowHeight = 60
 const avatorW = 36;
 
-const F8Colors = require('F8Colors');
 const F8PlaceHolderImage = require('F8PlaceHolderImage')
 const {Text} = require('F8Text');
-const F8Touchable = require('F8Touchable');
 
 const {onCellItemPress} = require('../../filter/navigatorApp')
 const {getLocalImagePath} = require('../../../parse/fsApi')
@@ -61,14 +59,10 @@ const styles = StyleSheet.create({
     eventContainer: {
         flex: 1,
         paddingHorizontal: 10,
-        // marginRight: 10,
-        backgroundColor: "white",
         height: CellRowHeight,
     },
     eventSection: {
         flex: 1,
-        marginLeft: -10,
-        marginRight: -10,
         padding: 10,
         flexDirection: 'row',
     },
@@ -118,13 +112,12 @@ class PeopleInEventCell extends React.Component {
         )
     }
 
-    renderCell() {
+    render() {
         const {user} = this.props;
         return (
             <View
                 key={user.objectId}
                 style={styles.eventContainer}>
-                {/*.action-list .action*/}
                 <View style={styles.eventSection}>
                     {this.renderLeft()}
                     {this.renderRight()}
@@ -147,19 +140,7 @@ class PeopleInEventCell extends React.Component {
         )
     }
 
-    componentDidMount() {
-        if (this.props.user.objectId === "aGkde8iuL6") {
-            // this.onPress()
-        }
-    }
 
-    render() {
-        return (
-            <TouchableHighlight underlayColor={F8Colors.cellUnderlayColor} onPress={this.onPress.bind(this)}>
-                {this.renderCell()}
-            </TouchableHighlight>
-        )
-    }
 }
 
 

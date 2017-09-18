@@ -49,6 +49,7 @@ const RLEventListViewHeaderView = require('./RLEventListViewHeaderView')
 
 const {queryPeopleForEvent, queryReviews} = require('../../../actions')
 const {filterUserInEvent, filterReviews} = require('../../filter/filterAppModel')
+const {onCellItemPress} = require('../../filter/navigatorApp')
 
 /**
  * The states were interested in
@@ -57,8 +58,11 @@ const {
     MENU_SECTIONS_PEOPLE_IN_EVENTS,
     MENU_SECTIONS_REVIEWS,
     PARSE_EVENTS,
+    MENU_DETAILED_ORDERED_USER_PAGE,
 } = require('../../../lib/constants').default
 
+import {Content, List, ListItem, Body} from 'native-base'
+import commonStyles from '../../../common/commonStyle'
 
 class PeopleInEventListView extends React.Component {
 
@@ -116,14 +120,38 @@ class PeopleInEventListView extends React.Component {
 
 
     renderRow(item: any, sectionID: number | string) {
+        const self = this;
+        const {props, onPress} = this;
+
         if (sectionID === MENU_SECTIONS_PEOPLE_IN_EVENTS) {
             return (
-
-                <PeopleInEventCell {...this.props} user={item}/>
+                <ListItem itemDivider onPress={() => onPress(props, item)}>
+                    <Body style={{
+                        backgroundColor: 'white',
+                        borderBottomWidth: 1,
+                        borderBottomColor: "#eeeeee",
+                    }}>
+                    <PeopleInEventCell {...this.props} user={item}/>
+                    </Body>
+                </ListItem>
             )
         }
         return (<ReviewCell{...this.props} review={item}/>)
     }
+
+    onPress(props, user) {
+        const {forRestaurant, event} = props;
+        onCellItemPress(props,
+            MENU_DETAILED_ORDERED_USER_PAGE,
+            {
+                orderedUser: user,
+                forRestaurant: forRestaurant,
+                forEvent: event
+            }
+        )
+
+    }
+
 
     renderTopHeaderView() {
         return (
