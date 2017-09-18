@@ -219,7 +219,7 @@ class PureListView extends React.Component {
         const {forObject, customStickyTitle} = this.props;
         return (
             <Header style={{backgroundColor: F8Colors.primaryColor}}>
-                <Body>
+                <Body style={{alignItems: 'center'}}>
                 <Text style={styles.stickyHeaderSectionText}>
                     {customStickyTitle === "" ? forObject.displayName : customStickyTitle}
                 </Text>
@@ -235,7 +235,7 @@ class PureListView extends React.Component {
         const headerItems = [];
         if (parallaxLeftItemType !== PARALLAX_HEADER_LEFT_ITEM_NONE) {
             headerItems.push(
-                <Left key={"fixed_header_left_item"}>
+                <Left key={"fixed_header_left_item"} style={{flex: 2}}>
                     <Button transparent onPress={() => {
                         goBackPage(props)
                     }}>
@@ -246,7 +246,7 @@ class PureListView extends React.Component {
         }
         if (!!rightItem) {
             headerItems.push(
-                <Right key={"fixed_header_right_item"}>
+                <Right key={"fixed_header_right_item"} style={{flex: 2}}>
                     <Button transparent onPress={rightItem.onPress}>
                         <Text style={[styles.rightItemText]}>{rightItem.title}</Text>
                     </Button>
