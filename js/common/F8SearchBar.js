@@ -93,6 +93,7 @@ class F8SearchBar extends Component {
             keyboardAppearance,
             autoCorrect,
             hideBack,
+            searchBarMarginTop,
         } = this.props;
 
         const leftArrow = (
@@ -135,7 +136,8 @@ class F8SearchBar extends Component {
         )
 
         return (
-            <Header searchBar rounded style={{backgroundColor: F8Colors.primaryColor}}>
+            <Header searchBar rounded
+                    style={{backgroundColor: F8Colors.primaryColor, marginTop: searchBarMarginTop}}>
                 {leftArrow}
                 {middleItem}
                 {rightArrow}
@@ -185,6 +187,7 @@ F8SearchBar.propTypes = {
     keyboardAppearance: PropTypes.string,
     fontFamily: PropTypes.string,
     allDataOnEmptySearch: PropTypes.bool,
+    searchBarMarginTop: PropTypes.number,
 }
 
 F8SearchBar.defaultProps = {
@@ -214,7 +217,8 @@ F8SearchBar.defaultProps = {
     fontFamily: 'System',
     allDataOnEmptySearch: false,
     backCloseSize: 28,
-    fontSize: 20
+    fontSize: 20,
+    searchBarMarginTop: 0,
 }
 
 

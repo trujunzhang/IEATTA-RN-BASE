@@ -112,6 +112,7 @@ class IEAReadReviews extends Component {
                     handleSearch={this.handleSearch.bind(this)}
                     hideBack={true}
                     placeholder={"Search Reviews"}
+                    searchBarMarginTop={-1}
                     placeholderTextColor="#aaa"
                     ref={(ref) => this.searchBar = ref}/>
 
