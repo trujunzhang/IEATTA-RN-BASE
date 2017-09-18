@@ -95,7 +95,6 @@ export default (StackNav = StackNavigator({
     MENU_ITEM_MANAGE_FRIENDS: {screen: IEASearchUsers},
     MENU_ITEM_READ_REVIEWS: {screen: IEAReadReviews},
 
-
     // Login Screens.
     MENU_LOGIN_MAIN_SCREEN: {screen: LoginModal},
 
@@ -103,8 +102,6 @@ export default (StackNav = StackNavigator({
     MENU_PHOTO_BROWSER_PAGE: {screen: IEAPhotoBrowserView},
     MENU_TAKE_PHOTO_PAGE: {screen: IEATakePhotos},
 
-
     // Left Draw
     MENU_HOME_TABS_USER_INFO: {screen: MyProfileView},
-
 }));
