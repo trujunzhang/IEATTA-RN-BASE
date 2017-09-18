@@ -117,7 +117,10 @@ class PeopleInEventListView extends React.Component {
 
     renderRow(item: any, sectionID: number | string) {
         if (sectionID === MENU_SECTIONS_PEOPLE_IN_EVENTS) {
-            return (<PeopleInEventCell {...this.props} user={item}/>)
+            return (
+
+                <PeopleInEventCell {...this.props} user={item}/>
+            )
         }
         return (<ReviewCell{...this.props} review={item}/>)
     }
