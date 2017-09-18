@@ -32,8 +32,8 @@
 import React, {Component, PropTypes} from 'react';
 import {
     TouchableOpacity,
-    View,
     Text,
+    View,
     StyleSheet,
     ListView,
     Platform,
@@ -56,10 +56,12 @@ const {getLocalImagePath} = require('../parse/fsApi')
 
 const {goBackPage} = require('../tabs/filter/navigatorApp')
 
-import Icon from 'react-native-vector-icons/FontAwesome';
+// import Icon from 'react-native-vector-icons/FontAwesome';
+
+import {Container, Header, Left, Right, Item, Input, Icon, Button, Content, List, ListItem, Body} from 'native-base'
 
 const PARALLAX_HEADER_HEIGHT = 300;
-const STICKY_HEADER_HEIGHT = 70;
+const STICKY_HEADER_HEIGHT = 60;
 
 
 /**
@@ -76,8 +78,6 @@ const {
     NATIVE_BASE_LIST_SECTION_EMPTY,
 } = require('../lib/constants').default
 
-import {Container, Header, Content, List, ListItem} from 'native-base'
-
 
 // FIXME: Android has a bug when scrolling ListView the view insertions
 // will make it go reverse. Temporary fix - pre-render more rows
@@ -92,7 +92,6 @@ class PureListView extends React.Component {
             dataArray: this._generateDataArray(props)
         }
     }
-
 
     componentWillReceiveProps(nextProps: Props) {
         this.setState({dataArray: this._generateDataArray(nextProps)})
@@ -218,55 +217,45 @@ class PureListView extends React.Component {
     renderStickyHeader() {
         const {forObject, customStickyTitle} = this.props;
         return (
-            <View key="sticky-header" style={styles.stickyHeaderSection}>
-                <Text numberOfLines={1} style={styles.stickyHeaderSectionText}>
+            <Header style={{backgroundColor: F8Colors.primaryColor}}>
+                <Body>
+                <Text style={styles.stickyHeaderSectionText}>
                     {customStickyTitle === "" ? forObject.displayName : customStickyTitle}
                 </Text>
-            </View>
+                </Body>
+            </Header>
         )
     }
 
     renderFixedHeader() {
-        const {rightItem, parallaxLeftItemType} = this.props;
+        const {props} = this;
+        const {rightItem, parallaxLeftItemType} = props;
 
         const headerItems = [];
         if (parallaxLeftItemType !== PARALLAX_HEADER_LEFT_ITEM_NONE) {
-            const leftItem = {
-                title: 'back',
-                icon: require('./img/back_white.png'),
-                onPress: () => {
-                    goBackPage(this.props)
-                }
-            }
             headerItems.push(
-                <View key="fixed-header-left-item" style={[styles.fixedHeaderLeftItemSection]}>
-                    <View style={styles.fixedHeaderLeftCellLeftArrowPanel}>
-                        <TouchableOpacity
-                            accessibilityLabel={leftItem.title}
-                            accessibilityTraits="button"
-                            onPress={leftItem.onPress}>
-                            <Icon name="angle-left" size={32} color="white"/>
-                        </TouchableOpacity>
-                    </View>
-                </View>
+                <Left key={"fixed_header_left_item"} style={{flex: 2}}>
+                    <Button transparent onPress={() => {
+                        goBackPage(props)
+                    }}>
+                        <Icon active name="arrow-back" style={{color: '#fff'}}/>
+                    </Button>
+                </Left>
             )
         }
         if (!!rightItem) {
             headerItems.push(
-                <View key="fixed-header-right-item" style={[styles.fixedHeaderRightItemSection]}>
-                    <TouchableOpacity
-                        accessibilityLabel={rightItem.title}
-                        accessibilityTraits="button"
-                        onPress={rightItem.onPress}>
+                <Right key={"fixed_header_right_item"} style={{flex: 2}}>
+                    <Button transparent onPress={rightItem.onPress}>
                         <Text style={[styles.rightItemText]}>{rightItem.title}</Text>
-                    </TouchableOpacity>
-                </View>
+                    </Button>
+                </Right>
             )
         }
 
         return (
             <View key="fixed-header"
-                  style={[commonStyles.absoluteFullSection, commonStyles.rowDirection, styles.fixedHeaderSection]}>
+                  style={[commonStyles.absoluteFullSection, commonStyles.rowDirection]}>
                 {headerItems}
             </View>
         )
@@ -289,39 +278,9 @@ const styles = StyleSheet.create({
         height: PARALLAX_HEADER_HEIGHT,
         // backgroundColor: 'blue',
     },
-    stickyHeaderSection: {
-        flexGrow: 1,
-        height: STICKY_HEADER_HEIGHT,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: F8Colors.primaryColor,
-    },
     stickyHeaderSectionText: {
         color: 'white',
         fontSize: 20,
-        margin: 10,
-        paddingTop: 12,
-    },
-    fixedHeaderSection: {
-        // justifyContent: 'flex-end',
-        // backgroundColor: 'red',
-    },
-    fixedHeaderLeftItemSection: {
-        flex: 1,
-    },
-    fixedHeaderLeftCellLeftArrowPanel: {
-        flex: 1,
-        marginTop: 24,
-        marginLeft: 16,
-        justifyContent: 'flex-start',
-        // backgroundColor: 'blue',
-    },
-    fixedHeaderRightItemSection: {
-        flex: 1,
-        alignItems: 'flex-end',
-        marginTop: 12,
-        marginRight: 14,
-        // backgroundColor: 'blue',
     },
     rightItemText: {
         letterSpacing: 1,
