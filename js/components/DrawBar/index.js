@@ -29,7 +29,6 @@ const {logOutWithPrompt} = require('../../actions')
 const MenuItem = require('../../tabs/MenuItem')
 const F8Colors = require('F8Colors')
 
-
 const {
     MENU_HOME_TABS_USER_INFO,
 } = require('../../lib/constants').default
@@ -46,6 +45,9 @@ const styles = StyleSheet.create({
     header: {
         padding: 20,
         justifyContent: 'flex-end',
+    },
+    rowItem: {
+        height: 80
     },
     name: {
         marginTop: 10,
@@ -126,11 +128,16 @@ class DrawBar extends React.Component {
                     <List>
 
                         <ListItem button onPress={() => this.props.navigation.navigate('Home')}>
-                            <Text>{'Home'}</Text>
+                            <View style={styles.rowItem}>
+                                <Icon active name="arrow-back" style={{color: '#ccc'}}/>
+                                <Text>{'Home'}</Text>
+                            </View>
                         </ListItem>
 
                         <ListItem button onPress={() => this.props.navigation.navigate(MENU_HOME_TABS_USER_INFO)}>
-                            <Text>{'User Info'}</Text>
+                            <View style={styles.rowItem}>
+                                <Text>{'User Info'}</Text>
+                            </View>
                         </ListItem>
 
                     </List>
