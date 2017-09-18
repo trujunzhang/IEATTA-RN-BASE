@@ -49,8 +49,6 @@ const {Text} = require('F8Text')
 const CaptionTextView = require('CaptionTextView')
 
 const {getLocalImagePath} = require('../../../parse/fsApi')
-
-const F8StarIcon = require('F8StarIcon')
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const {onCellItemPress} = require('../../filter/navigatorApp')
@@ -154,7 +152,7 @@ class OrderedRecipeCell extends React.Component {
         )
     }
 
-    renderCell() {
+    render() {
         const {recipe} = this.props;
         return (
             <View key={recipe.objectId} style={styles.orderedRecipeCellContainer}>
@@ -169,13 +167,7 @@ class OrderedRecipeCell extends React.Component {
         )
     }
 
-    render() {
-        return (
-            <TouchableHighlight underlayColor={F8Colors.cellUnderlayColor} onPress={this.onPress.bind(this)}>
-                {this.renderCell()}
-            </TouchableHighlight>
-        )
-    }
+
 }
 
 

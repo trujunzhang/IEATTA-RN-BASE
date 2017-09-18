@@ -59,7 +59,7 @@ class IEAOrderedUser extends React.Component {
     render() {
         const {orderedUser, forRestaurant, forEvent} = this.props.navigation.state.params;
 
-        const content = (
+        return (
             <OrderedUserListView
                 {...this.props.navigation.state.params}
                 {...this.props}
@@ -73,8 +73,6 @@ class IEAOrderedUser extends React.Component {
                 }}
             />
         )
-
-        return content;
     }
 }
 

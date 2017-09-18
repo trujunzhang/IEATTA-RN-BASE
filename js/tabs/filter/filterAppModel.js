@@ -54,7 +54,7 @@ export function filterUserInEvent(nextProps: Any, forRestaurantId: String, forEv
     return null;
 }
 
-export function filterOrderedRecipes(nextProps: Any, forRestaurantId: String, forEventId: String, forUserId: String, lastResults: Array) {
+export function filterOrderedRecipes(nextProps: Any, forRestaurantId: String, forEventId: String, forUserId: String) {
     const {appModel} = nextProps;
     if (!!appModel) {
         const {orderedRecipes} = appModel;
@@ -67,7 +67,7 @@ export function filterOrderedRecipes(nextProps: Any, forRestaurantId: String, fo
             }
         }
     }
-    return lastResults;
+    return null;
 }
 
 

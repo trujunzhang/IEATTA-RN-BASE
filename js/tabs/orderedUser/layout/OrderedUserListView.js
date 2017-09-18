@@ -39,10 +39,7 @@ import {
 
 
 const F8Colors = require('F8Colors')
-const F8EmptySection = require('F8EmptySection')
 const PureListView = require('PureListView')
-const SectionHeader = require('SectionHeader')
-
 const StaticContainer = require('F8StaticContainer')
 
 const RLOrderedUserListViewHeaderView = require('./RLOrderedUserListViewHeaderView')
@@ -51,6 +48,7 @@ const OrderedRecipeCell = require('./OrderedRecipeCell')
 
 const {queryRecipesForUser} = require('../../../actions')
 
+const {onCellItemPress} = require('../../filter/navigatorApp')
 const {filterOrderedRecipes} = require('../../filter/filterAppModel')
 
 /**
@@ -58,8 +56,10 @@ const {filterOrderedRecipes} = require('../../filter/filterAppModel')
  */
 const {
     MENU_SECTIONS_ORDERED_RECIPES,
+    MENU_DETAILED_RECIPE_PAGE
 } = require('../../../lib/constants').default
 
+import {Content, List, ListItem, Body} from 'native-base'
 
 class OrderedUserListView extends React.Component {
 
@@ -76,15 +76,18 @@ class OrderedUserListView extends React.Component {
 
 
     componentWillReceiveProps(nextProps: Props) {
-        const {forEvent, forRestaurant, orderedUser} = this.props;
         const {sections} = this.state;
-        const {MENU_SECTIONS_ORDERED_RECIPES} = sections;
 
-        const nextSections = Object.assign({}, sections, {
-            MENU_SECTIONS_ORDERED_RECIPES: filterOrderedRecipes(nextProps, forRestaurant.objectId, forEvent.objectId, orderedUser.objectId, MENU_SECTIONS_ORDERED_RECIPES)
-        })
+        const {forEvent, forRestaurant, orderedUser} = this.props;
 
-        this.setState({sections: nextSections})
+        const newOrderedRecipes = filterOrderedRecipes(nextProps, forRestaurant.objectId, forEvent.objectId, orderedUser.objectId);
+        if (!!newOrderedRecipes) {
+            this.setState({
+                sections: Object.assign({}, sections, {
+                    MENU_SECTIONS_ORDERED_RECIPES: newOrderedRecipes
+                })
+            })
+        }
     }
 
     componentDidMount() {
@@ -104,7 +107,29 @@ class OrderedUserListView extends React.Component {
     }
 
     renderRow(recipe: any, sectionID: number | string) {
-        return (<OrderedRecipeCell {...this.props} recipe={recipe}/>)
+        const self = this;
+        const {props, onPress} = this;
+        return (
+            <ListItem itemDivider onPress={() => onPress(props, recipe)}>
+                <Body style={{backgroundColor: 'white'}}>
+                <OrderedRecipeCell {...this.props} recipe={recipe}/>
+                </Body>
+            </ListItem>
+        )
+    }
+
+    onPress(props, recipe) {
+        const {orderedUser, forRestaurant, forEvent} = props;
+
+        onCellItemPress(this.props,
+            MENU_DETAILED_RECIPE_PAGE,
+            {
+                recipe: recipe,
+                forRestaurant: forRestaurant,
+                forEvent: forEvent,
+                forUser: orderedUser
+            }
+        )
     }
 
     renderTopHeaderView() {
