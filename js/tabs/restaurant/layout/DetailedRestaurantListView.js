@@ -83,12 +83,20 @@ class DetailedRestaurantListView extends React.Component {
         const {sections} = this.state;
         const {MENU_SECTIONS_EVENTS, MENU_SECTIONS_REVIEWS} = sections;
 
-        const nextSections = Object.assign({}, sections, {
-            MENU_SECTIONS_EVENTS: filterEvents(nextProps, uniqueId, MENU_SECTIONS_EVENTS),
-            MENU_SECTIONS_REVIEWS: filterReviews(nextProps, PARSE_RESTAURANTS, objectId, MENU_SECTIONS_REVIEWS)
-        })
-
-        this.setState({sections: nextSections})
+        const newEvents = filterEvents(nextProps, uniqueId, MENU_SECTIONS_EVENTS);
+        if (!!newEvents) {
+            const nextSections = Object.assign({}, sections, {
+                MENU_SECTIONS_EVENTS: newEvents
+            })
+            this.setState({sections: nextSections})
+        }
+        const newReviews = filterReviews(nextProps, PARSE_RESTAURANTS, objectId, MENU_SECTIONS_REVIEWS);
+        if (!!newReviews) {
+            const nextSections = Object.assign({}, sections, {
+                MENU_SECTIONS_REVIEWS: newReviews
+            })
+            this.setState({sections: nextSections})
+        }
     }
 
     componentDidMount() {

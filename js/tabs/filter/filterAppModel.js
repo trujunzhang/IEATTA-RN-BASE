@@ -35,7 +35,7 @@ export function filterEvents(nextProps: Any, forRestaurantUniqueId: String, last
             }
         }
     }
-    return lastResults;
+    return null;
 }
 
 
