@@ -75,14 +75,18 @@ class DetailedRecipeListView extends React.Component {
 
 
     componentWillReceiveProps(nextProps: Props) {
-        const {recipe} = nextProps;
         const {sections} = this.state;
 
-        const nextSections = Object.assign({}, sections, {
-            MENU_SECTIONS_REVIEWS: filterReviews(nextProps, PARSE_RECIPES, recipe.objectId, sections.MENU_SECTIONS_REVIEWS)
-        })
+        const {recipe} = nextProps;
 
-        this.setState({sections: nextSections})
+        const newReviews = filterReviews(nextProps, PARSE_RECIPES, recipe.objectId, sections.MENU_SECTIONS_REVIEWS);
+        if (!!newReviews) {
+            this.setState({
+                sections: Object.assign({}, sections, {
+                    MENU_SECTIONS_REVIEWS: newReviews
+                })
+            })
+        }
     }
 
     componentDidMount() {

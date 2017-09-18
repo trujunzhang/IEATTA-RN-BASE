@@ -71,6 +71,20 @@ export function filterOrderedRecipes(nextProps: Any, forRestaurantId: String, fo
 }
 
 
+export function filterReaderReviewsPage(nextProps: Any, forObjectSchemaName) {
+    const {appModel} = nextProps;
+    if (!!appModel) {
+        const {reviews} = appModel;
+        if (!!reviews) {
+            const {results, objectSchemaName} = reviews;
+            if (!!objectSchemaName && objectSchemaName === forObjectSchemaName) {
+                return results;
+            }
+        }
+    }
+    return [];
+}
+
 export function filterReviews(nextProps: Any, forObjectSchemaName: String, objectId: String) {
     const {appModel} = nextProps;
     if (!!appModel) {

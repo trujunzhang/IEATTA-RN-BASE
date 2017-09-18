@@ -43,7 +43,7 @@ const ReviewCell = require('./ReviewCell')
 
 import {Container, Header, Content, List, ListItem, Body, Row} from 'native-base'
 
-const {filterReviews} = require('../../filter/filterAppModel')
+const {filterReaderReviewsPage} = require('../../filter/filterAppModel')
 
 const {onCellItemPress} = require('../../filter/navigatorApp')
 
@@ -74,7 +74,7 @@ class ReviewsListView extends React.Component {
         const {objectSchemaName} = nextProps;
         this.setState({
             sections: {
-                MENU_SECTIONS_REVIEWS: filterReviews(nextProps, objectSchemaName, null, [])
+                MENU_SECTIONS_REVIEWS: filterReaderReviewsPage(nextProps, objectSchemaName)
             },
         })
     }
