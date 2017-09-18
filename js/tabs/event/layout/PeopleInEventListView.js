@@ -39,9 +39,7 @@ import {
 } from 'react-native'
 
 const F8Colors = require('F8Colors')
-const F8EmptySection = require('F8EmptySection')
 const PureListView = require('PureListView')
-const SectionHeader = require('SectionHeader')
 
 const PeopleInEventCell = require('./PeopleInEventCell')
 const ReviewCell = require('../../review/layout/ReviewCell')
@@ -67,7 +65,6 @@ class PeopleInEventListView extends React.Component {
     constructor(props: Props) {
         super(props);
 
-
         this.state = {
             sections: {
                 MENU_SECTIONS_PEOPLE_IN_EVENTS: [],
@@ -78,16 +75,26 @@ class PeopleInEventListView extends React.Component {
     }
 
     componentWillReceiveProps(nextProps: Props) {
-        const {event, forRestaurant} = nextProps;
         const {sections} = this.state;
-        const {MENU_SECTIONS_PEOPLE_IN_EVENTS, MENU_SECTIONS_REVIEWS} = sections;
 
-        const nextSections = Object.assign({}, sections, {
-            MENU_SECTIONS_PEOPLE_IN_EVENTS: filterUserInEvent(nextProps, forRestaurant.objectId, event.objectId, MENU_SECTIONS_PEOPLE_IN_EVENTS),
-            MENU_SECTIONS_REVIEWS: filterReviews(nextProps, PARSE_EVENTS, event.objectId, MENU_SECTIONS_REVIEWS)
-        })
+        const {event, forRestaurant} = nextProps;
+        const peopleInEvent = filterUserInEvent(nextProps, forRestaurant.objectId, event.objectId);
+        if (!!peopleInEvent) {
+            this.setState({
+                sections: Object.assign({}, sections, {
+                    MENU_SECTIONS_PEOPLE_IN_EVENTS: peopleInEvent
+                })
+            })
+        }
 
-        this.setState({sections: nextSections})
+        const newReviews = filterReviews(nextProps, PARSE_EVENTS, event.objectId);
+        if (!!newReviews) {
+            this.setState({
+                sections: Object.assign({}, sections, {
+                    MENU_SECTIONS_REVIEWS: newReviews
+                })
+            })
+        }
     }
 
     componentDidMount() {

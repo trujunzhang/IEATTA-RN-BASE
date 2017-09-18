@@ -24,7 +24,7 @@
 'use strict'
 
 
-export function filterEvents(nextProps: Any, forRestaurantUniqueId: String, lastResults: Array) {
+export function filterEvents(nextProps: Any, forRestaurantUniqueId: String) {
     const {appModel} = nextProps;
     if (!!appModel) {
         const {events} = appModel;
@@ -39,7 +39,7 @@ export function filterEvents(nextProps: Any, forRestaurantUniqueId: String, last
 }
 
 
-export function filterUserInEvent(nextProps: Any, forRestaurantId: String, forEventId: String, lastResults: Array) {
+export function filterUserInEvent(nextProps: Any, forRestaurantId: String, forEventId: String) {
     const {appModel} = nextProps;
     if (!!appModel) {
         const {usersInEvent} = appModel;
@@ -51,7 +51,7 @@ export function filterUserInEvent(nextProps: Any, forRestaurantId: String, forEv
             }
         }
     }
-    return lastResults;
+    return null;
 }
 
 export function filterOrderedRecipes(nextProps: Any, forRestaurantId: String, forEventId: String, forUserId: String, lastResults: Array) {
@@ -71,7 +71,7 @@ export function filterOrderedRecipes(nextProps: Any, forRestaurantId: String, fo
 }
 
 
-export function filterReviews(nextProps: Any, forObjectSchemaName: String, objectId: String, lastResults: Array) {
+export function filterReviews(nextProps: Any, forObjectSchemaName: String, objectId: String) {
     const {appModel} = nextProps;
     if (!!appModel) {
         const {reviews} = appModel;
@@ -88,7 +88,7 @@ export function filterReviews(nextProps: Any, forObjectSchemaName: String, objec
             }
         }
     }
-    return lastResults;
+    return null;
 }
 
 export function photosBySectionType(nextProps: Any, sectionType: String, forItem: Object, lastResults: Array) {

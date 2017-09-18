@@ -78,24 +78,24 @@ class DetailedRestaurantListView extends React.Component {
     }
 
     componentWillReceiveProps(nextProps: Props) {
-        console.log("component will receive in the detailed restaurant")
-        const {objectId, uniqueId} = nextProps.forRestaurant;
         const {sections} = this.state;
-        const {MENU_SECTIONS_EVENTS, MENU_SECTIONS_REVIEWS} = sections;
 
-        const newEvents = filterEvents(nextProps, uniqueId, MENU_SECTIONS_EVENTS);
+        const {objectId, uniqueId} = nextProps.forRestaurant;
+        const newEvents = filterEvents(nextProps, uniqueId);
         if (!!newEvents) {
-            const nextSections = Object.assign({}, sections, {
-                MENU_SECTIONS_EVENTS: newEvents
+            this.setState({
+                sections: Object.assign({}, sections, {
+                    MENU_SECTIONS_EVENTS: newEvents
+                })
             })
-            this.setState({sections: nextSections})
         }
-        const newReviews = filterReviews(nextProps, PARSE_RESTAURANTS, objectId, MENU_SECTIONS_REVIEWS);
+        const newReviews = filterReviews(nextProps, PARSE_RESTAURANTS, objectId);
         if (!!newReviews) {
-            const nextSections = Object.assign({}, sections, {
-                MENU_SECTIONS_REVIEWS: newReviews
+            this.setState({
+                sections: Object.assign({}, sections, {
+                    MENU_SECTIONS_REVIEWS: newReviews
+                })
             })
-            this.setState({sections: nextSections})
         }
     }
 
@@ -105,7 +105,6 @@ class DetailedRestaurantListView extends React.Component {
         this.props.dispatch(queryEventsForRestaurant(forRestaurant))
         this.props.dispatch(queryReviews({objectSchemaName: PARSE_RESTAURANTS, forObjectUniqueId: uniqueId}))
     }
-
 
     render() {
         const {forRestaurant} = this.props;
