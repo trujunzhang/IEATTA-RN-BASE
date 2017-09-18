@@ -213,7 +213,9 @@ import * as editModelActions from '../../../reducers/editModel/editModelActions'
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(editModelActions, dispatch)
+        actions: bindActionCreators(editModelActions, dispatch),
+        writeRestaurant: (objectSchemaName, editModelType, model, lastPosition) =>
+            dispatch(writeRealmObject(objectSchemaName, editModelType, model, lastPosition))
     }
 }
 
