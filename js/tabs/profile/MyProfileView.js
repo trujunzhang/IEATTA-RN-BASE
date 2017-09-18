@@ -56,14 +56,12 @@ const {
     logOutWithPrompt,
 } = require('../../actions');
 
-type Props = {
-    navigator: Navigator;
-    logOut: () => void;
-};
 
 // TODO: Rename to MyF8View
 class MyScheduleView extends React.Component {
-    props: Props;
+    static navigationOptions = ({navigation}) => ({
+        header: null,
+    });
 
     constructor(props) {
         super(props);

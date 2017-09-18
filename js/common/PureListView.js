@@ -61,7 +61,7 @@ const {goBackPage} = require('../tabs/filter/navigatorApp')
 import {Container, Header, Left, Right, Item, Input, Icon, Button, Content, List, ListItem, Body} from 'native-base'
 
 const PARALLAX_HEADER_HEIGHT = 300;
-const STICKY_HEADER_HEIGHT = 60;
+const STICKY_HEADER_HEIGHT = 64;
 
 
 /**
@@ -237,6 +237,9 @@ class PureListView extends React.Component {
             headerItems.push(
                 <Left key={"fixed_header_left_item"} style={{flex: 2}}>
                     <Button transparent
+                            style={{
+                                marginTop: (Platform.OS === 'ios' ? 14 : 0),
+                            }}
                             onPress={() => {
                                 goBackPage(props)
                             }}>
@@ -248,7 +251,11 @@ class PureListView extends React.Component {
         if (!!rightItem) {
             headerItems.push(
                 <Right key={"fixed_header_right_item"} style={{flex: 2}}>
-                    <Button transparent onPress={rightItem.onPress}>
+                    <Button transparent
+                            style={{
+                                marginTop: (Platform.OS === 'ios' ? 14 : 0),
+                            }}
+                            onPress={rightItem.onPress}>
                         <Text style={[styles.rightItemText]}>{rightItem.title}</Text>
                     </Button>
                 </Right>

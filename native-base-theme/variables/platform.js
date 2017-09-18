@@ -160,7 +160,7 @@ export default {
     // Header
     toolbarBtnColor: (platform === 'ios') ? '#fff' : '#fff',
     toolbarDefaultBg: (platform === 'ios') ? '#F8F8F8' : '#3F51B5',
-    toolbarHeight: (platform === 'ios') ? 64 : 56,
+    toolbarHeight: (platform === 'ios') ? 64 : 64,
     toolbarIconSize: (platform === 'ios') ? 20 : 22,
     toolbarSearchIconSize: (platform === 'ios') ? 20 : 23,
     toolbarInputColor: (platform === 'ios') ? '#CECDD2' : '#fff',
@@ -176,9 +176,9 @@ export default {
 
     // Icon
     iconFamily: 'Ionicons',
-    iconFontSize: (platform === 'ios') ? 30 : 30,
+    iconFontSize: (platform === 'ios') ? 30 : 28,
     iconMargin: 7,
-    iconHeaderSize: (platform === 'ios') ? 33 : 33,
+    iconHeaderSize: (platform === 'ios') ? 33 : 24,
 
 
     // InputGroup
