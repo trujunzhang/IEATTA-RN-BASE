@@ -95,12 +95,6 @@ class IEAReadReviews extends Component {
     }
 
     render() {
-        const leftItem = {
-            icon: require('../../common/img/back_white.png'),
-            onPress: () => {
-                goBackPage(this.props)
-            }
-        }
         const titles = Reviews.segmentedTableTitles.map((item, index) => {
             return item.title;
         })
