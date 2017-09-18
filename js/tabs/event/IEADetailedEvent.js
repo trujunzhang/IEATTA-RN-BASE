@@ -39,8 +39,6 @@ import {
 } from 'react-native'
 
 
-const F8DrawerLayout = require('F8DrawerLayout')
-
 const RLEventParallaxHeader = require('./layout/RLEventParallaxHeader')
 const PeopleInEventListView = require('./layout/PeopleInEventListView')
 

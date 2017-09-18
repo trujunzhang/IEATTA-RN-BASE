@@ -1,67 +1,84 @@
-import React from "react";
-import { AppRegistry, Image, TouchableOpacity } from "react-native";
+/**
+ * The components needed from React
+ */
+import React, {Component} from 'react'
 import {
-  Button,
-  Text,
-  Container,
-  List,
-  ListItem,
-  Content,
-  Icon
+    TouchableOpacity,
+    View,
+    Image,
+    ScrollView,
+    StyleSheet,
+    StatusBar,
+    Navigator,
+    Dimensions,
+    AppRegistry
+} from 'react-native'
+
+import {
+    Button,
+    Text,
+    Container,
+    List,
+    ListItem,
+    Content,
+    Icon,
 } from "native-base";
-const routes = ["Home", "BlankPage2"];
+
+const styles = StyleSheet.create({
+    drawer: {
+        flex: 1,
+        backgroundColor: 'white',
+    },
+    content: {
+        flex: 1,
+    },
+    header: {
+        padding: 20,
+        justifyContent: 'flex-end',
+    },
+    name: {
+        marginTop: 10,
+        color: 'white',
+        fontSize: 12,
+    },
+    loginPrompt: {
+        flex: 1,
+        justifyContent: 'flex-end',
+        paddingBottom: 10,
+    },
+    loginText: {
+        fontSize: 12,
+        color: F8Colors.lightText,
+        textAlign: 'center',
+        marginBottom: 10,
+    },
+});
+
+
 export default class DrawBar extends React.Component {
-  static navigationOptions = {
-    header: null
-  };
-  render() {
-    return (
-      <Container>
-        <Content>
-          <Image
-            source={{
-              uri: "https://github.com/GeekyAnts/NativeBase-KitchenSink/raw/react-navigation/img/drawer-cover.png"
-            }}
-            style={{
-              height: 120,
-              alignSelf: "stretch",
-              justifyContent: "center",
-              alignItems: "center"
-            }}
-          >
-            <TouchableOpacity
-              style={{
-                height: 120,
-                alignSelf: "stretch",
-                justifyContent: "center",
-                alignItems: "center"
-              }}
-              onPress={() => this.props.navigation.navigate("DrawerClose")}
-            >
-              <Image
-                square
-                style={{ height: 80, width: 70 }}
-                source={{
-                  uri: "https://github.com/GeekyAnts/NativeBase-KitchenSink/raw/react-navigation/img/logo.png"
-                }}
-              />
-            </TouchableOpacity>
-          </Image>
-          <List
-            dataArray={routes}
-            renderRow={data => {
-              return (
-                <ListItem
-                  button
-                  onPress={() => this.props.navigation.navigate(data)}
-                >
-                  <Text>{data}</Text>
-                </ListItem>
-              );
-            }}
-          />
-        </Content>
-      </Container>
-    );
-  }
+    static navigationOptions = {
+        header: null
+    };
+
+    render() {
+        return (
+            <Container>
+
+                <List
+                    dataArray={routes}
+                    renderRow={data => {
+                        return (
+                            <ListItem
+                                button
+                                onPress={() => this.props.navigation.navigate(data)}
+                            >
+                                <Text>{data}</Text>
+                            </ListItem>
+                        );
+                    }}
+                />
+            </Content>
+            < /Container>
+        );
+    }
 }

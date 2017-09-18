@@ -37,13 +37,8 @@ import {
     Dimensions
 } from 'react-native'
 
-const F8Colors = require('F8Colors')
-const F8DrawerLayout = require('F8DrawerLayout')
-
 const RLRecipeParallaxHeader = require('./layout/RLRecipeParallaxHeader')
 const DetailedRecipeListView = require('./layout/DetailedRecipeListView')
-
-const {getLocalImagePath} = require('../../parse/fsApi')
 
 /**
  * The states were interested in
@@ -61,10 +56,9 @@ class IEADetailedRecipe extends React.Component {
     });
 
     render() {
-
         const {recipe} = this.props.navigation.state.params;
 
-        const content = (
+        return (
             <DetailedRecipeListView
                 {...this.props.navigation.state.params}
                 {...this.props}
@@ -78,9 +72,6 @@ class IEADetailedRecipe extends React.Component {
             />
 
         )
-
-        return content;
-
     }
 
 }
