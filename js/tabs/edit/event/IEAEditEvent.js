@@ -148,7 +148,7 @@ class IEAEditEvent extends Component {
     }
 
     async onButtonPress() {
-        const {dispatch} = this.props;
+        const {writeEditModelAction} = this.props;
 
         const originalModel = this.props.editModel.form.originModel;
         const editModelType = this.props.editModel.form.editModelType;
@@ -165,24 +165,21 @@ class IEAEditEvent extends Component {
 
         this.props.actions.writeModelRequest();
         let haveError = false;
+        const _object = {
+            objectSchemaName: PARSE_EVENTS,
+            editModelType,
+            model: {
+                objectId,
+                uniqueId,
+                restaurant,
+                displayName,
+                want,
+                start,
+                end,
+            },
+        }
         try {
-            await Promise.race([
-                dispatch(writeRealmObject(
-                    PARSE_EVENTS,
-                    editModelType,
-                    {
-                        objectId,
-                        uniqueId,
-                        restaurant,
-                        displayName,
-                        want,
-                        start,
-                        end,
-                    }
-                    )
-                ),
-                timeout(15000),
-            ]);
+            await Promise.race([writeEditModelAction(_object), timeout(15000)]);
         } catch (e) {
             this.setState({alert: {type: 'error', message: e.message}})
             haveError = true;
@@ -202,14 +199,6 @@ class IEAEditEvent extends Component {
 
     renderContent() {
         const editModelType = this.props.editModel.form.editModelType;
-
-        const leftItem = {
-            icon: require('../../../common/img/back_white.png'),
-            onPress: () => {
-                goBackPage(this.props)
-            }
-        }
-
         const formTitle = (editModelType === MODEL_FORM_TYPE_NEW) ? "Add a Event" : "Edit the Event";
 
         return (
@@ -249,13 +238,15 @@ import * as editModelActions from '../../../reducers/editModel/editModelActions'
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(editModelActions, dispatch)
+        actions: bindActionCreators(editModelActions, dispatch),
+        writeEditModelAction: (object) => dispatch(writeRealmObject(object))
     }
 }
 
 function select(store) {
     return {
-        editModel: store.editModel
+        editModel: store.editModel,
+        location: store.location,
     };
 }
 

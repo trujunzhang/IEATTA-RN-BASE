@@ -142,7 +142,6 @@ class IEAEditRestaurant extends Component {
             },
             lastPosition
         }
-        debugger
 
         try {
             await Promise.race([writeEditModelAction(_object), timeout(15000)]);
