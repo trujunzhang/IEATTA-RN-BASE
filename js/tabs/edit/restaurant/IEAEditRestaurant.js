@@ -70,6 +70,8 @@ class IEAEditRestaurant extends Component {
         const model = params.model;
         const modelType = params.modelType;
 
+        debugger
+
         this.state = {
             value: {
                 displayName: props.editModel.form.fields.displayName,
@@ -112,7 +114,7 @@ class IEAEditRestaurant extends Component {
 
 
     async onButtonPress() {
-        const {dispatch} = this.props;
+        const {writeEditModelAction} = this.props;
 
         const originalModel = this.props.editModel.form.originModel;
         const editModelType = this.props.editModel.form.editModelType;
@@ -120,7 +122,7 @@ class IEAEditRestaurant extends Component {
         const {objectId, uniqueId} = originalModel;
         const displayName = this.props.editModel.form.fields.displayName;
 
-        const lastPosition = this.props.getCurrentLocation()
+        const lastPosition = this.props.location.position;
 
         this.setState({alert: null});
         if (!lastPosition) {
@@ -130,28 +132,29 @@ class IEAEditRestaurant extends Component {
 
         this.props.actions.writeModelRequest();
         let haveError = false;
+        const _object = {
+            objectSchemaName: PARSE_RESTAURANTS,
+            editModelType,
+            model: {
+                objectId,
+                uniqueId,
+                displayName
+            },
+            lastPosition
+        }
+        debugger
+
         try {
-            await Promise.race([
-                dispatch(writeRealmObject(
-                    PARSE_RESTAURANTS,
-                    editModelType,
-                    {
-                        objectId,
-                        uniqueId,
-                        displayName
-                    },
-                    lastPosition
-                    )
-                ),
-                timeout(15000),
-            ]);
+            await Promise.race([writeEditModelAction(_object), timeout(15000)]);
         } catch (e) {
+            debugger
             this.setState({alert: {type: 'error', message: e.message}})
             haveError = true;
             const message = e.message || e;
             if (message !== 'Timed out' && message !== 'Canceled by user') {
             }
         } finally {
+            debugger
             if (!haveError) {
                 this.setState({alert: {type: 'success', message: "Saved successfully!"}})
                 this.props.actions.writeModelSuccess();
@@ -214,14 +217,14 @@ import * as editModelActions from '../../../reducers/editModel/editModelActions'
 function mapDispatchToProps(dispatch) {
     return {
         actions: bindActionCreators(editModelActions, dispatch),
-        writeRestaurant: (objectSchemaName, editModelType, model, lastPosition) =>
-            dispatch(writeRealmObject(objectSchemaName, editModelType, model, lastPosition))
+        writeEditModelAction: (object) => dispatch(writeRealmObject(object))
     }
 }
 
 function select(store) {
     return {
-        editModel: store.editModel
+        editModel: store.editModel,
+        location: store.location,
     };
 }
 

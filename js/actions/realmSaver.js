@@ -85,6 +85,8 @@ async function _writeRealmObject(objectSchemaName, editModelType, model: object,
             break;
     }
 
+    debugger
+
     const action = {
         type: WRITE_MODEL_DONE,
         payload: {objectId: model.objectId, originModel: _lastRealmInstance}
@@ -94,11 +96,16 @@ async function _writeRealmObject(objectSchemaName, editModelType, model: object,
     ])
 }
 
-function writeRealmObject(objectSchemaName, editModelType,
-                          model: object,
-                          lastPosition = {
-                              coords: {}
+function writeRealmObject({
+                              objectSchemaName,
+                              editModelType,
+                              model,
+                              lastPosition = {
+                                  coords: {}
+                              }
                           }): ThunkAction {
+    debugger
+
     return (dispatch) => {
         const action = _writeRealmObject(objectSchemaName, editModelType, model, lastPosition)
         action.then(

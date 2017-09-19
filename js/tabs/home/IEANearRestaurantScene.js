@@ -48,6 +48,8 @@ const {
     MENU_SECTIONS_MORE,
     MENU_SECTIONS_RESTAURANTS,
     MENU_DETAILED_RESTAURANT_PAGE,
+    MENU_ITEM_ADD_OR_EDIT_RESTAURANT,
+    MODEL_FORM_TYPE_NEW,
 } = require('../../lib/constants').default
 
 const RestaurantCell = require('./layout/RestaurantCell')
@@ -84,7 +86,7 @@ class IEANearRestaurantScene extends Component {
 
         const error = nextProps.location.error;
 
-        console.log('location error',error)
+        console.log('location error', error)
 
         this.setState({
             sections: nextSections,
@@ -106,9 +108,9 @@ class IEANearRestaurantScene extends Component {
                  rowID: number | string) => {
 
         if (sectionID === MENU_SECTIONS_MORE) {
-            return (<RestaurantMoreCell key={item.tag} item={item} {...this.props}/>)
+            return (<RestaurantMoreCell key={item.tag} item={item}/>)
         }
-        return (<RestaurantCell key={item.objectId} restaurant={item} {...this.props}/>)
+        return (<RestaurantCell key={item.objectId} restaurant={item}/>)
     }
 
     renderSectionHeader(sectionId) {
@@ -171,9 +173,16 @@ class IEANearRestaurantScene extends Component {
             case MENU_SECTIONS_MORE:
                 const {tag, icon, model} = item;
 
-                onCellItemPress(props,
-                    tag,
-                    {model})
+                let morePassProps = {};
+                switch (tag) {
+                    case MENU_ITEM_ADD_OR_EDIT_RESTAURANT: {
+                        morePassProps = {
+                            modelType: MODEL_FORM_TYPE_NEW
+                        }
+                    }
+                }
+
+                onCellItemPress(props, tag, {model, ...morePassProps})
                 break;
             case MENU_SECTIONS_RESTAURANTS:
                 onCellItemPress(props,

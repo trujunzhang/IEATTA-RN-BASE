@@ -79,14 +79,6 @@ const styles = StyleSheet.create({
 
 class RestaurantMoreCell extends Component {
 
-
-    onPress() {
-        const {item} = this.props,
-            {tag, icon, model} = item;
-
-        onCellItemPress(this.props, tag, {model})
-    }
-
     renderIcon() {
         const {item} = this.props,
             {tag, icon} = item;
