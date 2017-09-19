@@ -47,7 +47,6 @@ function myCustomTemplate(locals) {
     let controlLabelStyle = stylesheet.controlLabel.normal;
 
     const label = locals.label ? <Text style={controlLabelStyle}>{locals.label}</Text> : null;
-
     return (
         <View style={formGroupStyle}>
             {label}

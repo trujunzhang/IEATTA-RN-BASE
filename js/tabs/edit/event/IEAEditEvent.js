@@ -73,7 +73,6 @@ class IEAEditEvent extends Component {
         const model = params.model;
         const modelType = params.modelType;
 
-
         this.state = {
             value: {
                 displayName: props.editModel.form.fields.displayName,
@@ -125,7 +124,6 @@ class IEAEditEvent extends Component {
         }
 
         if (value.start !== '') {
-            debugger
             this.props.actions.onEditModelFormFieldChange('start', value.start)
         }
 
