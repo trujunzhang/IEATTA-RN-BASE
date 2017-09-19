@@ -24,7 +24,7 @@
 'use strict'
 
 
-export function filterEvents(nextProps: Any, forRestaurantUniqueId: String) {
+export function filterEvents(nextProps: Any, forRestaurantUniqueId: String, last) {
     const {appModel} = nextProps;
     if (!!appModel) {
         const {events} = appModel;
@@ -35,7 +35,7 @@ export function filterEvents(nextProps: Any, forRestaurantUniqueId: String) {
             }
         }
     }
-    return null;
+    return last;
 }
 
 
