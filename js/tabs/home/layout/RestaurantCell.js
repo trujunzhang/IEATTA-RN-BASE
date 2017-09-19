@@ -40,10 +40,10 @@ import {
 
 const {
     MENU_DETAILED_RESTAURANT_PAGE,
+    MENU_DETAILED_RECIPE_PAGE,
+    MENU_DETAILED_ORDERED_USER_PAGE,
 } = require('../../../lib/constants').default
 
-
-const F8Colors = require('F8Colors')
 const F8PlaceHolderImage = require('F8PlaceHolderImage')
 const F8StarIcon = require('F8StarIcon')
 
@@ -156,18 +156,19 @@ class RestaurantCell extends Component {
 
 
     onPress() {
+        const {props} = this;
         const {restaurant} = this.props;
 
-        onCellItemPress(this.props,
-            MENU_DETAILED_RESTAURANT_PAGE,
-            {restaurant}
-        )
+        // onCellItemPress(this.props,
+        //     MENU_DETAILED_RESTAURANT_PAGE,
+        //     {restaurant}
+        // )
 
-        if (__DEV__ && restaurant.objectId === 'OnNGSfwoou' && false) {
-            onCellItemPress(this.props,
-                MENU_DETAILED_RESTAURANT_PAGE,
-                {restaurant}
-            )
+        if (__DEV__ && restaurant.objectId === 'OnNGSfwoou') {
+            // onCellItemPress(this.props,
+            //     MENU_DETAILED_RESTAURANT_PAGE,
+            //     {restaurant}
+            // )
 
             const event = {
                 "objectId": "p25iag5OcM",
@@ -189,11 +190,17 @@ class RestaurantCell extends Component {
                 "email": "",
                 "listPhotoId": 'qwoE6PL0iP'
             }
-            // this.props.navigator.push({
-            //     orderedUser: user,
-            //     forRestaurant: restaurant,
-            //     forEvent: event
-            // });
+
+            onCellItemPress(props,
+                MENU_DETAILED_ORDERED_USER_PAGE,
+                {
+                    orderedUser: user,
+                    forRestaurant: restaurant,
+                    forEvent: event
+                }
+            )
+
+
             const recipe = {
                 "objectId": "GsJxbBcJaE",
                 "updatedAt": "2017-07-11T13:07:00.434Z",
@@ -204,18 +211,23 @@ class RestaurantCell extends Component {
                 "userId": "",
                 "listPhotoId": "HdxKn0YrZZ",
             }
-            // this.props.navigator.push({
-            //     recipe: recipe,
-            //     forRestaurant: restaurant,
-            //     forEvent: event,
-            //     forUser: user
-            // });
+
+            // onCellItemPress(props,
+            //     MENU_DETAILED_RECIPE_PAGE,
+            //     {
+            //         recipe: recipe,
+            //         forRestaurant: restaurant,
+            //         forEvent: event,
+            //         forUser: recipe
+            //     }
+            // )
+
         }
     }
 
     componentDidMount() {
         if (__DEV__) {
-            // this.onPress()
+            this.onPress()
         }
     }
 

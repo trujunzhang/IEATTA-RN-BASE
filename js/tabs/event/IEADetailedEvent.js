@@ -59,7 +59,7 @@ class IEADetailedEvent extends React.Component {
     render() {
         const {event, forRestaurant} = this.props.navigation.state.params;
 
-        const content = (
+        return (
             <PeopleInEventListView
                 {...this.props.navigation.state.params}
                 {...this.props}
@@ -72,9 +72,7 @@ class IEADetailedEvent extends React.Component {
                         {...this.props}/>)
                 }}
             />
-        );
-
-        return content;
+        )
     }
 
 }

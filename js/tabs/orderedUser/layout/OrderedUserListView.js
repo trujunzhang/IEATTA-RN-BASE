@@ -45,7 +45,6 @@ const StaticContainer = require('F8StaticContainer')
 const RLOrderedUserListViewHeaderView = require('./RLOrderedUserListViewHeaderView')
 
 const OrderedRecipeCell = require('./OrderedRecipeCell')
-
 const {queryRecipesForUser} = require('../../../actions')
 
 const {onCellItemPress} = require('../../filter/navigatorApp')

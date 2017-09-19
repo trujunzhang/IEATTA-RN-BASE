@@ -120,7 +120,7 @@ class PureListView extends React.Component {
 
         return (
             <List
-                style={{backgroundColor: F8Colors.controllerViewColor}}
+                style={{flex: 1, backgroundColor: F8Colors.controllerViewColor}}
                 rowHasChanged={(row1, row2) => row1.objectId !== row2.objectId}
                 dataArray={this.state.dataArray}
                 renderRow={this.renderListRow.bind(this)}
