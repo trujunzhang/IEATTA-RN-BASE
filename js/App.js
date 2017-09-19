@@ -97,7 +97,8 @@ class App extends Component {
                 dispatch(updateLocationPosition(position))
             },
             (error) => {
-                dispatch(setFetchLocationPositionError(error))
+                console.log("last position error: " + JSON.stringify(error));
+                // dispatch(setFetchLocationPositionError(error))
             },
             {enableHighAccuracy: true, timeout: 40 * 1000, maximumAge: 1 * 1000}
         )
