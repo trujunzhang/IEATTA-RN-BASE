@@ -123,11 +123,11 @@ class IEAEditEvent extends Component {
             this.props.actions.onEditModelFormFieldChange('eventWhat', value.eventWhat)
         }
 
-        if (value.start !== '') {
+        if (!!value.start) {
             this.props.actions.onEditModelFormFieldChange('start', value.start)
         }
 
-        if (value.end !== '') {
+        if (!!value.end) {
             this.props.actions.onEditModelFormFieldChange('end', value.end)
         }
 
