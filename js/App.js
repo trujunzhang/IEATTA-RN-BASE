@@ -97,8 +97,13 @@ class App extends Component {
                 dispatch(updateLocationPosition(position))
             },
             (error) => {
-                console.log("last position error: " + JSON.stringify(error));
-                // dispatch(setFetchLocationPositionError(error))
+                // last position error: {"message":"Location request timed out","code":3}
+                const message = error.message || error;
+                if (message.indexOf('timed out') === -1) {
+                    console.log("last position error: " + JSON.stringify(error));
+
+                    // dispatch(setFetchLocationPositionError(error))
+                }
             },
             {enableHighAccuracy: true, timeout: 40 * 1000, maximumAge: 1 * 1000}
         )
