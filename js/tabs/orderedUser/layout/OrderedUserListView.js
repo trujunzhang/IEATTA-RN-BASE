@@ -115,6 +115,7 @@ class OrderedUserListView extends React.Component {
                     backgroundColor: 'white',
                     borderBottomWidth: 1,
                     borderBottomColor: "#eeeeee",
+                    height: F8Colors.RecipeCellRowHeight,
                 }}>
                 <OrderedRecipeCell {...this.props} recipe={recipe}/>
                 </Body>
@@ -139,8 +140,7 @@ class OrderedUserListView extends React.Component {
     renderTopHeaderView() {
         return (
             <StaticContainer>
-                <View style={{flex: 1, marginTop: F8Colors.topViewHeight}}>
-                    <RLOrderedUserListViewHeaderView {...this.props}/>
+                <View style={{flex: 1, height: 1}}>
                 </View>
             </StaticContainer>
         )

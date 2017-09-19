@@ -118,13 +118,19 @@ class PureListView extends React.Component {
                 )
             } : {};
 
+        const listExtendProperty = !!this.props.renderTopHeader ? {
+            renderHeader: this.props.renderTopHeader
+        } : {};
+
         return (
             <List
                 style={{flex: 1, backgroundColor: F8Colors.controllerViewColor}}
                 rowHasChanged={(row1, row2) => row1.objectId !== row2.objectId}
                 dataArray={this.state.dataArray}
                 renderRow={this.renderListRow.bind(this)}
-                renderHeader={this.props.renderTopHeader}
+
+                {...listExtendProperty}
+
                 initialListSize={10}
                 pageSize={LIST_VIEW_PAGE_SIZE}
                 stickySectionHeadersEnabled={false}

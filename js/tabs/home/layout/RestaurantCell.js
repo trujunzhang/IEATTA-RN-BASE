@@ -159,7 +159,7 @@ class RestaurantCell extends Component {
         const {props} = this;
         const {restaurant} = this.props;
 
-        // onCellItemPress(this.props,
+        // onCellItemPress(props,
         //     MENU_DETAILED_RESTAURANT_PAGE,
         //     {restaurant}
         // )

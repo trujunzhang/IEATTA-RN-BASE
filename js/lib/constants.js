@@ -25,7 +25,6 @@ export default keyMirror({
     MENU_SECTIONS_EVENTS: null,
     MENU_SECTIONS_PEOPLE_IN_EVENTS: null,
     MENU_SECTIONS_ORDERED_RECIPES: null,
-    MENU_SECTIONS_DETAILED_RECIPE: null,
     MENU_SECTIONS_REVIEWS: null,
 
     // Home More Menus
