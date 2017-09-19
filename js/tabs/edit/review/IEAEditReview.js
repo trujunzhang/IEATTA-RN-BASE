@@ -20,8 +20,9 @@ import
 } from 'react-native'
 
 
-const F8Colors = require('F8Colors')
 const F8Header = require('F8Header')
+const F8MessageBar = require('F8MessageBar')
+const F8StarIcon = require('F8StarIcon')
 
 /**
  * The FormButton will change it's text between the 4 states as necessary
@@ -33,8 +34,6 @@ const FormButton = require('FormButton')
  */
 const ReviewForm = require('./ReviewForm')
 
-const F8StarIcon = require('F8StarIcon')
-const F8MessageBar = require('F8MessageBar')
 
 /**
  * ### Translations
@@ -44,7 +43,6 @@ import Translations from '../../../lib/Translations'
 
 I18n.translations = Translations
 
-const {goBackPage} = require('../../../tabs/filter/navigatorApp')
 
 const {
     writeRealmObject,
@@ -132,7 +130,7 @@ class IEAEditReview extends Component {
 
 
     async onButtonPress() {
-        const {dispatch} = this.props;
+        const {writeEditModelAction} = this.props;
 
         const originalModel = this.props.editModel.form.originModel;
         const editModelType = this.props.editModel.form.editModelType;
@@ -156,29 +154,28 @@ class IEAEditReview extends Component {
 
         this.props.actions.writeModelRequest();
         let haveError = false;
+
+        const _object = {
+            objectSchemaName: PARSE_REVIEWS,
+            editModelType,
+            model: {
+                objectId,
+                uniqueId,
+                // Attributes
+                rate,
+                body,
+                reviewType,
+                // Pointer
+                user,
+                // Relation
+                restaurant,
+                event,
+                recipe,
+            },
+        }
+
         try {
-            await Promise.race([
-                dispatch(writeRealmObject(
-                    PARSE_REVIEWS,
-                    editModelType,
-                    {
-                        objectId,
-                        uniqueId,
-                        // Attributes
-                        rate,
-                        body,
-                        reviewType,
-                        // Pointer
-                        user,
-                        // Relation
-                        restaurant,
-                        event,
-                        recipe,
-                    }
-                    )
-                ),
-                timeout(15000),
-            ]);
+            await Promise.race([writeEditModelAction(_object), timeout(15000)]);
         } catch (e) {
             this.setState({alert: {type: 'error', message: e.message}})
             haveError = true;
@@ -283,13 +280,15 @@ import * as editModelActions from '../../../reducers/editModel/editModelActions'
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(editModelActions, dispatch)
+        actions: bindActionCreators(editModelActions, dispatch),
+        writeEditModelAction: (object) => dispatch(writeRealmObject(object))
     }
 }
 
 function select(store) {
     return {
-        editModel: store.editModel
+        editModel: store.editModel,
+        location: store.location,
     };
 }
 

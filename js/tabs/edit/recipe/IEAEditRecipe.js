@@ -125,18 +125,6 @@ class IEAEditRecipe extends Component {
         )
     }
 
-    /**
-     * ### render
-     * Setup some default presentations and render
-     */
-    render() {
-        return (
-            <View style={styles.container}>
-                {this.renderContent()}
-            </View>
-        )
-    }
-
     async onButtonPress() {
         const {writeEditModelAction} = this.props;
 
@@ -193,7 +181,7 @@ class IEAEditRecipe extends Component {
         })
     }
 
-    renderContent() {
+    render() {
         const editModelType = this.props.editModel.form.editModelType;
         const formTitle = (editModelType === MODEL_FORM_TYPE_NEW) ? "Add a Recipe" : "Edit the Recipe";
 

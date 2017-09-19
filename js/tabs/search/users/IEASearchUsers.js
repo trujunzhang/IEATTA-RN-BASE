@@ -109,10 +109,10 @@ class IEASearchUsers extends Component {
     }
 
     onPress(props, user) {
-        onCellItemPress(props, MENU_ITEM_ADD_OR_EDIT_USER, {
-            model: user,
-            modelType: MODEL_FORM_TYPE_EDIT
-        })
+        // onCellItemPress(props, MENU_ITEM_ADD_OR_EDIT_USER, {
+        //     model: user,
+        //     modelType: MODEL_FORM_TYPE_EDIT
+        // })
     }
 
 }

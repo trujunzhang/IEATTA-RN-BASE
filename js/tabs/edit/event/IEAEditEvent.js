@@ -134,17 +134,6 @@ class IEAEditEvent extends Component {
         )
     }
 
-    /**
-     * ### render
-     * Setup some default presentations and render
-     */
-    render() {
-        return (
-            <View style={styles.container}>
-                {this.renderContent()}
-            </View>
-        )
-    }
 
     async onButtonPress() {
         const {writeEditModelAction} = this.props;
@@ -198,7 +187,7 @@ class IEAEditEvent extends Component {
     }
 
 
-    renderContent() {
+    render() {
         const editModelType = this.props.editModel.form.editModelType;
         const formTitle = (editModelType === MODEL_FORM_TYPE_NEW) ? "Add a Event" : "Edit the Event";
 
@@ -230,7 +219,6 @@ class IEAEditEvent extends Component {
     }
 
 }
-
 
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
