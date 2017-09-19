@@ -10,6 +10,7 @@ const {
     PARSE_PHOTOS,
     PARSE_REVIEWS,
     PARSE_PEOPLE_IN_EVENTS,
+
     // Section Header Title
     MENU_SECTIONS_MORE,
     MENU_SECTIONS_NEAR_RESTAURANTS,
@@ -18,6 +19,11 @@ const {
     MENU_SECTIONS_ORDERED_RECIPES,
     MENU_SECTIONS_REVIEWS,
     MENU_SECTIONS_NEAR_RESTAURANTS_EMPTY,
+
+    // Pure List Row Type.
+    NATIVE_BASE_LIST_SECTION_HEADER,
+    NATIVE_BASE_LIST_SECTION_ROWS,
+    NATIVE_BASE_LIST_SECTION_EMPTY,
 } = require('./constants').default
 
 
@@ -203,6 +209,23 @@ AppConstants.generateNewReviewObject = function ({currentUser, forItem, objectSc
         // Relation
         ...relativeObject,
     }
+}
+
+AppConstants.checkRowHasChanged = function (row1, row2) {
+    if (row1.rowType !== row2.rowType) {
+        // debugger
+        return true;
+    }
+    const rowType = row1.rowType;
+    switch (rowType) {
+        case NATIVE_BASE_LIST_SECTION_HEADER:
+            return false;
+        case NATIVE_BASE_LIST_SECTION_ROWS:
+            return row1.uniqueId !== row2.uniqueId;
+        case NATIVE_BASE_LIST_SECTION_EMPTY:
+            return false;
+    }
+
 }
 
 export default AppConstants;

@@ -56,7 +56,6 @@ const {getLocalImagePath} = require('../parse/fsApi')
 
 const {goBackPage} = require('../tabs/filter/navigatorApp')
 
-// import Icon from 'react-native-vector-icons/FontAwesome';
 
 import {Container, Header, Left, Right, Item, Input, Icon, Button, Content, List, ListItem, Body} from 'native-base'
 
@@ -73,6 +72,7 @@ const {
     PARALLAX_HEADER_LEFT_ITEM_NONE,
     PARALLAX_HEADER_LEFT_ITEM_BACK,
 
+    // Pure List Row Type.
     NATIVE_BASE_LIST_SECTION_HEADER,
     NATIVE_BASE_LIST_SECTION_ROWS,
     NATIVE_BASE_LIST_SECTION_EMPTY,
@@ -125,7 +125,10 @@ class PureListView extends React.Component {
         return (
             <List
                 style={{flex: 1, backgroundColor: F8Colors.controllerViewColor}}
-                rowHasChanged={(row1, row2) => row1.objectId !== row2.objectId}
+                rowHasChanged={(row1, row2) => {
+                    const hasChanged = AppConstants.checkRowHasChanged(row1, row2)
+                    return hasChanged;
+                }}
                 dataArray={this.state.dataArray}
                 renderRow={this.renderListRow.bind(this)}
 

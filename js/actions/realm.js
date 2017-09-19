@@ -197,7 +197,6 @@ function queryRecipesForUser(restaurantId: string, eventId: string, userId: stri
     }
 }
 
-
 async function _queryUsers(term: Object): Promise<Array<Action>> {
     const results = UserService.findByTerm(term)
     const action = {
@@ -237,12 +236,9 @@ async function _queryReviews(term: object): Promise<Array<Action>> {
 function queryReviews(term: object): ThunkAction {
     return (dispatch) => {
         const action = _queryReviews(term)
-
-        action.then(
-            ([result]) => {
-                dispatch(result)
-            }
-        )
+        action.then(([result]) => {
+            dispatch(result)
+        })
         return action
     }
 }
