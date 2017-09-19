@@ -283,7 +283,7 @@ const styles = StyleSheet.create({
     parallaxHeaderBackground: {
         flexGrow: 1,
         height: PARALLAX_HEADER_HEIGHT,
-        backgroundColor: 'red',
+        backgroundColor: F8Colors.controllerViewColor,
     },
     parallaxHeaderBlurView: {
         height: PARALLAX_HEADER_HEIGHT,
