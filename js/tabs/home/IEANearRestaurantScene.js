@@ -83,6 +83,9 @@ class IEANearRestaurantScene extends Component {
         })
 
         const error = nextProps.location.error;
+
+        console.log('location error',error)
+
         this.setState({
             sections: nextSections,
             ready: true,
