@@ -46,13 +46,16 @@ export default function formValidation(state) {
         case MENU_ITEM_ADD_OR_EDIT_EVENT:
             validate = Events.validateModel(state, originModel)
             return state.setIn(['form', 'isValid'], validate)
+
         case MENU_ITEM_ADD_OR_EDIT_RECIPE:
             if (state.form.fields.displayName !== '' &&
+                state.form.fields.displayName !== originModel.displayName &&
                 !state.form.fields.displayNameHasError) {
                 return state.setIn(['form', 'isValid'], true)
             } else {
                 return state.setIn(['form', 'isValid'], false)
             }
+
             break;
         case MENU_ITEM_ADD_OR_EDIT_REVIEW:
             if (state.form.fields.reviewBody !== '' &&
