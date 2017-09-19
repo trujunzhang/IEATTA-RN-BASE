@@ -67,8 +67,8 @@ ios/Frameworks/
 
 # Android bundle
 android/app/src/main/assets/index.android.*
-android/app/src/main/res/drawable/
-android/app/src/main/res/drawable-*/
+# android/app/src/main/res/drawable/
+# android/app/src/main/res/drawable-*/
 
 Tools/react-native-css/test/export.json
 
