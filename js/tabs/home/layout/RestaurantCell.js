@@ -48,7 +48,6 @@ const F8PlaceHolderImage = require('F8PlaceHolderImage')
 const F8StarIcon = require('F8StarIcon')
 
 const {getLocalImagePath} = require('../../../parse/fsApi')
-
 const {onCellItemPress} = require('../../filter/navigatorApp')
 
 import Restaurants from '../../../lib/restaurants'
@@ -57,8 +56,6 @@ const styles = StyleSheet.create({
     restaurantContainer: {
         flex: 1,
         paddingHorizontal: 10,
-        backgroundColor: "white",
-        height: F8Colors.RestaurantRowHeight,
         flexDirection: 'row',
         alignItems: 'center'
     },

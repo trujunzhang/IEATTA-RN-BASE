@@ -58,12 +58,6 @@ class IEASearchRestaurants extends Component {
         this.props.dispatch(queryNearRestaurant({}, SEARCH_NEAR_RESTAURANTS))
     }
 
-    renderRow = (restaurant: Object,
-                 sectionID: number | string,
-                 rowID: number | string) => {
-        return (<RestaurantCell key={restaurant.objectId} restaurant={restaurant} {...this.props}/>)
-    }
-
 
     handleSearch(input) {
         const {dispatch} = this.props;
@@ -94,7 +88,7 @@ class IEASearchRestaurants extends Component {
                                     <ListItem onPress={() => onPress(props, restaurant)}
                                               key={restaurant.objectId}
                                               style={{
-                                                  height: F8Colors.RestaurantRowHeight,
+                                                  height: F8Colors.RestaurantRowHeight + 5,
                                               }}>
 
                                         <RestaurantCell key={restaurant.objectId} restaurant={restaurant} {...props}/>

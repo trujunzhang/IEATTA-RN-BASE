@@ -54,13 +54,10 @@ const {
     MODEL_FORM_TYPE_EDIT,
 } = require('../../../lib/constants').default
 
-const {onCellItemPress} = require('../../filter/navigatorApp')
-
 const styles = StyleSheet.create({
     userCellContainer: {
         flex: 1,
         paddingHorizontal: 10,
-        height: F8Colors.UserRowHeight,
         flexDirection: 'row',
         alignItems: 'center'
     },
