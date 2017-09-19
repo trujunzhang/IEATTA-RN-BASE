@@ -114,7 +114,11 @@ class ReviewCell extends Component {
                     </View>
                 )
             case REVIEW_ITEM_READ_LIST_PAGE:
-                return this.renderCell();
+                return (
+                    <View style={styles.reviewContainer}>
+                        {this.renderCell()}
+                    </View>
+                )
             case REVIEW_ITEM_PREVIEW_PAGE:
                 return this.renderCell({});
         }
