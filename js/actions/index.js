@@ -28,8 +28,6 @@ const loginActions = require('./login').default
 const loginCommonActions = require('./loginCommon').default
 const facebookLoginActions = require('./facebookLogin').default
 const syncParseRealmActions = require('./syncParseRealm').default
-const navigationActions = require('./navigation');
-const filterActions = require('./filter');
 const globalActions = require('./global').default
 const realmActions = require('./realm').default
 const realmSaveActions = require('./realmSaver').default
@@ -40,8 +38,6 @@ module.exports = {
     ...loginCommonActions,
     ...facebookLoginActions,
     ...syncParseRealmActions,
-    ...filterActions,
-    ...navigationActions,
     ...globalActions,
     ...realmActions,
     ...realmSaveActions,

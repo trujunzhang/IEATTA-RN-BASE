@@ -30,6 +30,8 @@ import type {Action, ThunkAction} from './types'
  * The states were interested in
  */
 const {
+    SKIPPED_LOGIN,
+
     OVERLAY_MODEL_PUSH,
     OVERLAY_MODEL_DISMISS,
     OVERLAY_DETAILS_POSTS_DISMISS,
@@ -49,14 +51,14 @@ async function timeout(ms: number): Promise {
     })
 }
 
-function locationChannelPut(type, payload) {
+function updateLocationPosition(position): Action {
     return {
-        type: type,
-        payload: payload
+        type: REDUX_SAGA_LOCATION_ACTION_SET_POSITION,
+        payload: {position}
     }
 }
 
 export default {
     timeout,
-    locationChannelPut,
+    updateLocationPosition,
 }

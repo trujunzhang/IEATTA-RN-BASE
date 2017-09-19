@@ -1,3 +1,5 @@
+'use strict'
+
 /**
  * The states were interested in
  */
@@ -7,14 +9,23 @@ const {
     REDUX_SAGA_LOCATION_ACTION_REQUEST,
 } = require('../lib/constants').default
 
+import type {Action} from '../actions/types';
 
-function locationReducer(state = {
+type Location = {
+    position: Object,
+    error: Object,
+    fetching: boolean
+};
+
+const initialState: Location = {
     position: null,
     error: null,
     fetching: false
-}, action) {
-    switch (action.type) {
+};
 
+function locationReducer(state = initialState, action: Action): Location {
+
+    switch (action.type) {
         case REDUX_SAGA_LOCATION_ACTION_REQUEST: {
             return {
                 ...state,
@@ -23,8 +34,7 @@ function locationReducer(state = {
         }
 
         case REDUX_SAGA_LOCATION_ACTION_SET_POSITION: {
-            const {position} = action;
-
+            const {position} = action.payload;
             return {
                 ...state,
                 position,
@@ -34,7 +44,8 @@ function locationReducer(state = {
         }
 
         case REDUX_SAGA_LOCATION_ACTION_SET_ERROR : {
-            const {error} = action;
+            debugger
+            const {error} = action.payload;
 
             return {
                 ...state,
@@ -42,11 +53,9 @@ function locationReducer(state = {
                 fetching: false
             }
         }
-
-        default: {
-            return state;
-        }
     }
+
+    return state;
 }
 
 module.exports = locationReducer;

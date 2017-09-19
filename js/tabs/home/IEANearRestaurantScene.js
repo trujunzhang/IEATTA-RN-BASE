@@ -89,9 +89,9 @@ class IEANearRestaurantScene extends Component {
     }
 
     componentDidMount() {
-        // const position = this.props.getCurrentLocation()
+        // const position = this.props.location.position()
         // if (!!position) {
-        //     this.props.dispatch(queryNearRestaurant({position}))
+            // this.props.dispatch(queryNearRestaurant({position}))
         this.props.dispatch(queryNearRestaurant({}))
         // }
     }
@@ -217,6 +217,7 @@ function select(store) {
     return {
         appModel: store.appModel,
         currentUser: store.user,
+        location: store.location,
     }
 }
 

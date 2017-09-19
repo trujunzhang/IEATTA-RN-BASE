@@ -13,9 +13,8 @@ const LoginModal = require('./components/lib/login/LoginModal')
 const {
     startAsyncTask,
     syncBetweenParseAndRealm,
-    switchTab,
     queryNearRestaurant,
-    locationChannelPut,
+    updateLocationPosition,
 } = require('./actions');
 
 /**
@@ -68,11 +67,11 @@ class App extends Component {
         const intervalId = BackgroundTimer.setInterval(() => {
             // this will be executed every 10 minutes
             // even when app is the the background
-            // if (self.props.config.isSyncTask === false) {
-            self.scheduledTask()
-            // } else {
-            //     console.log("async task is already running!")
-            // }
+            if (self.props.config.isSyncTask === false) {
+                self.scheduledTask()
+            } else {
+                console.log("async task is already running!")
+            }
         }, 1 * 60 * 1000)
 
         this.setState({intervalId: intervalId})
@@ -94,15 +93,17 @@ class App extends Component {
         // Module: Location Tracker.
         navigator.geolocation.getCurrentPosition(
             (position) => {
-                locationChannelPut(REDUX_SAGA_LOCATION_ACTION_SET_POSITION, position)
+                // locationChannelPut(REDUX_SAGA_LOCATION_ACTION_SET_POSITION, position)
             },
             (error) => {
-                locationChannelPut(REDUX_SAGA_LOCATION_ACTION_SET_ERROR, error)
+                // locationChannelPut(REDUX_SAGA_LOCATION_ACTION_SET_ERROR, error)
             },
             {enableHighAccuracy: true, timeout: 40 * 1000, maximumAge: 1 * 1000}
         )
         this.watchID = navigator.geolocation.watchPosition((position) => {
-            locationChannelPut(REDUX_SAGA_LOCATION_ACTION_SET_POSITION, position)
+
+            dispatch(updateLocationPosition(position))
+
             console.log("last position: " + JSON.stringify(position));
             delayEvent(function () {
                 dispatch(queryNearRestaurant({position}))
@@ -127,7 +128,8 @@ const {connect} = require('react-redux')
 function select(store) {
     return {
         isLoggedIn: store.user.isLoggedIn || store.user.hasSkippedLogin,
-        currentUser: store.user
+        currentUser: store.user,
+        config: store.config,
     };
 }
 
