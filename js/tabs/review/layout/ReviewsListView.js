@@ -38,7 +38,6 @@ import {
     Dimensions
 } from 'react-native'
 
-const PureListView = require('PureListView')
 const ReviewCell = require('./ReviewCell')
 
 import {Container, Header, Content, List, ListItem, Body, Row} from 'native-base'
@@ -65,8 +64,7 @@ class ReviewsListView extends React.Component {
         this.state = {
             sections: {
                 MENU_SECTIONS_REVIEWS: []
-            },
-            ready: false
+            }
         }
     }
 

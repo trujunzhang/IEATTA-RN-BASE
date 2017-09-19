@@ -44,6 +44,10 @@ export default StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center'
     },
+    columnLeftDirection: {
+        flexDirection: 'column',
+        alignItems: 'flex-start'
+    },
     absoluteFullSection: {
         position: 'absolute',
         top: 0,
@@ -55,4 +59,9 @@ export default StyleSheet.create({
         borderBottomWidth: 1,
         borderBottomColor: "#ccc",
     },
+    boarderRect: {
+        borderWidth: 1,
+        borderStyle: "solid",
+        borderColor: "#ccc",
+    }
 })

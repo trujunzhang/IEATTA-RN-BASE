@@ -57,19 +57,18 @@ const {
     REVIEW_ITEM_PREVIEW_PAGE,
 } = require('../../../lib/constants').default
 
+import commonStyles from '../../../common/commonStyle'
+
 const styles = StyleSheet.create({
     reviewContainer: {
         backgroundColor: F8Colors.controllerViewColor,
         paddingBottom: 10
     },
     reviewContent: {
+        flex: 1,
         backgroundColor: "#fff",
         paddingHorizontal: 10,
         paddingBottom: 12,
-        borderWidth: 1,
-        borderStyle: "solid",
-        borderColor: "#ccc",
-        flexDirection: 'column',
     },
     bodyText: {
         marginTop: 6,
@@ -80,11 +79,10 @@ const styles = StyleSheet.create({
 
 class ReviewCell extends Component {
 
-    renderCell(isPreview = false) {
+    renderCell(textProps = {numberOfLines: 3}) {
         const {review} = this.props;
-        const textProps = isPreview ? {} : {numberOfLines: 3};
         return (
-            <View key={review.objectId} style={styles.reviewContent}>
+            <View key={review.objectId} style={[styles.reviewContent, commonStyles.columnLeftDirection]}>
 
                 <ReviewTopUser {...this.props}/>
 
@@ -118,7 +116,7 @@ class ReviewCell extends Component {
             case REVIEW_ITEM_READ_LIST_PAGE:
                 return this.renderCell();
             case REVIEW_ITEM_PREVIEW_PAGE:
-                return this.renderCell(true);
+                return this.renderCell({});
         }
     }
 

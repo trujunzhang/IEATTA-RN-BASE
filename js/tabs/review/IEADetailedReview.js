@@ -38,14 +38,22 @@ import {
     Dimensions
 } from 'react-native'
 
-const F8Colors = require('F8Colors')
 const F8Header = require('F8Header')
 
 const ReviewCell = require('./layout/ReviewCell')
 
 import {Container, Content} from 'native-base'
 
-const {goBackPage} = require('../../tabs/filter/navigatorApp')
+/**
+ * The states were interested in
+ */
+const {
+    MENU_DETAILED_REVIEW_PAGE,
+    // Review Item Type.
+    REVIEW_ITEM_DETAILED_PAGE,
+    REVIEW_ITEM_READ_LIST_PAGE,
+    REVIEW_ITEM_PREVIEW_PAGE,
+} = require('../../lib/constants').default
 
 class IEADetailedReview extends Component {
 
@@ -59,7 +67,7 @@ class IEADetailedReview extends Component {
             <Container>
                 <F8Header title={'Review'} {...this.props}/>
                 <Content>
-                    <ReviewCell{...this.props} review={review} isPreview={true}/>
+                    <ReviewCell{...this.props} review={review} reviewItemType={REVIEW_ITEM_PREVIEW_PAGE}/>
                 </Content>
             </Container>
         )
