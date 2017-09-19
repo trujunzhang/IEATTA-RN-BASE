@@ -146,14 +146,9 @@ class IEAEditRestaurant extends Component {
         try {
             await Promise.race([writeEditModelAction(_object), timeout(15000)]);
         } catch (e) {
-            debugger
             this.setState({alert: {type: 'error', message: e.message}})
             haveError = true;
-            const message = e.message || e;
-            if (message !== 'Timed out' && message !== 'Canceled by user') {
-            }
         } finally {
-            debugger
             if (!haveError) {
                 this.setState({alert: {type: 'success', message: "Saved successfully!"}})
                 this.props.actions.writeModelSuccess();

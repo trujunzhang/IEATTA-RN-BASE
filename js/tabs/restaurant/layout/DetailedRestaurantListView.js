@@ -89,6 +89,7 @@ class DetailedRestaurantListView extends React.Component {
                 })
             })
         }
+
         const newReviews = filterReviews(nextProps, PARSE_RESTAURANTS, objectId);
         if (!!newReviews) {
             this.setState({
