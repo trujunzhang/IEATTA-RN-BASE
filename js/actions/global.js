@@ -36,6 +36,11 @@ const {
     OVERLAY_DETAILS_POSTS_PUSH,
     LIST_VIEW_RESET_ALL_POSTS,
     DASHBOARD_RESET,
+
+    // Geo Location Type
+    REDUX_SAGA_LOCATION_ACTION_SET_POSITION,
+    REDUX_SAGA_LOCATION_ACTION_SET_ERROR,
+    REDUX_SAGA_LOCATION_ACTION_REQUEST,
 } = require('../lib/constants').default
 
 async function timeout(ms: number): Promise {
@@ -44,6 +49,14 @@ async function timeout(ms: number): Promise {
     })
 }
 
+function locationChannelPut(type, payload) {
+    return {
+        type: type,
+        payload: payload
+    }
+}
+
 export default {
-    timeout
+    timeout,
+    locationChannelPut,
 }

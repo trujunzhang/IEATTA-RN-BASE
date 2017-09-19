@@ -1,6 +1,11 @@
 import keyMirror from 'key-mirror'
 
 export default keyMirror({
+    // Geo Location Type
+    REDUX_SAGA_LOCATION_ACTION_SET_POSITION: null,
+    REDUX_SAGA_LOCATION_ACTION_SET_ERROR: null,
+    REDUX_SAGA_LOCATION_ACTION_REQUEST: null,
+
     // Review Item Type
     REVIEW_ITEM_DETAILED_PAGE: null,
     REVIEW_ITEM_READ_LIST_PAGE: null,

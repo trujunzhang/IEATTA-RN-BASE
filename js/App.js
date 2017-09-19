@@ -15,7 +15,19 @@ const {
     syncBetweenParseAndRealm,
     switchTab,
     queryNearRestaurant,
+    locationChannelPut,
 } = require('./actions');
+
+/**
+ * The states were interested in
+ */
+const {
+    // Geo Location Type
+    REDUX_SAGA_LOCATION_ACTION_SET_POSITION,
+    REDUX_SAGA_LOCATION_ACTION_SET_ERROR,
+    REDUX_SAGA_LOCATION_ACTION_REQUEST,
+} = require('./lib/constants').default
+
 
 import BackgroundTimer from 'react-native-background-timer'
 
@@ -74,25 +86,24 @@ class App extends Component {
     }
 
     componentDidMount() {
-        // Async Task.
+        const {dispatch} = this.props;
+
+        // Module: Async Task.
         this.setupAsyncTask();
 
-        // Location Tracker.
+        // Module: Location Tracker.
         navigator.geolocation.getCurrentPosition(
             (position) => {
-                let initialPosition = JSON.stringify(position)
-                this.setState({initialPosition})
+                locationChannelPut(REDUX_SAGA_LOCATION_ACTION_SET_POSITION, position)
             },
             (error) => {
-                //alert(error.message)
+                locationChannelPut(REDUX_SAGA_LOCATION_ACTION_SET_ERROR, error)
             },
             {enableHighAccuracy: true, timeout: 40 * 1000, maximumAge: 1 * 1000}
         )
         this.watchID = navigator.geolocation.watchPosition((position) => {
-            let lastPosition = position;
+            locationChannelPut(REDUX_SAGA_LOCATION_ACTION_SET_POSITION, position)
             console.log("last position: " + JSON.stringify(position));
-            // this.setState({lastPosition})
-            const {dispatch} = this.props;
             delayEvent(function () {
                 dispatch(queryNearRestaurant({position}))
             }, 700)

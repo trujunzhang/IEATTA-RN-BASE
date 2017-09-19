@@ -4,6 +4,7 @@ import drawer from "./drawer";
 module.exports = combineReducers({
     drawer,
     config: require('./config'),
+    location: require('./location'),
     user: require('./user'),
     appModel: require('./appModel'),
     editModel: require('./editModel/editModelReducer'),
