@@ -81,7 +81,7 @@ class DetailedRestaurantListView extends React.Component {
         const {sections} = this.state;
 
         const {objectId, uniqueId} = nextProps.forRestaurant;
-        const newEvents = filterEvents(nextProps, uniqueId, sections.MENU_SECTIONS_EVENTS);
+        const newEvents = filterEvents(nextProps, uniqueId, null);
         if (!!newEvents) {
             this.setState({
                 sections: Object.assign({}, sections, {
