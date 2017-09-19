@@ -58,6 +58,13 @@ function updateLocationPosition(position): Action {
     }
 }
 
+function setFetchLocationPositionError(error): Action {
+    return {
+        type: REDUX_SAGA_LOCATION_ACTION_SET_ERROR,
+        payload: {error}
+    }
+}
+
 export default {
     timeout,
     updateLocationPosition,

@@ -15,6 +15,7 @@ const {
     syncBetweenParseAndRealm,
     queryNearRestaurant,
     updateLocationPosition,
+    setFetchLocationPositionError,
 } = require('./actions');
 
 /**
@@ -93,10 +94,10 @@ class App extends Component {
         // Module: Location Tracker.
         navigator.geolocation.getCurrentPosition(
             (position) => {
-                // locationChannelPut(REDUX_SAGA_LOCATION_ACTION_SET_POSITION, position)
+                dispatch(updateLocationPosition(position))
             },
             (error) => {
-                // locationChannelPut(REDUX_SAGA_LOCATION_ACTION_SET_ERROR, error)
+                dispatch(setFetchLocationPositionError(error))
             },
             {enableHighAccuracy: true, timeout: 40 * 1000, maximumAge: 1 * 1000}
         )

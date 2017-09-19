@@ -44,8 +44,9 @@ function locationReducer(state = initialState, action: Action): Location {
         }
 
         case REDUX_SAGA_LOCATION_ACTION_SET_ERROR : {
-            debugger
             const {error} = action.payload;
+
+            debugger
 
             return {
                 ...state,
