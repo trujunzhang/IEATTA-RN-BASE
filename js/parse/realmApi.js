@@ -246,12 +246,13 @@ const ReviewService = {
 
         let query = RealmQuery.create();
         query.equalTo('reviewType', reviewType);
+
         if (!!forObjectUniqueId) {
             query.equalTo('forObjectUniqueId', forObjectUniqueId);
         }
         let others = '';
         if (!!search) {
-            others = ` AND body CONTAINS[c]  "${search}" OR user.displayName CONTAINS[c] "${search}"`;
+            others = ` AND ( body CONTAINS[c]  "${search}" OR user.displayName CONTAINS[c] "${search}" )`;
         }
 
         const filteredString = query.toString() + others;
