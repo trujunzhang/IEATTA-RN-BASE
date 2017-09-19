@@ -51,7 +51,8 @@ class F8PhotoGrid extends React.Component {
         this.state = {
             data: new ListView.DataSource({
                 rowHasChanged: (r1, r2) => {
-                    r1 !== r2;
+                    debugger
+                    return r1 !== r2;
                 }
             }),
         }
