@@ -20,8 +20,9 @@ import
     Platform
 } from 'react-native'
 
-const F8Colors = require('F8Colors')
 const F8Header = require('F8Header')
+const F8MessageBar = require('F8MessageBar')
+
 const F8PhotoHorizonSectionView = require('F8PhotoHorizonSectionView')
 
 /**
@@ -50,7 +51,6 @@ import Translations from '../../../lib/Translations'
 
 I18n.translations = Translations
 
-const {goBackPage} = require('../../../tabs/filter/navigatorApp')
 
 /**
  * The states were interested in
@@ -138,7 +138,7 @@ class IEAEditRecipe extends Component {
     }
 
     async onButtonPress() {
-        const {dispatch, model} = this.props;
+        const {writeEditModelAction} = this.props;
 
         const originalModel = this.props.editModel.form.originModel;
         const editModelType = this.props.editModel.form.editModelType;
@@ -150,19 +150,20 @@ class IEAEditRecipe extends Component {
 
         this.props.actions.writeModelRequest();
         let haveError = false;
+
+        const _object = {
+            objectSchemaName: PARSE_RECIPES,
+            editModelType,
+            model: {
+                objectId,
+                uniqueId,
+                displayName,
+                price
+            },
+        }
+
         try {
-            await Promise.race([
-                dispatch(writeRealmObject(
-                    PARSE_RECIPES,
-                    editModelType,
-                    {
-                        objectId,
-                        uniqueId,
-                        displayName,
-                        price
-                    })),
-                timeout(15000),
-            ]);
+            await Promise.race([writeEditModelAction(_object), timeout(15000)]);
         } catch (e) {
             this.setState({alert: {type: 'error', message: e.message}})
             haveError = true;
@@ -276,13 +277,15 @@ import * as editModelActions from '../../../reducers/editModel/editModelActions'
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(editModelActions, dispatch)
+        actions: bindActionCreators(editModelActions, dispatch),
+        writeEditModelAction: (object) => dispatch(writeRealmObject(object))
     }
 }
 
 function select(store) {
     return {
-        editModel: store.editModel
+        editModel: store.editModel,
+        location: store.location,
     };
 }
 

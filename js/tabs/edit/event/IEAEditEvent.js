@@ -39,8 +39,6 @@ import Translations from '../../../lib/Translations'
 
 I18n.translations = Translations
 
-const {goBackPage} = require('../../../tabs/filter/navigatorApp')
-
 const {
     writeRealmObject,
     timeout
@@ -167,6 +165,7 @@ class IEAEditEvent extends Component {
 
         this.props.actions.writeModelRequest();
         let haveError = false;
+
         const _object = {
             objectSchemaName: PARSE_EVENTS,
             editModelType,
@@ -181,7 +180,7 @@ class IEAEditEvent extends Component {
             },
         }
         try {
-            // await Promise.race([writeEditModelAction(_object), timeout(15000)]);
+            await Promise.race([writeEditModelAction(_object), timeout(15000)]);
         } catch (e) {
             this.setState({alert: {type: 'error', message: e.message}})
             haveError = true;
