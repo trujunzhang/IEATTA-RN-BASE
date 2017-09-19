@@ -82,18 +82,20 @@ class IEANearRestaurantScene extends Component {
             MENU_SECTIONS_RESTAURANTS: nextProps.appModel.restaurants
         })
 
+        const error = nextProps.location.error;
         this.setState({
             sections: nextSections,
-            ready: true
+            ready: true,
+            error
         })
     }
 
     componentDidMount() {
-        // const position = this.props.location.position()
-        // if (!!position) {
-            // this.props.dispatch(queryNearRestaurant({position}))
-        this.props.dispatch(queryNearRestaurant({}))
-        // }
+        const position = this.props.location.position;
+        if (!!position) {
+            this.props.dispatch(queryNearRestaurant({position}))
+            // this.props.dispatch(queryNearRestaurant({}))
+        }
     }
 
     renderRow = (item: Object,
