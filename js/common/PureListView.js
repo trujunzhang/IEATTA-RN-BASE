@@ -254,9 +254,7 @@ class PureListView extends React.Component {
             headerItems.push(
                 <Right key={"fixed_header_right_item"} style={{flex: 2}}>
                     <Button transparent
-                            style={{
-                                marginTop: (Platform.OS === 'ios' ? 14 : 0),
-                            }}
+                            style={{marginTop: (Platform.OS === 'ios' ? 14 : 0),}}
                             onPress={rightItem.onPress}>
                         <Text style={[styles.rightItemText]}>{rightItem.title}</Text>
                     </Button>
@@ -285,7 +283,7 @@ const styles = StyleSheet.create({
     parallaxHeaderBackground: {
         flexGrow: 1,
         height: PARALLAX_HEADER_HEIGHT,
-        // backgroundColor: 'red',
+        backgroundColor: 'red',
     },
     parallaxHeaderBlurView: {
         height: PARALLAX_HEADER_HEIGHT,

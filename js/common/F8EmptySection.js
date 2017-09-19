@@ -48,10 +48,10 @@ class F8EmptySection extends React.Component {
         const {sectionTag} = this.props;
         const object = AppConstants.emptySections[sectionTag];
         return (
-            <View style={[styles.container, this.props.style]}>
-                <Body>
-                <Title>{object.title}</Title>
-                <Subtitle>Subtitle</Subtitle>
+            <View style={[styles.container]}>
+                <Body style={{marginTop: 24}}>
+                <Title style={{fontSize: 20, marginBottom: 8}}>{object.title}</Title>
+                <Subtitle>{object.subtitle}</Subtitle>
                 </Body>
             </View>
         );
@@ -63,8 +63,8 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'white',
         padding: 30,
-        paddingTop: 75,
         alignItems: 'center',
+        height: 160,
     },
     title: {
         textAlign: 'center',

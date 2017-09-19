@@ -21,7 +21,7 @@ export default keyMirror({
 
     // Home menu items
     MENU_SECTIONS_MORE: null,
-    MENU_SECTIONS_RESTAURANTS: null,
+    MENU_SECTIONS_NEAR_RESTAURANTS: null,
     MENU_SECTIONS_EVENTS: null,
     MENU_SECTIONS_PEOPLE_IN_EVENTS: null,
     MENU_SECTIONS_ORDERED_RECIPES: null,
@@ -37,6 +37,8 @@ export default keyMirror({
     MENU_ITEM_MANAGE_FRIENDS: null,
     MENU_ITEM_READ_REVIEWS: null,
 
+    // Near Restaurants
+    MENU_SECTIONS_NEAR_RESTAURANTS_EMPTY: null,
 
     // Home Tabs Menus
     MENU_HOME_TABS_HOME: null,

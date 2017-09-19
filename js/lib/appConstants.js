@@ -12,11 +12,12 @@ const {
     PARSE_PEOPLE_IN_EVENTS,
     // Section Header Title
     MENU_SECTIONS_MORE,
-    MENU_SECTIONS_RESTAURANTS,
+    MENU_SECTIONS_NEAR_RESTAURANTS,
     MENU_SECTIONS_EVENTS,
     MENU_SECTIONS_PEOPLE_IN_EVENTS,
     MENU_SECTIONS_ORDERED_RECIPES,
     MENU_SECTIONS_REVIEWS,
+    MENU_SECTIONS_NEAR_RESTAURANTS_EMPTY,
 } = require('./constants').default
 
 
@@ -48,7 +49,7 @@ AppConstants.realmTypes = {
 
 AppConstants.SECTION_TITLES = {
     MENU_SECTIONS_MORE: 'More',
-    MENU_SECTIONS_RESTAURANTS: 'Restaurants Nearby',
+    MENU_SECTIONS_NEAR_RESTAURANTS: 'Restaurants Nearby',
     MENU_SECTIONS_EVENTS: 'Events',
     MENU_SECTIONS_PEOPLE_IN_EVENTS: 'Users Ordered',
     MENU_SECTIONS_ORDERED_RECIPES: 'Ordered Recipes',
@@ -67,16 +68,10 @@ AppConstants.placeHolderImage = {
 }
 
 AppConstants.emptySections = {
-    MENU_SECTIONS_MORE:
-        {
-            title: '',
-            subtitle: ''
-        },
-    MENU_SECTIONS_RESTAURANTS:
-        {
-            title: '',
-            subtitle: ''
-        },
+    MENU_SECTIONS_NEAR_RESTAURANTS_EMPTY: {
+        title: 'No restaurants nearby here',
+        subtitle: "Chick the cross icon to add new restaurant."
+    },
     MENU_SECTIONS_EVENTS:
         {
             title: 'No events on the restaurant',
@@ -84,18 +79,18 @@ AppConstants.emptySections = {
         },
     MENU_SECTIONS_PEOPLE_IN_EVENTS:
         {
-            title: '',
-            subtitle: ''
+            title: 'No users in the event',
+            subtitle: 'Click the cross icon to add a user.'
         },
     MENU_SECTIONS_ORDERED_RECIPES:
         {
-            title: '',
-            subtitle: ''
+            title: 'No recipes ordered by the user',
+            subtitle: "Chick the add icon to add an recipe."
         },
     MENU_SECTIONS_REVIEWS:
         {
-            title: '',
-            subtitle: ''
+            title: 'No reviews submitted',
+            subtitle: "Chick the star icon to add new review."
         },
 }
 

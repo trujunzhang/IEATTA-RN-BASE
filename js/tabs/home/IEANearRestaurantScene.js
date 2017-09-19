@@ -46,9 +46,10 @@ const SectionHeader = require('SectionHeader')
 
 const {
     MENU_SECTIONS_MORE,
-    MENU_SECTIONS_RESTAURANTS,
+    MENU_SECTIONS_NEAR_RESTAURANTS,
     MENU_DETAILED_RESTAURANT_PAGE,
     MENU_ITEM_ADD_OR_EDIT_RESTAURANT,
+    MENU_SECTIONS_NEAR_RESTAURANTS_EMPTY,
     MODEL_FORM_TYPE_NEW,
 } = require('../../lib/constants').default
 
@@ -72,7 +73,7 @@ class IEANearRestaurantScene extends Component {
         this.state = {
             sections: {
                 MENU_SECTIONS_MORE: Restaurants.TOP_MENUS,
-                MENU_SECTIONS_RESTAURANTS: []
+                MENU_SECTIONS_NEAR_RESTAURANTS: []
             },
             ready: false
         }
@@ -80,16 +81,16 @@ class IEANearRestaurantScene extends Component {
 
     componentWillReceiveProps(nextProps: Props) {
         const {sections} = this.state;
-        const nextSections = Object.assign({}, sections, {
-            MENU_SECTIONS_RESTAURANTS: nextProps.appModel.restaurants
-        })
+        // const nextSections = Object.assign({}, sections, {
+        //     MENU_SECTIONS_NEAR_RESTAURANTS: nextProps.appModel.restaurants
+        // })
 
         const error = nextProps.location.error;
 
         console.log('location error', error)
 
         this.setState({
-            sections: nextSections,
+        //     sections: nextSections,
             ready: true,
             error
         })
@@ -184,7 +185,7 @@ class IEANearRestaurantScene extends Component {
 
                 onCellItemPress(props, tag, {model, ...morePassProps})
                 break;
-            case MENU_SECTIONS_RESTAURANTS:
+            case MENU_SECTIONS_NEAR_RESTAURANTS:
                 onCellItemPress(props,
                     MENU_DETAILED_RESTAURANT_PAGE,
                     {restaurant: item}
@@ -197,8 +198,8 @@ class IEANearRestaurantScene extends Component {
 
     renderFooter() {
         const {sections, ready} = this.state,
-            {MENU_SECTIONS_RESTAURANTS} = sections,
-            restaurantLength = MENU_SECTIONS_RESTAURANTS.length;
+            {MENU_SECTIONS_NEAR_RESTAURANTS} = sections,
+            restaurantLength = MENU_SECTIONS_NEAR_RESTAURANTS.length;
 
         if (restaurantLength === 0) {
             if (!ready) {
@@ -215,9 +216,8 @@ class IEANearRestaurantScene extends Component {
                     </View>
                 )
             }
-            // return (
-            //    {/*<F8EmptySection title={`No restaurants nearby now`} text="Chick the cross icon to add new restaurant."/>*/}
-            // )
+
+            return (<F8EmptySection sectionTag={MENU_SECTIONS_NEAR_RESTAURANTS_EMPTY}/>)
         }
 
         return (<View style={{height: 60}}/>)

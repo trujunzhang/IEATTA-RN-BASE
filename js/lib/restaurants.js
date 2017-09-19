@@ -7,7 +7,7 @@ const {
     MENU_ITEM_MANAGE_FRIENDS,
     MENU_ITEM_READ_REVIEWS,
     MENU_SECTIONS_MORE,
-    MENU_SECTIONS_RESTAURANTS,
+    MENU_SECTIONS_NEAR_RESTAURANTS,
 } = require('../lib/constants').default
 
 const _TOP_MENUS = [
