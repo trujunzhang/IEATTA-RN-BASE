@@ -17,7 +17,6 @@ import
     Dimensions,
 } from 'react-native'
 
-const F8Colors = require('F8Colors')
 const F8Header = require('F8Header')
 const F8MessageBar = require('F8MessageBar')
 
@@ -74,7 +73,6 @@ class IEAEditEvent extends Component {
         const model = params.model;
         const modelType = params.modelType;
 
-        debugger
 
         this.state = {
             value: {
@@ -127,6 +125,7 @@ class IEAEditEvent extends Component {
         }
 
         if (value.start !== '') {
+            debugger
             this.props.actions.onEditModelFormFieldChange('start', value.start)
         }
 
@@ -165,7 +164,6 @@ class IEAEditEvent extends Component {
         const start = this.state.value.start;
         const end = this.state.value.end;
 
-        debugger
 
         this.setState({alert: null});
 
@@ -185,7 +183,7 @@ class IEAEditEvent extends Component {
             },
         }
         try {
-            await Promise.race([writeEditModelAction(_object), timeout(15000)]);
+            // await Promise.race([writeEditModelAction(_object), timeout(15000)]);
         } catch (e) {
             this.setState({alert: {type: 'error', message: e.message}})
             haveError = true;

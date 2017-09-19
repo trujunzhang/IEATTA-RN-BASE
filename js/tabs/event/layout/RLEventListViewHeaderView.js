@@ -188,7 +188,7 @@ class RLEventListViewHeaderView extends Component {
             <View style={[styles.eventHeaderContains, commonStyles.columnDirection]}>
                 {/*<View style={[commonStyles.absoluteFullSection, styles.parallaxSection]}/>*/}
 
-                {this.renderEventInfo()}
+                {/*{this.renderEventInfo()}*/}
 
                 <F8RatingReview
                     showTopRatingPanel={true}

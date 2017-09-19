@@ -13,6 +13,15 @@
  * React
  */
 import React, {Component, PropTypes} from 'react'
+import {
+    Text,
+    TouchableHighlight,
+    View,
+    Image,
+    TextInput,
+    StyleSheet,
+    Dimensions
+} from 'react-native'
 
 /**
  * ### Translations
@@ -28,12 +37,41 @@ I18n.translations = Translations
 const t = require('../../../components/vendor/tcomb-form-native')
 let Form = t.form.Form
 
+import DatePicker from 'react-native-datepicker'
+
+import commonStyles from '../../../common/commonStyle'
+
+function myCustomTemplate(locals) {
+    const {stylesheet} = locals;
+    let formGroupStyle = stylesheet.formGroup.normal;
+    let controlLabelStyle = stylesheet.controlLabel.normal;
+
+    const label = locals.label ? <Text style={controlLabelStyle}>{locals.label}</Text> : null;
+
+    return (
+        <View style={formGroupStyle}>
+            {label}
+            <View style={commonStyles.rowDirection}>
+                <DatePicker
+                    style={{height: 40, flex: 1}}
+                    date={locals.value}
+                    mode="datetime"
+                    format="YYYY-MM-DD HH:mm"
+                    confirmBtnText="Confirm"
+                    cancelBtnText="Cancel"
+                    showIcon={false}
+                    onDateChange={(datetime) => {
+                        locals.onChange(new Date(datetime))
+                    }}
+                />
+            </View>
+        </View>
+    )
+}
 
 class EventForm extends Component {
     constructor(props) {
         super(props);
-
-        this._innerRef = null;
 
         this.state = {
             startDateMode: 'date',
@@ -99,7 +137,9 @@ class EventForm extends Component {
         options.fields['eventWhat'].placeholder = I18n.t('editEvent.eventWhatPlaceHolder')
         options.fields['eventWhat'].autoCapitalize = 'none'
         options.fields['start'] = start;
+        options.fields['start'].template = myCustomTemplate;
         options.fields['end'] = end;
+        options.fields['end'].template = myCustomTemplate;
 
         /**
          * ### Return
