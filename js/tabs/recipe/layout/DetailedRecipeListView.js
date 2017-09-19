@@ -39,9 +39,7 @@ import {
 } from 'react-native'
 
 const F8Colors = require('F8Colors')
-const F8EmptySection = require('F8EmptySection')
 const PureListView = require('PureListView')
-const SectionHeader = require('SectionHeader')
 
 const ReviewCell = require('../../review/layout/ReviewCell')
 

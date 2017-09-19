@@ -215,9 +215,9 @@ class IEANearRestaurantScene extends Component {
                     </View>
                 )
             }
-            return (
-                <F8EmptySection title={`No restaurants nearby now`} text="Chick the cross icon to add new restaurant."/>
-            )
+            // return (
+            //    {/*<F8EmptySection title={`No restaurants nearby now`} text="Chick the cross icon to add new restaurant."/>*/}
+            // )
         }
 
         return (<View style={{height: 60}}/>)

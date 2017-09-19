@@ -39,7 +39,6 @@ import {
 
 const ProfilePicture = require('../../common/ProfilePicture');
 const F8Colors = require('F8Colors')
-const F8EmptySection = require('F8EmptySection')
 const LoginButton = require('../../components/lib/login/LoginButton');
 const PureListView = require('../../common/PureListView');
 
@@ -146,26 +145,12 @@ class MyScheduleView extends React.Component {
                     return this.renderCurrentUser()
                 }}
                 data={[]}
-                renderEmptyList={this.renderNotLoggedIn.bind(this)}
             />
         )
     }
 
     renderHeader() {
         return (<View style={{height: F8Colors.topViewHeight}}/>)
-    }
-
-    renderNotLoggedIn() {
-        const {isConnected} = this.state;
-
-        return (
-            <F8EmptySection
-                key="login"
-                title="Log in to make a schedule."
-                text="You’ll be able to save sessions to your schedule to view or share later.">
-
-            </F8EmptySection>
-        )
     }
 
 }

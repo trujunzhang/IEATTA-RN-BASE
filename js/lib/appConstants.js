@@ -66,6 +66,39 @@ AppConstants.placeHolderImage = {
     PARSE_REVIEWS: 'review'
 }
 
+AppConstants.emptySections = {
+    MENU_SECTIONS_MORE:
+        {
+            title: '',
+            subtitle: ''
+        },
+    MENU_SECTIONS_RESTAURANTS:
+        {
+            title: '',
+            subtitle: ''
+        },
+    MENU_SECTIONS_EVENTS:
+        {
+            title: 'No events on the restaurant',
+            subtitle: 'Chick the cross icon to add new event.'
+        },
+    MENU_SECTIONS_PEOPLE_IN_EVENTS:
+        {
+            title: '',
+            subtitle: ''
+        },
+    MENU_SECTIONS_ORDERED_RECIPES:
+        {
+            title: '',
+            subtitle: ''
+        },
+    MENU_SECTIONS_REVIEWS:
+        {
+            title: '',
+            subtitle: ''
+        },
+}
+
 AppConstants.generateNewRestaurantRealmObject = function () {
     return {
         objectId: UUID.create().toString(),

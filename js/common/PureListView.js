@@ -149,8 +149,10 @@ class PureListView extends React.Component {
             case NATIVE_BASE_LIST_SECTION_ROWS:
                 return this.props.renderRow(item, item.sectionTag)
             case NATIVE_BASE_LIST_SECTION_EMPTY:
+                const {sectionTag} = item;
                 return (
                     <F8EmptySection
+                        sectionTag={sectionTag}
                         title={`No events on the restaurant`}
                         text="Chick the cross icon to add new event."
                     />
@@ -179,6 +181,7 @@ class PureListView extends React.Component {
                     {
                         rowType: NATIVE_BASE_LIST_SECTION_EMPTY,
                         objectId: NATIVE_BASE_LIST_SECTION_EMPTY,
+                        sectionTag: key,
                     }
                 )
             }

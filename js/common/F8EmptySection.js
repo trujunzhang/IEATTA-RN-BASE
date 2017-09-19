@@ -37,21 +37,22 @@ import {
     Dimensions
 } from 'react-native'
 
+import {Container, Header, Left, Body, Right, Button, Icon, Title, Subtitle} from 'native-base'
+import AppConstants from '../lib/appConstants'
+
 const {Paragraph, Heading1} = require('F8Text');
 
 class F8EmptySection extends React.Component {
 
     render() {
-        const title = this.props.title &&
-            <Heading1 style={styles.title}>{this.props.title}</Heading1>;
-
+        const {sectionTag} = this.props;
+        const object = AppConstants.emptySections[sectionTag];
         return (
             <View style={[styles.container, this.props.style]}>
-                {title}
-                <Paragraph style={styles.text}>
-                    {this.props.text}
-                </Paragraph>
-                {this.props.children}
+                <Body>
+                <Title>{object.title}</Title>
+                <Subtitle>Subtitle</Subtitle>
+                </Body>
             </View>
         );
     }
