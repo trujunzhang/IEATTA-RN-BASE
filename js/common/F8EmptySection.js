@@ -50,7 +50,7 @@ class F8EmptySection extends React.Component {
         return (
             <View style={[styles.container]}>
                 <Body style={{marginTop: 24}}>
-                <Title style={{fontSize: 20, marginBottom: 8}}>{object.title}</Title>
+                <Title style={{fontSize: 20, color: '#000', marginBottom: 8}}>{object.title}</Title>
                 <Subtitle>{object.subtitle}</Subtitle>
                 </Body>
             </View>
