@@ -168,22 +168,27 @@ class RLEventListViewHeaderView extends Component {
         }
     }
 
+    renderEventInfo() {
+
+        const {address} = this.props.forRestaurant;
+        return (
+            <View style={[styles.eventHeaderSection, styles.sectionMarginButton, getScreenWidth(30)]}>
+                {!!address && address !== '' ? this.renderAddress() : null}
+                {this.renderEventDate()}
+                <View style={[styles.whatRow, styles.rowPadding]}>
+                    <Text style={styles.whatCaption}>{'What/Why:'}</Text>
+                    <Text style={styles.whatTitle}>{this.props.event.want || ''}</Text>
+                </View>
+            </View>
+        )
+    }
 
     render() {
-        const {address} = this.props.forRestaurant;
         return (
             <View style={[styles.eventHeaderContains, commonStyles.columnDirection]}>
                 {/*<View style={[commonStyles.absoluteFullSection, styles.parallaxSection]}/>*/}
 
-                <View style={[styles.eventHeaderSection, styles.sectionMarginButton, getScreenWidth(30)]}>
-                    {!!address && address !== '' ? this.renderAddress() : null}
-                    {this.renderEventDate()}
-                    <View style={[styles.whatRow, styles.rowPadding]}>
-                        <Text style={styles.whatCaption}>{'What/Why:'}</Text>
-                        <Text style={styles.whatTitle}>{this.props.event.want || ''}</Text>
-                    </View>
-                </View>
-
+                {this.renderEventInfo()}
 
                 <F8RatingReview
                     showTopRatingPanel={true}
