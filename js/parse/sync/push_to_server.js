@@ -72,7 +72,7 @@ async function createNewOnlineParseInstance(objectSchemaName, localRealmObject) 
     const newOnlineParseObjectInstance = createParseInstance(objectSchemaName)
     await Records.createOnlineParseInstance(newOnlineParseObjectInstance, objectSchemaName, uploadRealmObject);
 
-    debugger
+    // debugger
 
     // step1: create the new parse model.
     await newOnlineParseObjectInstance.save()
@@ -103,19 +103,16 @@ async function pushRecordObjectToServer(localRecorderJson, index) {
     let onlineParseObjectInstance = await  getFirstOnlineParseInstance(objectSchemaName, localRealmObject)
     const onlineRecorder = await getOnlineRecorderInstance(recordType, onlineParseObjectInstance)
 
-    debugger
+    // debugger
 
     if (!!onlineRecorder) {// The recorder already exist on the parse server.
         const onlineParseObject = onlineRecorder.get(recordType)
-        debugger
         if (Records.needUpdateOnlineParseObject(localRealmObject, onlineParseObject)) {
 
             // step1: update the different parse object recorded on the 'record' object.
-            debugger
             Records.updateOnlineParseInstance(onlineParseObject, objectSchemaName, localRealmObject)
             await onlineParseObject.save()
 
-            debugger
             // step2: update the online recorder's updateAt that notify other devices to async.
             await onlineRecorder.save()
             // debugger
@@ -132,12 +129,8 @@ async function pushRecordObjectToServer(localRecorderJson, index) {
             onlineParseObjectInstance = await createNewOnlineParseInstance(objectSchemaName, localRealmObject)
         }
 
-        debugger
-
         // step2: create the recorder.
         await saveNewRecorderAsParseInstance(recordType, onlineParseObjectInstance)
-
-        debugger
     }
 }
 

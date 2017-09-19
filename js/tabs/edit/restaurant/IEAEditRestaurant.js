@@ -114,7 +114,7 @@ class IEAEditRestaurant extends Component {
 
 
     async onButtonPress() {
-        const {writeEditModelAction} = this.props;
+        const {writeEditModelAction, searchRestaurants} = this.props;
 
         const originalModel = this.props.editModel.form.originModel;
         const editModelType = this.props.editModel.form.editModelType;
@@ -157,8 +157,9 @@ class IEAEditRestaurant extends Component {
             if (!haveError) {
                 this.setState({alert: {type: 'success', message: "Saved successfully!"}})
                 this.props.actions.writeModelSuccess();
+
                 // Finally, update the nearby restaurants.
-                dispatch(queryNearRestaurant({lastPosition}))
+                searchRestaurants({lastPosition})
             }
         }
     }
@@ -216,7 +217,8 @@ import * as editModelActions from '../../../reducers/editModel/editModelActions'
 function mapDispatchToProps(dispatch) {
     return {
         actions: bindActionCreators(editModelActions, dispatch),
-        writeEditModelAction: (object) => dispatch(writeRealmObject(object))
+        writeEditModelAction: (object) => dispatch(writeRealmObject(object)),
+        searchRestaurants: (object) => dispatch(queryNearRestaurant(object))
     }
 }
 
