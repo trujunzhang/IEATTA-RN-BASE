@@ -12,15 +12,15 @@ const F8Colors = require('F8Colors')
 const scale = Dimensions.get('window').width / 375;
 
 export default StyleSheet.create({
+    // Common
+    LoginScreenContainer: {
+        flex: 1,
+        backgroundColor: F8Colors.controllerViewColor
+    },
     // LoginScreen
     screenContainer: {
         flex: 1,
         backgroundColor: 'transparent',
-        // padding: 26,
-        // Image's source contains explicit size, but we want
-        // it to prefer flex: 1
-        width: undefined,
-        height: undefined,
     },
     section: {
         flex: 1,

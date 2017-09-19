@@ -84,7 +84,7 @@ class LoginScreen extends React.Component {
                 return this.renderWelcomeScrene()
             case LOGIN_FORM_TYPE_LOGIN:
                 return (
-                    <Container>
+                    <Container style={{flex: 1, backgroundColor: 'white'}}>
                         <F8Header title={'Login'} onLeftItemPress={() => {
                             this.toggleForm(LOGIN_FORM_TYPE_MAIN)
                         }}/>
@@ -96,7 +96,7 @@ class LoginScreen extends React.Component {
                 )
             case LOGIN_FORM_TYPE_REGISTER:
                 return (
-                    <Container>
+                    <Container style={{flex: 1, backgroundColor: 'white'}}>
                         <F8Header title={'Register'} onLeftItemPress={() => {
                             this.toggleForm(LOGIN_FORM_TYPE_MAIN)
                         }}/>

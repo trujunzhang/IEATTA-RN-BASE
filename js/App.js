@@ -101,7 +101,6 @@ class App extends Component {
                 const message = error.message || error;
                 if (message.indexOf('timed out') === -1) {
                     console.log("last position error: " + JSON.stringify(error));
-
                     // dispatch(setFetchLocationPositionError(error))
                 }
             },
@@ -119,8 +118,8 @@ class App extends Component {
     }
 
     render() {
-        // if (!this.props.isLoggedIn|| true) {
-        if (!this.props.isLoggedIn) {
+        if (!this.props.isLoggedIn|| true) {
+        // if (!this.props.isLoggedIn) {
             return <LoginScreen/>
             // return <LoginModal/>
         }
