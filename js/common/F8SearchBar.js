@@ -97,7 +97,7 @@ class F8SearchBar extends Component {
         } = this.props;
 
         const leftArrow = (
-            <Left style={{flex: 2}}>
+            <Left style={{flex: 3}}>
                 {
                     !hideBack &&
                     <Button transparent onPress={this.props.onBack}>
@@ -107,7 +107,7 @@ class F8SearchBar extends Component {
             </Left>
         )
         const rightArrow = (
-            <Right style={{flex: 2}}>
+            <Right style={{flex: 3}}>
                 {
                     this.state.input !== '' &&
                     <Button transparent

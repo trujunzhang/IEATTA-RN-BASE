@@ -49,7 +49,6 @@ const {queryReviews} = require('../../actions')
 const ReviewsListView = require('./layout/ReviewsListView')
 const SegmentedControlTab = require('../../components/vendor/segmented-control/SegmentedControlTab')
 
-const {goBackPage} = require('../../tabs/filter/navigatorApp')
 const {delayEvent} = require('../../lib/utils')
 
 class IEAReadReviews extends Component {
@@ -90,7 +89,8 @@ class IEAReadReviews extends Component {
             {dispatch} = this.props;
 
         delayEvent(function () {
-            dispatch(queryReviews({objectSchemaName: segmentedTableTitles[customStyleIndex].tag, search: input}))
+            const tag = segmentedTableTitles[customStyleIndex].tag;
+            dispatch(queryReviews({objectSchemaName: tag, search: input}))
         }, 700)
     }
 
@@ -124,34 +124,14 @@ class IEAReadReviews extends Component {
 
     renderContent() {
         const {customStyleIndex, segmentedTableTitles} = this.state;
-
         return (<ReviewsListView objectSchemaName={segmentedTableTitles[customStyleIndex].tag} {...this.props}/>)
     }
 
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flexDirection: 'column',
-        flex: 1,
-        backgroundColor: 'white'
-    },
-    inputs: {
-        marginTop: 10,
-        marginBottom: 10,
-        marginLeft: 10,
-        marginRight: 10
-    },
-    forgotContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginTop: 10,
-        marginLeft: 10,
-        marginRight: 10
-    }
-})
 
 const {connect} = require('react-redux')
+
 module.exports = connect()(IEAReadReviews)
 
 

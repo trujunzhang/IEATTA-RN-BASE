@@ -65,19 +65,6 @@ async function _queryNearRestaurant(term: Object, type): Promise<Array<Action>> 
     ])
 }
 
-function queryNearRestaurant(term: Object = {}, type = QUERY_NEAR_RESTAURANTS): ThunkAction {
-    return (dispatch) => {
-        const action = _queryNearRestaurant(term, type)
-        action.then(
-            ([result]) => {
-                dispatch(result)
-            }
-        )
-        return action
-    }
-}
-
-
 async function _queryPeopleForEvent(restaurantId: string, eventId: string): Promise<Array<Action>> {
     const peopleInEvent = PeopleInEventService.findTerm(restaurantId, eventId)
     const ids = _.pluck(peopleInEvent, 'userId')
@@ -89,19 +76,6 @@ async function _queryPeopleForEvent(restaurantId: string, eventId: string): Prom
     return Promise.all([
         Promise.resolve(action)
     ])
-}
-
-function queryPeopleForEvent(restaurantId: string, eventId: string): ThunkAction {
-    return (dispatch) => {
-        const action = _queryPeopleForEvent(restaurantId, eventId)
-
-        action.then(
-            ([result]) => {
-                dispatch(result)
-            }
-        )
-        return action
-    }
 }
 
 
@@ -121,19 +95,6 @@ async function _queryEventsForRestaurant(restaurant): Promise<Array<Action>> {
     ])
 }
 
-function queryEventsForRestaurant(restaurant): ThunkAction {
-    return (dispatch) => {
-        const action = _queryEventsForRestaurant(restaurant)
-
-        action.then(
-            ([result]) => {
-                dispatch(result)
-            }
-        )
-        return action
-    }
-}
-
 
 async function _queryPhotosByType(photoType: string, forObjectId: string): Promise<Array<Action>> {
     let results = [];
@@ -148,19 +109,6 @@ async function _queryPhotosByType(photoType: string, forObjectId: string): Promi
     return Promise.all([
         Promise.resolve(action)
     ])
-}
-
-function queryPhotosByType(photoType: string, forObjectId: string): ThunkAction {
-    return (dispatch) => {
-        const action = _queryPhotosByType(photoType, forObjectId)
-
-        action.then(
-            ([result]) => {
-                dispatch(result)
-            }
-        )
-        return action
-    }
 }
 
 
@@ -183,19 +131,6 @@ async function _queryRecipesForUser(restaurantId: string, eventId: string, userI
     ])
 }
 
-function queryRecipesForUser(restaurantId: string, eventId: string, userId: string): ThunkAction {
-    return (dispatch) => {
-        const action = _queryRecipesForUser(restaurantId, eventId, userId)
-
-        // Loading friends schedules shouldn't block the login process
-        action.then(
-            ([result]) => {
-                dispatch(result)
-            }
-        )
-        return action
-    }
-}
 
 async function _queryUsers(term: Object): Promise<Array<Action>> {
     const results = UserService.findByTerm(term)
@@ -206,19 +141,6 @@ async function _queryUsers(term: Object): Promise<Array<Action>> {
     return Promise.all([
         Promise.resolve(action)
     ])
-}
-
-function queryUsers(term: Object = {}): ThunkAction {
-    return (dispatch) => {
-        const action = _queryUsers(term)
-
-        action.then(
-            ([result]) => {
-                dispatch(result)
-            }
-        )
-        return action
-    }
 }
 
 
@@ -233,9 +155,8 @@ async function _queryReviews(term: object): Promise<Array<Action>> {
     ])
 }
 
-function queryReviews(term: object): ThunkAction {
+function queryListFromAction(action: Promise<Array<Action>>): ThunkAction {
     return (dispatch) => {
-        const action = _queryReviews(term)
         action.then(([result]) => {
             dispatch(result)
         })
@@ -244,11 +165,31 @@ function queryReviews(term: object): ThunkAction {
 }
 
 export default {
-    queryPhotosByType,
-    queryNearRestaurant,
-    queryEventsForRestaurant,
-    queryPeopleForEvent,
-    queryRecipesForUser,
-    queryReviews,
-    queryUsers
+
+    queryPhotosByType(photoType: string, forObjectId: string): ThunkAction {
+        return queryListFromAction(_queryPhotosByType(photoType, forObjectId))
+    },
+
+    queryNearRestaurant(term: Object = {}, type = QUERY_NEAR_RESTAURANTS): ThunkAction {
+        return queryListFromAction(_queryNearRestaurant(term, type))
+    },
+
+    queryEventsForRestaurant(restaurant): ThunkAction {
+        return queryListFromAction(_queryEventsForRestaurant(restaurant))
+    },
+
+    queryPeopleForEvent(restaurantId: string, eventId: string): ThunkAction {
+        return queryListFromAction(_queryPeopleForEvent(restaurantId, eventId))
+    },
+
+    queryRecipesForUser(restaurantId: string, eventId: string, userId: string): ThunkAction {
+        return queryListFromAction(_queryRecipesForUser(restaurantId, eventId, userId))
+    },
+
+    queryUsers(term: Object = {}): ThunkAction {
+        return queryListFromAction(_queryUsers(term))
+    },
+    queryReviews(term: object): ThunkAction {
+        return queryListFromAction(_queryReviews(term))
+    }
 }
