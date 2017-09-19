@@ -74,6 +74,8 @@ class IEAEditEvent extends Component {
         const model = params.model;
         const modelType = params.modelType;
 
+        debugger
+
         this.state = {
             value: {
                 displayName: props.editModel.form.fields.displayName,
@@ -100,6 +102,8 @@ class IEAEditEvent extends Component {
             value: {
                 displayName: nextProps.editModel.form.fields.displayName,
                 eventWhat: nextProps.editModel.form.fields.eventWhat,
+                start: nextProps.editModel.form.fields.start,
+                end: nextProps.editModel.form.fields.end,
             }
         })
     }
@@ -160,6 +164,8 @@ class IEAEditEvent extends Component {
         const want = this.props.editModel.form.fields.eventWhat;
         const start = this.state.value.start;
         const end = this.state.value.end;
+
+        debugger
 
         this.setState({alert: null});
 

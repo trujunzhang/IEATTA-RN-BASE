@@ -46,10 +46,17 @@ const styles = StyleSheet.create({
     }
 });
 
+// Playground:
+const Playground = require('./playground')
+
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            // Just for test.
+            // playground: true,
+            playground: false,
+            // App
             showDownloadingModal: false,
             showInstalling: false,
             downloadProgress: 0
@@ -118,6 +125,21 @@ class App extends Component {
     }
 
     render() {
+        if (this.state.playground) {
+            // return <Playground.RatingScreen surveys={[]}/>
+            // return <Playground.SegmentedControlTabView/>
+            // return <Playground.Playground/>
+            // return <Playground.NearbyGeoMap/>
+            // return <Playground.ParallaxDemo/>
+            return <Playground.DataPickerDemo/>
+            // return <Playground.RNFSApp/>
+            // return <Playground.FBLogin/>
+            // return <Playground.MapViewScene/>
+            // return <Playground.PhotoBrowserExample/>
+            // return <Playground.BadInstagramCloneApp/>
+            //return <Playground.ReactNativeMapsApp/>
+        }
+
         // if (!this.props.isLoggedIn|| true) {
         if (!this.props.isLoggedIn) {
             return <LoginScreen/>
