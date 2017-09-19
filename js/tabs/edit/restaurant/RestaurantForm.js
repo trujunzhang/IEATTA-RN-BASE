@@ -41,8 +41,6 @@ class RestaurantForm extends Component {
             fields: {}
         }
 
-        debugger
-
         let displayName = {
             label: I18n.t('editRestaurant.displayName'),
             editable: !this.props.form.isFetching,
