@@ -95,6 +95,7 @@ class RLRestaurantListViewHeaderView extends Component {
 
                 <View style={{flexDirection: 'row'}}>
                     <F8PhotoHorizonSectionView
+                        key={"restaurant-list-view-photos-horizon"}
                         forItem={this.props.forRestaurant}
                         sectionType={SECTION_PHOTOS_BROWSER_FOR_RESTAURANT}
                         {...this.props}/>

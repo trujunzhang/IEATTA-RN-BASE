@@ -240,7 +240,7 @@ class PureListView extends React.Component {
 
         const headerItems = [];
         switch (parallaxLeftItemType) {
-            case PARALLAX_HEADER_LEFT_ITEM_NONE:
+            case PARALLAX_HEADER_LEFT_ITEM_BACK:
                 headerItems.push(
                     <Left style={{flex: 3}}
                           key={"fixed_header_left_item"}>
