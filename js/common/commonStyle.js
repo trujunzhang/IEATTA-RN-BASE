@@ -15,6 +15,9 @@ const F8Colors = require('F8Colors')
  * ## Styles
  */
 export default StyleSheet.create({
+    headerLeftRightSection: {
+        flex: 3
+    },
     listViewHeaderContainer: {
         flex: 1,
         borderTopWidth: 1,

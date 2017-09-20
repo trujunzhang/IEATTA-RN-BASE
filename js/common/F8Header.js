@@ -40,8 +40,10 @@ import {
     ActivityIndicator
 } from 'react-native'
 
-const {goBackPage, onCellItemPress} = require('../tabs/filter/navigatorApp')
+const {goBackPage} = require('../tabs/filter/navigatorApp')
 import {Container, Header, Content, Left, Right, Button, Icon, Body, Title} from 'native-base'
+
+import commonStyles from './commonStyle'
 
 const F8Colors = require('F8Colors')
 
@@ -51,7 +53,7 @@ class F8Header extends Component {
         const {title, onLeftItemPress} = this.props;
         return (
             <Header style={{backgroundColor: F8Colors.primaryColor}}>
-                <Left>
+                <Left style={{flex:3}}>
                     <Button transparent
                             onPress={() => {
                                 if (!!onLeftItemPress) {

@@ -39,6 +39,7 @@ import {
     Animated,
 } from 'react-native';
 
+import commonStyles from './commonStyle'
 
 const F8Colors = require('F8Colors')
 import {Container, Header, Left, Right, Item, Input, Icon, Button, Text} from 'native-base'
@@ -97,7 +98,7 @@ class F8SearchBar extends Component {
         } = this.props;
 
         const leftArrow = (
-            <Left style={{flex: 3}}>
+            <Left style={{flex:3}}>
                 {
                     !hideBack &&
                     <Button transparent onPress={this.props.onBack}>
@@ -107,7 +108,7 @@ class F8SearchBar extends Component {
             </Left>
         )
         const rightArrow = (
-            <Right style={{flex: 3}}>
+            <Right style={{flex:3}}>
                 {
                     this.state.input !== '' &&
                     <Button transparent
