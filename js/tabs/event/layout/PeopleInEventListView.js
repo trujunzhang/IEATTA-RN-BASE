@@ -91,8 +91,7 @@ class PeopleInEventListView extends React.Component {
             sections: {
                 MENU_SECTIONS_PEOPLE_IN_EVENTS: orderedUsers,
                 MENU_SECTIONS_REVIEWS: newReviews
-            },
-            ready: false
+            }
         }
     }
 
@@ -149,9 +148,8 @@ class PeopleInEventListView extends React.Component {
                     <RLEventListViewHeaderView {...this.props}/>
                 </View>
             </StaticContainer>
-        );
+        )
     }
-
 
 }
 
