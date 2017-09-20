@@ -5,7 +5,6 @@ export function goBackPage(props) {
 
 export function openLeftSideMenu(props) {
     const {navigate} = props.navigation;
-    debugger
     navigate("DrawerOpen")
 }
 

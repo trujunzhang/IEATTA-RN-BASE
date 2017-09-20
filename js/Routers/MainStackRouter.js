@@ -6,7 +6,8 @@ const {
     MENU_TAKE_PHOTO_PAGE,
     // Login
     MENU_LOGIN_MAIN_SCREEN,
-    //
+    MENU_LOGIN_MYPROFILE_SCREEN,
+    // More
     MENU_ITEM_ADD_OR_EDIT_RESTAURANT,
     MENU_ITEM_SEARCH_RESTAURANTS,
     MENU_ITEM_MANAGE_FRIENDS,
@@ -97,6 +98,7 @@ export default (StackNav = StackNavigator({
 
     // Login Screens.
     MENU_LOGIN_MAIN_SCREEN: {screen: LoginModal},
+    MENU_LOGIN_MYPROFILE_SCREEN: {screen: LoginScreen},
 
     // Photos Browser
     MENU_PHOTO_BROWSER_PAGE: {screen: IEAPhotoBrowserView},

@@ -56,7 +56,6 @@ const {getLocalImagePath} = require('../parse/fsApi')
 
 const {goBackPage, openLeftSideMenu} = require('../tabs/filter/navigatorApp')
 
-
 import {Container, Header, Left, Right, Item, Input, Icon, Button, Content, List, ListItem, Body} from 'native-base'
 
 const PARALLAX_HEADER_HEIGHT = 300;

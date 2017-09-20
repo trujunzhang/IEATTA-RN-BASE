@@ -50,12 +50,14 @@ const {
     PARALLAX_BACKGROUND_STATIC_IMAGE,
     PARALLAX_HEADER_LEFT_ITEM_NONE,
     PARALLAX_HEADER_LEFT_ITEM_DRAWER,
+    MENU_LOGIN_MYPROFILE_SCREEN,
 } = require('../../lib/constants').default
 
 const {
     logOutWithPrompt,
 } = require('../../actions');
 
+const {onCellItemPress} = require('../filter/navigatorApp')
 
 // TODO: Rename to MyF8View
 class MyScheduleView extends React.Component {
@@ -106,6 +108,7 @@ class MyScheduleView extends React.Component {
 
 
     render() {
+        const {props} = this;
         const {currentUser} = this.state;
         const {isLoggedIn} = currentUser;
 
@@ -121,6 +124,9 @@ class MyScheduleView extends React.Component {
             rightItem = {
                 title: 'Log In',
                 onPress: () => {
+                    onCellItemPress(props,
+                        MENU_LOGIN_MYPROFILE_SCREEN,
+                    )
                     // this.props.navigator.push({
                     //     navigatorType: LOGIN_FORM_TYPE_MAIN
                     // })
@@ -129,6 +135,7 @@ class MyScheduleView extends React.Component {
         }
         return (
             <PureListView
+                navigation={this.props.navigation}
                 parallaxLeftItemType={PARALLAX_HEADER_LEFT_ITEM_DRAWER}
                 rightItem={rightItem}
                 customStickyTitle="My Account"

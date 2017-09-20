@@ -18,6 +18,7 @@ export default keyMirror({
 
     // Login Menus
     MENU_LOGIN_MAIN_SCREEN: null,
+    MENU_LOGIN_MYPROFILE_SCREEN: null,
 
     // Home menu items
     MENU_SECTIONS_MORE: null,
