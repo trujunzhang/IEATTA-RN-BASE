@@ -32,7 +32,7 @@ export default class AsyncParse {
 
         // Step2: pull the new recorders than the local updatedAt to the local.
         // Maybe new recorders contain some objects that pushed minutes ago.
-        await pullFromServer(RECORDS_COUNT_PULL, this.lastRecordUpdatedData)
+        // await pullFromServer(RECORDS_COUNT_PULL, this.lastRecordUpdatedData)
 
     }
 }
