@@ -160,10 +160,10 @@ class RestaurantCell extends Component {
         const {props} = this;
         const {restaurant} = this.props;
 
-        // onCellItemPress(props,
-        //     MENU_DETAILED_RESTAURANT_PAGE,
-        //     {restaurant}
-        // )
+        onCellItemPress(props,
+            MENU_DETAILED_RESTAURANT_PAGE,
+            {restaurant}
+        )
 
         if (__DEV__ && restaurant.objectId === 'OnNGSfwoou') {
             // onCellItemPress(this.props,
@@ -183,13 +183,13 @@ class RestaurantCell extends Component {
                 "restaurantName": "LISA"
             }
 
-            onCellItemPress(props,
-                MENU_DETAILED_EVENT_PAGE,
-                {
-                    event: event,
-                    forRestaurant: restaurant
-                }
-            )
+            // onCellItemPress(props,
+            //     MENU_DETAILED_EVENT_PAGE,
+            //     {
+            //         event: event,
+            //         forRestaurant: restaurant
+            //     }
+            // )
 
             const user = {
                 "objectId": "aGkde8iuL6",
@@ -237,7 +237,7 @@ class RestaurantCell extends Component {
 
     componentDidMount() {
         if (__DEV__) {
-            this.onPress()
+            // this.onPress()
         }
     }
 
