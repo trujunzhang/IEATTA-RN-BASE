@@ -58,41 +58,30 @@ const {
     PARSE_RECIPES,
 } = require('../../../lib/constants').default
 
+const {
+    RestaurantService, EventService, PeopleInEventService,
+    RecipeService,
+    PhotoService,
+    UserService,
+    ReviewService
+} = require('../../../parse/realmApi').default
+
 class DetailedRecipeListView extends React.Component {
 
     constructor(props: Props) {
         super(props);
 
+        const {recipe} = props;
+        const newReviews = ReviewService.findByTerm(
+            {objectSchemaName: PARSE_RECIPES, forObjectUniqueId: recipe.uniqueId}
+        )
         this.state = {
             sections: {
-                MENU_SECTIONS_REVIEWS: []
-            },
-            ready: false
+                MENU_SECTIONS_REVIEWS: newReviews
+            }
         }
     }
 
-
-    componentWillReceiveProps(nextProps: Props) {
-        const {sections} = this.state;
-
-        const {recipe} = nextProps;
-
-        const newReviews = filterReviews(nextProps, PARSE_RECIPES, recipe.objectId, sections.MENU_SECTIONS_REVIEWS);
-        if (!!newReviews) {
-            this.setState({
-                sections: Object.assign({}, sections, {
-                    MENU_SECTIONS_REVIEWS: newReviews
-                })
-            })
-        }
-    }
-
-    componentDidMount() {
-        this.props.dispatch(queryReviews({
-            objectSchemaName: PARSE_RECIPES,
-            forObjectUniqueId: this.props.recipe.uniqueId
-        }))
-    }
 
     render() {
         return (
@@ -118,7 +107,6 @@ class DetailedRecipeListView extends React.Component {
             </StaticContainer>
         )
     }
-
 
 }
 
