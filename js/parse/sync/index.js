@@ -28,7 +28,7 @@ export default class AsyncParse {
 
         // How to async all data between the local and the parse server.
         // Step1: push the local to the parse server firstly.
-        await pushToServer(RECORDS_COUNT_PUSH)
+        // await pushToServer(RECORDS_COUNT_PUSH)
 
         // Step2: pull the new recorders than the local updatedAt to the local.
         // Maybe new recorders contain some objects that pushed minutes ago.

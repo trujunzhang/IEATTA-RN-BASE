@@ -79,7 +79,6 @@ class RLEventParallaxHeader extends Component {
         return (
             <View style={commonStyles.parallaxForegroundContentContainer}>
                 <View style={styles.eventParallaxSection}>
-                    {this.renderLeft()}
                     {this.renderRight()}
                 </View>
             </View>
