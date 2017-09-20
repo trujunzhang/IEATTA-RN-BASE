@@ -53,7 +53,7 @@ class F8Header extends Component {
         const {title, onLeftItemPress} = this.props;
         return (
             <Header style={{backgroundColor: F8Colors.primaryColor}}>
-                <Left style={{flex:3}}>
+                <Left style={{flex: 3}}>
                     <Button transparent
                             onPress={() => {
                                 if (!!onLeftItemPress) {
@@ -68,7 +68,7 @@ class F8Header extends Component {
                 <Body>
                 <Title style={{color: '#fff'}}>{title}</Title>
                 </Body>
-                <Right/>
+                <Right style={{flex: 3}}/>
             </Header>
         )
     }
