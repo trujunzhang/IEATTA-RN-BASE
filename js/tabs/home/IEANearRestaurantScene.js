@@ -81,16 +81,16 @@ class IEANearRestaurantScene extends Component {
 
     componentWillReceiveProps(nextProps: Props) {
         const {sections} = this.state;
-        // const nextSections = Object.assign({}, sections, {
-        //     MENU_SECTIONS_NEAR_RESTAURANTS: nextProps.appModel.restaurants
-        // })
+        const nextSections = Object.assign({}, sections, {
+            MENU_SECTIONS_NEAR_RESTAURANTS: nextProps.appModel.restaurants
+        })
 
         const error = nextProps.location.error;
 
         console.log('location error', error)
 
         this.setState({
-        //     sections: nextSections,
+            sections: nextSections,
             ready: true,
             error
         })
@@ -105,9 +105,7 @@ class IEANearRestaurantScene extends Component {
     }
 
     renderRow = (item: Object,
-                 sectionID: number | string,
-                 rowID: number | string) => {
-
+                 sectionID: number | string) => {
         if (sectionID === MENU_SECTIONS_MORE) {
             return (<RestaurantMoreCell key={item.tag} item={item}/>)
         }
