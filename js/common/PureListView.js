@@ -259,7 +259,8 @@ class PureListView extends React.Component {
                 break;
             case PARALLAX_HEADER_LEFT_ITEM_DRAWER:
                 headerItems.push(
-                    <Left style={{flex: 1}}>
+                    <Left style={{flex: 3}}
+                          key={"fixed_header_left_item"}>
                         <Button transparent
                                 style={{
                                     marginTop: (Platform.OS === 'ios' ? 14 : 0),
