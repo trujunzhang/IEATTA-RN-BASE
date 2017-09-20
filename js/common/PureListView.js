@@ -138,6 +138,7 @@ class PureListView extends React.Component {
                 pageSize={LIST_VIEW_PAGE_SIZE}
                 stickySectionHeadersEnabled={false}
                 enableEmptySections={true}
+                removeClippedSubViews={false}
 
                 {...parallaxProperty}
             >

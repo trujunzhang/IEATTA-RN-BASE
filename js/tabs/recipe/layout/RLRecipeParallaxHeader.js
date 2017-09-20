@@ -21,7 +21,6 @@ import commonStyles from '../../../common/commonStyle'
 
 const styles = StyleSheet.create({
     recipeNameText: {
-        width: width,
         height: 36,
         letterSpacing: -1,
         fontSize: 24,
@@ -54,24 +53,25 @@ class RLRecipeParallaxHeader extends Component {
         )
     }
 
-    renderBottom() {
-        const {forRestaurant} = this.props
-        return (
-            <Text style={{fontSize: 12, color: "white"}}>
-                {forRestaurant.address}
-            </Text>
-        )
-    }
 
     render() {
         const {recipe, forUser, forEvent, forRestaurant} = this.props;
 
         return (
             <View style={commonStyles.parallaxForegroundContentContainer}>
-                <Text numberOfLines={1} style={styles.recipeNameText}>{recipe.displayName}</Text>
-                <CaptionTextView caption="$" title={recipe.price} themeColor="white"/>
-                <CaptionTextView caption="User: " title={forUser.displayName} themeColor="white"/>
-                {this.renderBottom()}
+                <View style={{flexDirection: 'row'}}>
+                    <View style={{flexDirection: 'column'}}>
+
+                        <Text numberOfLines={1} style={styles.recipeNameText}>{recipe.displayName}</Text>
+                        <CaptionTextView caption="$" title={recipe.price} themeColor="white"/>
+                        <CaptionTextView caption="User: " title={forUser.displayName} themeColor="white"/>
+
+                        <Text style={{fontSize: 12, color: "white"}}>
+                            {forRestaurant.address}
+                        </Text>
+
+                    </View>
+                </View>
             </View>
         )
     }

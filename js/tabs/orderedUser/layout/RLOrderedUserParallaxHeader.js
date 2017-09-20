@@ -18,6 +18,8 @@ const F8PlaceHolderImage = require('F8PlaceHolderImage')
 const CaptionTextView = require('CaptionTextView')
 const {getLocalImagePath} = require('../../../parse/fsApi')
 
+import commonStyles from '../../../common/commonStyle'
+
 class RLOrderedUserParallaxHeader extends Component {
 
     renderLeft() {
@@ -59,14 +61,8 @@ class RLOrderedUserParallaxHeader extends Component {
 
     render() {
         return (
-            <View style={{
-                flex: 1,
-                width: width,
-                paddingHorizontal: 10,
-                justifyContent: 'flex-end',
-                paddingBottom: 20
-            }}>
-                <View style={{height: 140, flexDirection: 'row'}}>
+            <View style={commonStyles.parallaxForegroundContentContainer}>
+                <View style={{flexDirection: 'row'}}>
                     {this.renderLeft()}
                     {this.renderRight()}
                 </View>
