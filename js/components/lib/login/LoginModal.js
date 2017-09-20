@@ -56,12 +56,18 @@ const {
 } = require('../../../lib/constants').default
 
 
+import commonStyles from '../../../common/commonStyle'
+
 const {goBackPage} = require('../../../tabs/filter/navigatorApp')
 
 import {Container, Content} from 'native-base'
 import styles from './LoginStyles'
 
 class LoginModal extends React.Component {
+    static navigationOptions = ({navigation}) => ({
+        header: null,
+    });
+
     props: {
         navigator: Navigator;
         onLogin: () => void;
@@ -86,7 +92,7 @@ class LoginModal extends React.Component {
                 return this.renderNormal()
             case LOGIN_FORM_TYPE_LOGIN:
                 return (
-                    <Container>
+                    <Container style={{flex: 1, backgroundColor: 'white'}}>
                         <F8Header title={'Login'} onLeftItemPress={() => {
                             this.toggleForm(LOGIN_FORM_TYPE_MAIN)
                         }}/>
@@ -99,7 +105,7 @@ class LoginModal extends React.Component {
                 )
             case LOGIN_FORM_TYPE_REGISTER:
                 return (
-                    <Container>
+                    <Container style={{flex: 1, backgroundColor: 'white'}}>
                         <F8Header title={'Register'} onLeftItemPress={() => {
                             this.toggleForm(LOGIN_FORM_TYPE_MAIN)
                         }}/>
@@ -164,17 +170,17 @@ class LoginModal extends React.Component {
 
     renderNormal() {
         return (
-            <Image
-                style={styles.screenContainer}
-                source={require('./img/login-background.png')}>
-                <Text style={styles.modelH1}>
-                    Log in
-                </Text>
-                <Text style={styles.modelH2}>
-                    to trace your eating restaurants.
-                </Text>
-                {this.renderMainUI()}
-            </Image>
+            <Container style={{flex: 1, backgroundColor: 'white'}}>
+                <Content>
+                    <View style={commonStyles.rowDirection}>
+                        <Image style={{flex: 1}} resizeMode="cover" source={require('./img/login-background.png')}>
+                            <Text style={styles.modelH1}>{"Log in"}</Text>
+                            <Text style={styles.modelH2}>{"to trace your eating restaurants."}</Text>
+                            {this.renderMainUI()}
+                        </Image>
+                    </View>
+                </Content>
+            </Container>
         )
     }
 
@@ -183,10 +189,6 @@ class LoginModal extends React.Component {
         this.props.onLogin();
     }
 }
-
-LoginModal.navigatorStyle = {
-    navBarHidden: true,
-};
 
 import {connect} from 'react-redux'
 

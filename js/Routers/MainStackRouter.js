@@ -97,8 +97,7 @@ export default (StackNav = StackNavigator({
     MENU_ITEM_READ_REVIEWS: {screen: IEAReadReviews},
 
     // Login Screens.
-    MENU_LOGIN_MAIN_SCREEN: {screen: LoginModal},
-    MENU_LOGIN_MYPROFILE_SCREEN: {screen: LoginScreen},
+    MENU_LOGIN_MYPROFILE_SCREEN: {screen: LoginModal},
 
     // Photos Browser
     MENU_PHOTO_BROWSER_PAGE: {screen: IEAPhotoBrowserView},
