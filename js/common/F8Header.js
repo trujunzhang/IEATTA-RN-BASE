@@ -65,7 +65,7 @@ class F8Header extends Component {
                         <Icon name='arrow-back'/>
                     </Button>
                 </Left>
-                <Body>
+                <Body style={{flex: 12}}>
                 <Title style={{color: '#fff'}}>{title}</Title>
                 </Body>
                 <Right style={{flex: 3}}/>
