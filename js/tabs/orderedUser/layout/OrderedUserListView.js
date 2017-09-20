@@ -74,8 +74,8 @@ class OrderedUserListView extends React.Component {
     constructor(props: Props) {
         super(props);
 
-        const {forEvent, forRestaurant, orderedUser} = this.props;
-        const newOrderedRecipes = RecipeService.findTerm(forRestaurant.objectUniqueId, forEvent.objectUniqueId, orderedUser.objectId)
+        const {forEvent, forRestaurant, orderedUser} = props;
+        const newOrderedRecipes = RecipeService.findTerm(forRestaurant.uniqueId, forEvent.uniqueId, orderedUser.objectId)
         this.state = {
             sections: {
                 MENU_SECTIONS_ORDERED_RECIPES: newOrderedRecipes
