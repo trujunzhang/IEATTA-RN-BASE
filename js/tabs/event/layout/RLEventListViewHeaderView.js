@@ -55,23 +55,20 @@ const {onCellItemPress} = require('../../filter/navigatorApp')
  */
 const styles = StyleSheet.create({
     eventHeaderContains: {
-        flex: 1,
-        paddingBottom: 5,
-        justifyContent: 'center',
+        // flex: 1,
+        // paddingBottom: 5,
+        // justifyContent: 'center',
         // backgroundColor: F8Colors.controllerViewColor
-        backgroundColor: 'red'
+        // backgroundColor: 'red'
     },
     eventHeaderSection: {
         flex: 1,
-        marginHorizontal: 30,
+        // marginHorizontal: 30,
         backgroundColor: 'white',
         borderRadius: 4,
         borderWidth: 1,
         borderColor: "#e6e6e6",
-        flexDirection: 'column'
-    },
-    sectionMarginButton: {
-        marginBottom: 10,
+        flexDirection: 'column',
     },
     parallaxSection: {
         height: 60,
@@ -110,6 +107,53 @@ const styles = StyleSheet.create({
 });
 
 class RLEventListViewHeaderView extends Component {
+    renderEventInfo() {
+        const {address} = this.props.forRestaurant;
+
+        return (
+            <View style={[styles.eventHeaderSection]}>
+                {!!address && address !== '' ? this.renderAddress() : null}
+                {this.renderEventDate()}
+                <View style={[styles.whatRow, styles.rowPadding]}>
+                    <Text style={styles.whatCaption}>{'What/Why:'}</Text>
+                    <Text style={styles.whatTitle}>{this.props.event.want || ''}</Text>
+                </View>
+            </View>
+        )
+    }
+
+    render() {
+        /*<View style={[commonStyles.absoluteFullSection, styles.parallaxSection]}/>*/
+
+        return (
+            <View style={[commonStyles.rowDirection]}>
+                <View style={[commonStyles.columnDirection]}>
+
+                    {this.renderEventInfo()}
+
+                    <F8RatingReview
+                        showTopRatingPanel={true}
+                        onSVGButtonPress={this.onSVGButtonPress.bind(this)}
+                        forItem={this.props.event}
+                        objectSchemaName={PARSE_EVENTS}
+                        buttonsType={[
+                            HEADER_SVG_BUTTON_ADD_USER_FOR_EVENT,
+                            HEADER_SVG_BUTTON_EDIT,
+                            HEADER_SVG_BUTTON_WRITE_REVIEW
+                        ]}
+                        {...this.props}/>
+
+                    <View style={{flexDirection: 'row'}}>
+                        <F8PhotoHorizonSectionView
+                            forItem={this.props.forRestaurant}
+                            sectionType={SECTION_PHOTOS_BROWSER_FOR_EVENT}
+                            {...this.props}/>
+                    </View>
+                </View>
+            </View>
+        )
+    }
+
     renderAddress() {
         const rows = this.props.forRestaurant.address.split(',')
 
@@ -167,49 +211,7 @@ class RLEventListViewHeaderView extends Component {
         }
     }
 
-    renderEventInfo() {
 
-        const {address} = this.props.forRestaurant;
-        return (
-            <View style={[styles.eventHeaderSection, styles.sectionMarginButton, getScreenWidth(30)]}>
-                {!!address && address !== '' ? this.renderAddress() : null}
-                {this.renderEventDate()}
-                <View style={[styles.whatRow, styles.rowPadding]}>
-                    <Text style={styles.whatCaption}>{'What/Why:'}</Text>
-                    <Text style={styles.whatTitle}>{this.props.event.want || ''}</Text>
-                </View>
-            </View>
-        )
-    }
-
-    render() {
-        return (
-            <View style={[styles.eventHeaderContains, commonStyles.columnDirection]}>
-                {/*<View style={[commonStyles.absoluteFullSection, styles.parallaxSection]}/>*/}
-
-                {this.renderEventInfo()}
-
-                <F8RatingReview
-                    showTopRatingPanel={true}
-                    onSVGButtonPress={this.onSVGButtonPress.bind(this)}
-                    forItem={this.props.event}
-                    objectSchemaName={PARSE_EVENTS}
-                    buttonsType={[
-                        HEADER_SVG_BUTTON_ADD_USER_FOR_EVENT,
-                        HEADER_SVG_BUTTON_EDIT,
-                        HEADER_SVG_BUTTON_WRITE_REVIEW
-                    ]}
-                    {...this.props}/>
-
-                <View style={{flexDirection: 'row'}}>
-                    <F8PhotoHorizonSectionView
-                        forItem={this.props.forRestaurant}
-                        sectionType={SECTION_PHOTOS_BROWSER_FOR_EVENT}
-                        {...this.props}/>
-                </View>
-            </View>
-        )
-    }
 }
 
 
