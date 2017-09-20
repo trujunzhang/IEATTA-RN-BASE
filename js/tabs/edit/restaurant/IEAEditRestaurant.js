@@ -161,6 +161,9 @@ class IEAEditRestaurant extends Component {
 
 
     render() {
+        const {params} = this.props.navigation.state;
+        const model = params.model;
+
         const editModelType = this.props.editModel.form.editModelType;
         const formTitle = (editModelType === MODEL_FORM_TYPE_NEW) ? "Add a Restaurant" : "Edit the Restaurant";
 
@@ -191,7 +194,7 @@ class IEAEditRestaurant extends Component {
                         editModelType === MODEL_FORM_TYPE_EDIT &&
                         <View style={{flexDirection: 'row'}}>
                             <F8PhotoHorizonSectionView
-                                forItem={this.props.model}
+                                forItem={model}
                                 sectionType={SECTION_PHOTOS_BROWSER_FOR_RESTAURANT}
                                 {...this.props}/>
                         </View>

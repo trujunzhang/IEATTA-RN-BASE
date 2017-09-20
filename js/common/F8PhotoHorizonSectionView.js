@@ -79,7 +79,10 @@ class F8PhotoHorizonSectionView extends React.Component {
         if (!!newPhotos && newPhotos.length !== 0) {
             if (oldPhotos.length !== newPhotos.length) { // Only different photos size, update the ListView.
                 console.log("component did receive in the photos horizon.", sectionType)
-                this.setState({photos: newPhotos})
+                this.setState({
+                    photos: newPhotos,
+                    ready: true
+                })
             }
         }
     }
@@ -96,7 +99,7 @@ class F8PhotoHorizonSectionView extends React.Component {
     renderSeeAllPhotosButton() {
         const {photos, ready} = this.state,
             photoLength = photos.length,
-            isEmpty = (ready && photoLength === 0);
+            isEmpty = ( photoLength === 0);
         return (
             <F8Button
                 type="photos"
