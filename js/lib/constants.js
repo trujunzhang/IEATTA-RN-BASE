@@ -60,6 +60,7 @@ export default keyMirror({
     // Header Left Item Type
     PARALLAX_HEADER_LEFT_ITEM_NONE: null,
     PARALLAX_HEADER_LEFT_ITEM_BACK: null,
+    PARALLAX_HEADER_LEFT_ITEM_DRAWER: null,
 
     // Parallax View Type
     PARALLAX_BACKGROUND_STATIC_IMAGE: null,

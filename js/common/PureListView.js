@@ -54,7 +54,7 @@ import commonStyles from './commonStyle'
 const F8PlaceHolderImage = require('F8PlaceHolderImage')
 const {getLocalImagePath} = require('../parse/fsApi')
 
-const {goBackPage} = require('../tabs/filter/navigatorApp')
+const {goBackPage, openLeftSideMenu} = require('../tabs/filter/navigatorApp')
 
 
 import {Container, Header, Left, Right, Item, Input, Icon, Button, Content, List, ListItem, Body} from 'native-base'
@@ -71,6 +71,7 @@ const {
     PARALLAX_BACKGROUND_DYNAMIC_IMAGE,
     PARALLAX_HEADER_LEFT_ITEM_NONE,
     PARALLAX_HEADER_LEFT_ITEM_BACK,
+    PARALLAX_HEADER_LEFT_ITEM_DRAWER,
 
     // Pure List Row Type.
     NATIVE_BASE_LIST_SECTION_HEADER,
@@ -239,25 +240,42 @@ class PureListView extends React.Component {
         const {rightItem, parallaxLeftItemType} = props;
 
         const headerItems = [];
-        if (parallaxLeftItemType !== PARALLAX_HEADER_LEFT_ITEM_NONE) {
-            headerItems.push(
-                <Left style={{flex:3}}
-                      key={"fixed_header_left_item"}>
-                    <Button transparent
-                            style={{
-                                marginTop: (Platform.OS === 'ios' ? 14 : 0),
-                            }}
-                            onPress={() => {
-                                goBackPage(props)
-                            }}>
-                        <Icon active name="arrow-back" style={{color: '#fff'}}/>
-                    </Button>
-                </Left>
-            )
+        switch (parallaxLeftItemType) {
+            case PARALLAX_HEADER_LEFT_ITEM_NONE:
+                headerItems.push(
+                    <Left style={{flex: 3}}
+                          key={"fixed_header_left_item"}>
+                        <Button transparent
+                                style={{
+                                    marginTop: (Platform.OS === 'ios' ? 14 : 0),
+                                }}
+                                onPress={() => {
+                                    goBackPage(props)
+                                }}>
+                            <Icon active name="arrow-back" style={{color: '#fff'}}/>
+                        </Button>
+                    </Left>
+                )
+                break;
+            case PARALLAX_HEADER_LEFT_ITEM_DRAWER:
+                headerItems.push(
+                    <Left style={{flex: 1}}>
+                        <Button transparent
+                                style={{
+                                    marginTop: (Platform.OS === 'ios' ? 14 : 0),
+                                }}
+                                onPress={() => {
+                                    openLeftSideMenu(props)
+                                }}>
+                            <Icon active name="menu" style={{color: '#fff'}}/>
+                        </Button>
+                    </Left>
+                )
+                break;
         }
         if (!!rightItem) {
             headerItems.push(
-                <Right style={{flex:3}}
+                <Right style={{flex: 3}}
                        key={"fixed_header_right_item"}>
                     <Button transparent
                             style={{marginTop: (Platform.OS === 'ios' ? 14 : 0),}}

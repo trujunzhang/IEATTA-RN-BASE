@@ -49,6 +49,7 @@ const {
     LOGIN_FORM_TYPE_MAIN,
     PARALLAX_BACKGROUND_STATIC_IMAGE,
     PARALLAX_HEADER_LEFT_ITEM_NONE,
+    PARALLAX_HEADER_LEFT_ITEM_DRAWER,
 } = require('../../lib/constants').default
 
 const {
@@ -128,7 +129,7 @@ class MyScheduleView extends React.Component {
         }
         return (
             <PureListView
-                parallaxLeftItemType={PARALLAX_HEADER_LEFT_ITEM_NONE}
+                parallaxLeftItemType={PARALLAX_HEADER_LEFT_ITEM_DRAWER}
                 rightItem={rightItem}
                 customStickyTitle="My Account"
                 parallaxViewType={PARALLAX_BACKGROUND_STATIC_IMAGE}
