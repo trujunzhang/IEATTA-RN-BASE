@@ -135,8 +135,9 @@ Records.getRealmData = function (objectSchemaName, recordParseModel) {
                 restaurant: getFirstRealmLocalObjectByUniqueId(PARSE_RESTAURANTS, recordParseModel),
                 event: getFirstRealmLocalObjectByUniqueId(PARSE_EVENTS, recordParseModel),
                 user: getFirstRealmLocalObjectByUniqueId(PARSE_USERS, recordParseModel),
-                restaurantId: recordParseModel.restaurant.id,
-                eventId: recordParseModel.event.id,
+
+                restaurantUniqueId: recordParseModel.restaurant.uniqueId,
+                eventUniqueId: recordParseModel.event.uniqueId,
                 userId: recordParseModel.user.id
             }
 
@@ -155,8 +156,8 @@ Records.getRealmData = function (objectSchemaName, recordParseModel) {
                 event: getFirstRealmLocalObjectByUniqueId(PARSE_EVENTS, recordParseModel),
                 user: getFirstRealmLocalObjectByUniqueId(PARSE_USERS, recordParseModel),
 
-                restaurantId: recordParseModel.restaurant.id,
-                eventId: recordParseModel.event.id,
+                restaurantUniqueId: recordParseModel.restaurant.uniqueId,
+                eventUniqueId: recordParseModel.event.uniqueId,
                 userId: recordParseModel.user.id
             }
 

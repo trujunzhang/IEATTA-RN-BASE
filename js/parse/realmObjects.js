@@ -132,8 +132,8 @@ PeopleInEventSchema.schema = {
         restaurant: {type: PARSE_RESTAURANTS, optional: true},
         event: {type: PARSE_EVENTS, optional: true},
         user: {type: PARSE_USERS},
-        restaurantId: 'string',
-        eventId: 'string',
+        restaurantUniqueId: 'string',
+        eventUniqueId: 'string',
         userId: 'string',
     }
 }
@@ -154,8 +154,8 @@ RecipeSchema.schema = {
         restaurant: {type: PARSE_RESTAURANTS, optional: true},
         event: {type: PARSE_EVENTS, optional: true},
         user: {type: PARSE_USERS},
-        restaurantId: 'string',
-        eventId: 'string',
+        restaurantUniqueId: 'string',
+        eventUniqueId: 'string',
         userId: 'string',
         // Photos
         listPhotoId: 'string',

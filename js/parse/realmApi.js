@@ -163,40 +163,18 @@ const RestaurantService = {
 }
 
 const EventService = {
-    findAll: function (sortBy) {
-        return Repository.objects(PARSE_EVENTS)
-    },
-
-    save: function (item) {
-        if (Repository.objects(PARSE_EVENTS).filtered('objectId == $0', item.id).length) return;
-        Repository.write(() => {
-            Repository.create(PARSE_EVENTS, Records.getRealmData(PARSE_EVENTS, item))
-        })
+    findEventsForRestaurant: function (restaurantUniqueId) {
+        return Repository.objects(PARSE_EVENTS).filtered('restaurantUniqueId = $0', restaurantUniqueId);
     },
 }
 
 
 const PeopleInEventService = {
-    findTerm: function (restaurantId: string, eventId: string) {
-        let query = RealmQuery.create().equalTo('restaurantId', restaurantId).equalTo('eventId', eventId);
+    findTerm: function (restaurantUniqueId: string, eventUniqueId: string) {
+        let query = RealmQuery.create().equalTo('restaurantUniqueId', restaurantUniqueId).equalTo('eventUniqueId', eventUniqueId);
 
         let objects = Repository.objects(PARSE_PEOPLE_IN_EVENTS).filtered(query.toString())
         return objects;
-    },
-
-    save: function (item) {
-        if (Repository.objects(PARSE_PEOPLE_IN_EVENTS).filtered('objectId == $0', item.id).length) return;
-        Repository.write(() => {
-            Repository.create(PARSE_PEOPLE_IN_EVENTS, Records.getRealmData(PARSE_PEOPLE_IN_EVENTS, item))
-        })
-    },
-
-    update: function (item, callback) {
-        if (!callback) return;
-        Repository.write(() => {
-            callback();
-            item.updatedAt = new Date();
-        })
     }
 }
 

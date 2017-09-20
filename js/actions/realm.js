@@ -81,7 +81,7 @@ async function _queryPeopleForEvent(restaurantId: string, eventId: string): Prom
 
 async function _queryEventsForRestaurant(restaurant): Promise<Array<Action>> {
     const uniqueId = restaurant.uniqueId;
-    const results = EventService.findAll().filtered('restaurantUniqueId = $0', uniqueId);
+    const results = EventService.findEventsForRestaurant(uniqueId);
 
     const action = {
         type: QUERY_EVENTS_FOR_RESTAURANT,

@@ -707,6 +707,25 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		5E60C70D1F72333D00F515BB /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				89E961FBDE9249689BD94E54 /* libRNBackgroundTimer.a */,
+				4529D8EF67B046D59ED48176 /* libRCTCamera.a */,
+				AA7E9A07BD254AC696C63AAF /* libReact.a */,
+				2E526A14DA64463A89EB497D /* libyoga.a */,
+				86AA4BB2B8CE4CC9B0CAA212 /* libcxxreact.a */,
+				EC75CD37677F4AD9885443D4 /* libjschelpers.a */,
+				4D8173BF2050497AA7E48A9E /* libBVLinearGradient.a */,
+				C8B26323B3B14936B30B9695 /* libReactNativeNavigation.a */,
+				B60EB5BA762E4CF3BE7C15BE /* libRNSVG.a */,
+				666538E64BEB44B4AD4D92D4 /* libRealmReact.a */,
+				3BD84B6818EF415E80412A96 /* libRNFS.a */,
+				E0535F0F369749268F94A447 /* libRNVectorIcons.a */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		5E91572E1DD0AC6500FF2AA8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -780,6 +799,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				4DE1CD4F718A48CA94085BF9 /* Frameworks */,
 				F9D4E3EAE75C4FE59B9CA867 /* Resources */,
+				5E60C70D1F72333D00F515BB /* Recovered References */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";

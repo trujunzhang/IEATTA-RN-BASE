@@ -62,49 +62,30 @@ const {
     PARSE_RESTAURANTS
 } = require('../../../lib/constants').default
 
+const {
+    RestaurantService, EventService, PeopleInEventService,
+    RecipeService,
+    PhotoService,
+    UserService,
+    ReviewService
+} = require('../../../parse/realmApi').default
 
 class DetailedRestaurantListView extends React.Component {
 
     constructor(props: Props) {
         super(props);
 
+        const {uniqueId} = props.forRestaurant;
+        const newEvents = EventService.findEventsForRestaurant(uniqueId);
+        const newReviews = ReviewService.findByTerm(
+            {objectSchemaName: PARSE_RESTAURANTS, forObjectUniqueId: uniqueId}
+        )
         this.state = {
             sections: {
-                MENU_SECTIONS_EVENTS: [],
-                MENU_SECTIONS_REVIEWS: []
-            },
-            ready: false
+                MENU_SECTIONS_EVENTS: newEvents,
+                MENU_SECTIONS_REVIEWS: newReviews
+            }
         }
-    }
-
-    componentWillReceiveProps(nextProps: Props) {
-        const {sections} = this.state;
-
-        const {objectId, uniqueId} = nextProps.forRestaurant;
-        const newEvents = filterEvents(nextProps, uniqueId, null);
-        if (!!newEvents) {
-            this.setState({
-                sections: Object.assign({}, sections, {
-                    MENU_SECTIONS_EVENTS: newEvents
-                })
-            })
-        }
-
-        const newReviews = filterReviews(nextProps, PARSE_RESTAURANTS, objectId);
-        if (!!newReviews) {
-            this.setState({
-                sections: Object.assign({}, sections, {
-                    MENU_SECTIONS_REVIEWS: newReviews
-                })
-            })
-        }
-    }
-
-    componentDidMount() {
-        const {forRestaurant} = this.props;
-        const {objectId, uniqueId} = forRestaurant;
-        this.props.dispatch(queryEventsForRestaurant(forRestaurant))
-        this.props.dispatch(queryReviews({objectSchemaName: PARSE_RESTAURANTS, forObjectUniqueId: uniqueId}))
     }
 
     render() {

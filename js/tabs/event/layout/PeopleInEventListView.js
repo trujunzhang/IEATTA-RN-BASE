@@ -64,47 +64,36 @@ const {
 import {Content, List, ListItem, Body} from 'native-base'
 import commonStyles from '../../../common/commonStyle'
 
+
+const _ = require('underscore')
+const {
+    RestaurantService, EventService, PeopleInEventService,
+    RecipeService,
+    PhotoService,
+    UserService,
+    ReviewService
+} = require('../../../parse/realmApi').default
+
 class PeopleInEventListView extends React.Component {
 
     constructor(props: Props) {
         super(props);
 
+        const {event, forRestaurant} = this.props;
+        const peopleInEvent = PeopleInEventService.findTerm(forRestaurant.uniqueId, event.uniqueId);
+        const ids = _.pluck(peopleInEvent, 'userId')
+        const orderedUsers = UserService.getUsersContainedIn(ids)
+
+        const newReviews = ReviewService.findByTerm(
+            {objectSchemaName: PARSE_EVENTS, forObjectUniqueId: event.uniqueId}
+        )
         this.state = {
             sections: {
-                MENU_SECTIONS_PEOPLE_IN_EVENTS: [],
-                MENU_SECTIONS_REVIEWS: []
+                MENU_SECTIONS_PEOPLE_IN_EVENTS: orderedUsers,
+                MENU_SECTIONS_REVIEWS: newReviews
             },
             ready: false
         }
-    }
-
-    componentWillReceiveProps(nextProps: Props) {
-        const {sections} = this.state;
-
-        const {event, forRestaurant} = nextProps;
-        const peopleInEvent = filterUserInEvent(nextProps, forRestaurant.objectId, event.objectId);
-        if (!!peopleInEvent) {
-            this.setState({
-                sections: Object.assign({}, sections, {
-                    MENU_SECTIONS_PEOPLE_IN_EVENTS: peopleInEvent
-                })
-            })
-        }
-
-        const newReviews = filterReviews(nextProps, PARSE_EVENTS, event.objectId);
-        if (!!newReviews) {
-            this.setState({
-                sections: Object.assign({}, sections, {
-                    MENU_SECTIONS_REVIEWS: newReviews
-                })
-            })
-        }
-    }
-
-    componentDidMount() {
-        const {event, forRestaurant} = this.props;
-        this.props.dispatch(queryPeopleForEvent(forRestaurant.objectId, event.objectId))
-        this.props.dispatch(queryReviews({objectSchemaName: PARSE_EVENTS, forObjectUniqueId: event.uniqueId}))
     }
 
     render() {
