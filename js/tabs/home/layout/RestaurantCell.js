@@ -159,10 +159,10 @@ class RestaurantCell extends Component {
         const {props} = this;
         const {restaurant} = this.props;
 
-        onCellItemPress(props,
-            MENU_DETAILED_RESTAURANT_PAGE,
-            {restaurant}
-        )
+        // onCellItemPress(props,
+        //     MENU_DETAILED_RESTAURANT_PAGE,
+        //     {restaurant}
+        // )
 
         if (__DEV__ && restaurant.objectId === 'OnNGSfwoou') {
             // onCellItemPress(this.props,
@@ -191,14 +191,14 @@ class RestaurantCell extends Component {
                 "listPhotoId": 'qwoE6PL0iP'
             }
 
-            // onCellItemPress(props,
-            //     MENU_DETAILED_ORDERED_USER_PAGE,
-            //     {
-            //         orderedUser: user,
-            //         forRestaurant: restaurant,
-            //         forEvent: event
-            //     }
-            // )
+            onCellItemPress(props,
+                MENU_DETAILED_ORDERED_USER_PAGE,
+                {
+                    orderedUser: user,
+                    forRestaurant: restaurant,
+                    forEvent: event
+                }
+            )
 
 
             const recipe = {
@@ -227,7 +227,7 @@ class RestaurantCell extends Component {
 
     componentDidMount() {
         if (__DEV__) {
-            // this.onPress()
+            this.onPress()
         }
     }
 

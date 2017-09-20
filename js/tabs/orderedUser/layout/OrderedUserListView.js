@@ -37,7 +37,6 @@ import {
     Dimensions
 } from 'react-native'
 
-
 const F8Colors = require('F8Colors')
 const PureListView = require('PureListView')
 const StaticContainer = require('F8StaticContainer')
@@ -99,7 +98,6 @@ class OrderedUserListView extends React.Component {
         return (
             <PureListView
                 data={this.state.sections}
-                renderTopHeader={this.renderTopHeaderView.bind(this)}
                 renderRow={this.renderRow.bind(this)}
                 {...this.props}
             />
