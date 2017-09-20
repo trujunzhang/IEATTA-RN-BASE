@@ -37,6 +37,7 @@ import {
     Dimensions
 } from 'react-native'
 
+const F8Header = require('F8Header')
 const F8Colors = require('F8Colors')
 const PureListView = require('PureListView')
 const StaticContainer = require('F8StaticContainer')
@@ -57,7 +58,7 @@ const {
     MENU_DETAILED_RECIPE_PAGE
 } = require('../../../lib/constants').default
 
-import {Content, List, ListItem, Body} from 'native-base'
+import {Container, Header, Content, List, ListItem, Body} from 'native-base'
 import commonStyles from '../../../common/commonStyle'
 
 class OrderedUserListView extends React.Component {
@@ -72,7 +73,6 @@ class OrderedUserListView extends React.Component {
             ready: false
         }
     }
-
 
     componentWillReceiveProps(nextProps: Props) {
         const {sections} = this.state;
@@ -95,12 +95,20 @@ class OrderedUserListView extends React.Component {
     }
 
     render() {
+        const {orderedUser, forRestaurant, forEvent} = this.props;
         return (
-            <PureListView
-                data={this.state.sections}
-                renderRow={this.renderRow.bind(this)}
-                {...this.props}
-            />
+            <Container>
+
+                <F8Header title={orderedUser.displayName} {...this.props}/>
+
+                <Content>
+                    <PureListView
+                        data={this.state.sections}
+                        renderRow={this.renderRow.bind(this)}
+                        {...this.props}
+                    />
+                </Content>
+            </Container>
         )
     }
 
