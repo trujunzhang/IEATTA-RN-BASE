@@ -66,6 +66,7 @@ import commonStyles from '../../../common/commonStyle'
 
 
 const _ = require('underscore')
+
 const {
     RestaurantService, EventService, PeopleInEventService,
     RecipeService,

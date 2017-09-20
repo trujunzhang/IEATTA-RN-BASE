@@ -61,37 +61,26 @@ const {
 import {Container, Header, Content, List, ListItem, Body} from 'native-base'
 import commonStyles from '../../../common/commonStyle'
 
+const {
+    RestaurantService, EventService, PeopleInEventService,
+    RecipeService,
+    PhotoService,
+    UserService,
+    ReviewService
+} = require('../../../parse/realmApi').default
+
 class OrderedUserListView extends React.Component {
 
     constructor(props: Props) {
         super(props);
 
+        const {forEvent, forRestaurant, orderedUser} = this.props;
+        const newOrderedRecipes = RecipeService.findTerm(forRestaurant.objectUniqueId, forEvent.objectUniqueId, orderedUser.objectId)
         this.state = {
             sections: {
-                MENU_SECTIONS_ORDERED_RECIPES: []
-            },
-            ready: false
+                MENU_SECTIONS_ORDERED_RECIPES: newOrderedRecipes
+            }
         }
-    }
-
-    componentWillReceiveProps(nextProps: Props) {
-        const {sections} = this.state;
-
-        const {forEvent, forRestaurant, orderedUser} = this.props;
-
-        const newOrderedRecipes = filterOrderedRecipes(nextProps, forRestaurant.objectId, forEvent.objectId, orderedUser.objectId);
-        if (!!newOrderedRecipes) {
-            this.setState({
-                sections: Object.assign({}, sections, {
-                    MENU_SECTIONS_ORDERED_RECIPES: newOrderedRecipes
-                })
-            })
-        }
-    }
-
-    componentDidMount() {
-        const {forEvent, forRestaurant, orderedUser} = this.props;
-        this.props.dispatch(queryRecipesForUser(forRestaurant.objectId, forEvent.objectId, orderedUser.objectId))
     }
 
     render() {

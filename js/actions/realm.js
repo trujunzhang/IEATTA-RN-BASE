@@ -112,16 +112,14 @@ async function _queryPhotosByType(photoType: string, forObjectId: string): Promi
 }
 
 
-async function _queryRecipesForUser(restaurantId: string, eventId: string, userId: string): Promise<Array<Action>> {
-    const results = RecipeService.findAll().filtered(
-        'restaurantId == $0 AND eventId == $1 AND userId == $2',
-        restaurantId, eventId, userId);
+async function _queryRecipesForUser(restaurantUniqueId: string, eventUniqueId: string, userId: string): Promise<Array<Action>> {
+    const results = RecipeService.findTerm(restaurantUniqueId, eventUniqueId, userId)
 
     const action = {
         type: QUERY_RECIPES_FOR_USER,
         payload: {
-            restaurantId,
-            eventId,
+            restaurantUniqueId,
+            eventUniqueId,
             userId,
             results
         }
@@ -182,8 +180,8 @@ export default {
         return queryListFromAction(_queryPeopleForEvent(restaurantId, eventId))
     },
 
-    queryRecipesForUser(restaurantId: string, eventId: string, userId: string): ThunkAction {
-        return queryListFromAction(_queryRecipesForUser(restaurantId, eventId, userId))
+    queryRecipesForUser(restaurantUniqueId: string, eventUniqueId: string, userId: string): ThunkAction {
+        return queryListFromAction(_queryRecipesForUser(restaurantUniqueId, eventUniqueId, userId))
     },
 
     queryUsers(term: Object = {}): ThunkAction {

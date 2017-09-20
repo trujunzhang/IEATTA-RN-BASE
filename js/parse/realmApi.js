@@ -193,25 +193,11 @@ const PhotoService = {
     }
 }
 
-
 const RecipeService = {
-    findAll: function () {
-        return Repository.objects(PARSE_RECIPES)
-    },
-
-    save: function (item) {
-        if (Repository.objects(PARSE_RECIPES).filtered('objectId == $0', item.id).length) return;
-        Repository.write(() => {
-            Repository.create(PARSE_RECIPES, Records.getRealmData(PARSE_RECIPES, item))
-        })
-    },
-
-    update: function (item, callback) {
-        if (!callback) return;
-        Repository.write(() => {
-            callback();
-            item.updatedAt = new Date();
-        })
+    findTerm: function (restaurantUniqueId: string, eventUniqueId: string, userId: string) {
+        return Repository.objects(PARSE_RECIPES).filtered(
+            'restaurantUniqueId == $0 AND eventUniqueId == $1 AND userId == $2',
+            restaurantUniqueId, eventUniqueId, userId);
     }
 }
 

@@ -67,13 +67,14 @@ class IEAOrderedUser extends React.Component {
                 objectSchemaName={PARSE_RESTAURANTS}
                 customStickyTitle={orderedUser.displayName}
                 haveParallaxView={false}
-                renderParallaxHeader={(e) => {
-                    return (<RLOrderedUserParallaxHeader
-                        {...this.props.navigation.state.params}
-                        {...this.props}/>)
-                }}
             />
         )
+
+        // renderParallaxHeader={(e) => {
+        //            return (<RLOrderedUserParallaxHeader
+        //                {...this.props.navigation.state.params}
+        //                {...this.props}/>)
+        //        }}
     }
 }
 
