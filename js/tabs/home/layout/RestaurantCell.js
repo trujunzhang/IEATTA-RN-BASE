@@ -42,6 +42,7 @@ const {
     MENU_DETAILED_RESTAURANT_PAGE,
     MENU_DETAILED_RECIPE_PAGE,
     MENU_DETAILED_ORDERED_USER_PAGE,
+    MENU_DETAILED_EVENT_PAGE,
 } = require('../../../lib/constants').default
 
 const F8PlaceHolderImage = require('F8PlaceHolderImage')
@@ -159,10 +160,10 @@ class RestaurantCell extends Component {
         const {props} = this;
         const {restaurant} = this.props;
 
-        onCellItemPress(props,
-            MENU_DETAILED_RESTAURANT_PAGE,
-            {restaurant}
-        )
+        // onCellItemPress(props,
+        //     MENU_DETAILED_RESTAURANT_PAGE,
+        //     {restaurant}
+        // )
 
         if (__DEV__ && restaurant.objectId === 'OnNGSfwoou') {
             // onCellItemPress(this.props,
@@ -172,6 +173,7 @@ class RestaurantCell extends Component {
 
             const event = {
                 "objectId": "p25iag5OcM",
+                "uniqueId": "a2789675-703a-4322-8a99-bd355d2bd395",
                 "updatedAt": "2017-07-12T01:16:19.472Z",
                 "displayName": "Outdoor Skating and Holiday Festivities in Downtown Burbank",
                 "start": "2017-06-28T10:30:57.566Z",
@@ -180,7 +182,14 @@ class RestaurantCell extends Component {
                 "restaurantId": "OnNGSfwoou",
                 "restaurantName": "LISA"
             }
-            // this.props.navigator.push({event: event, forRestaurant: restaurant});
+
+            onCellItemPress(props,
+                MENU_DETAILED_EVENT_PAGE,
+                {
+                    event: event,
+                    forRestaurant: restaurant
+                }
+            )
 
             const user = {
                 "objectId": "aGkde8iuL6",
@@ -203,6 +212,7 @@ class RestaurantCell extends Component {
 
             const recipe = {
                 "objectId": "GsJxbBcJaE",
+                "uniqueId":'9cfd24b6-b8e9-4cf1-bcef-621b21354cb8',
                 "updatedAt": "2017-07-11T13:07:00.434Z",
                 "displayName": "House salad with salmon",
                 "price": "40",
@@ -227,7 +237,7 @@ class RestaurantCell extends Component {
 
     componentDidMount() {
         if (__DEV__) {
-            // this.onPress()
+            this.onPress()
         }
     }
 

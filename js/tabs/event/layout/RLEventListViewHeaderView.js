@@ -14,7 +14,6 @@ import {
 
 
 const F8Colors = require('F8Colors')
-const F8Button = require('F8Button')
 const F8RatingReview = require('F8RatingReview')
 const CaptionTextView = require('CaptionTextView')
 const F8PhotoHorizonSectionView = require('F8PhotoHorizonSectionView')
@@ -59,8 +58,8 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingBottom: 5,
         justifyContent: 'center',
-        backgroundColor: F8Colors.controllerViewColor
-        // backgroundColor: 'red'
+        // backgroundColor: F8Colors.controllerViewColor
+        backgroundColor: 'red'
     },
     eventHeaderSection: {
         flex: 1,
